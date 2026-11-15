@@ -9,6 +9,32 @@ Reel 3 (`Dd6ue5FRZU2`) fehlt noch.
 
 ---
 
+## 0. MAR-Brand (hat Vorrang vor allen Farb-/Schriftangaben unten)
+
+Quelle: meetmar-ai.lovable.app und Logo `design/mar-logo.png`. Vorschau: `design/mar-look.png`.
+
+| Token | Wert | Einsatz |
+|---|---|---|
+| Carbon | `#10100F` | dunkle Frames, Chat-Karten, Text auf hellem Grund |
+| Panel / Linie | `#1C1C19` / `#343431` | MAR-Chat-Bubble, 1-px-Rahmen |
+| Porzellan | `#F1EFEA` | Untertitel, Text auf dunklem Grund, Akzent-Box |
+| Muted / System-Grau | `#A7A49F` / `#96939C` | Zweitzeilen, „ausgegrautes“ Akzentwort |
+| Espresso | `#2A211D` | warme Schatten |
+| Logo-Schwarz | `#070706` | Endframe-Hintergrund (passt nahtlos zum Logo) |
+
+- **Schriften:** *Geist* (300/400 für Headlines, 600 für Untertitel) und *IBM Plex Mono* (Versalien, weit gesperrt) für Labels und Akzente.
+- **Ecken:** fast eckig (2 px), keine runden Bubbles.
+- **Hintergrund Talking Head:** „Warmes Studio“. Helles Greige mit Lichtschein hinter dem Kopf (`#E4D8C8` → `#9A8774`), leichtes Korn. Person wird freigestellt.
+- **Untertitel:** Geist SemiBold, Porzellan, weicher dunkler Schatten, auf Brusthöhe (liegt auf der dunkelbraunen Kleidung → gut lesbar).
+- **Akzentwörter** ersetzen das gelbe Kursiv der Referenz:
+  - a) **Porzellan-Box** mit Carbon-Text in IBM Plex Mono, Versalien („DIAGNOSE“), wie der Button auf der Landingpage. Für Schlüsselbegriffe.
+  - b) **ausgegrautes Wort** in der Headline („Du gibst MAR dein *ganzes* Business.“), wie „fehlt.“ auf der Landingpage.
+- **Hook-Headline** auf hellem Grund: Carbon, Geist Regular, Akzentwort warmgrau `#7A6E63`.
+- **Text-only-Frames** (Reel 02, Endframes): Carbon-Grund, Geist Light in Porzellan, zweite Zeile System-Grau, blinkender Cursor.
+- **Kein Gelb, keine Serifenschrift.** Ruhig, reduziert, „diagnostisch“.
+
+---
+
 ## 1. Messwerte aus den Referenzen
 
 | | Reel 1 – Animation (darius) | Reel 2 – Talking Head (meg) |

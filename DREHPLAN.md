@@ -42,7 +42,7 @@ Ca. 85 Wörter, das ergibt nach dem Schnitt **≈ 25–30 s**.
 | 0,0–4,5 s | MAR-Chat-Animation (wird von Claude gebaut, keine echte Bildschirmaufnahme): die MAR-Bubble tippt „Wann hast du zuletzt einen Kunden **verloren**?“. **Ab Frame 1** steht schon „Wann hast du“, kein leeres Bild. Groß, mittig, weiß auf Navy/Schwarz | 1× leiser Akzent-Sound beim Start |
 | 4,5–8,0 s | Zweite Zeile erscheint: „Und was war der **Grund**?“ | Stille |
 | 8,0–11,0 s | **Dein Frontal-Blick**, kein Text. Ganz langsamer Zoom 100 → 105 % | nur Raumton |
-| 11,0–14,0 s | Einblendung: „Das fragt MAR, bevor es *irgendetwas* empfiehlt.“ (Serif, Akzentwort kursiv) | weicher Ton-Einsatz |
+| 11,0–14,0 s | Einblendung: „Das fragt MAR, bevor es *irgendetwas* empfiehlt.“ (Geist Light, Akzentwort grau) | weicher Ton-Einsatz |
 | 14,0–15,0 s | Schwarzer Endframe: „MAR · Business-Diagnostik-KI · Link in Bio“, klein darunter „Beispielfall“ | – |
 
 **Dreh dafür:** nur der Blick. Stativ, Augenhöhe, Blick direkt in die Linse, **5 s halten**, kein Lächeln, ruhig atmen.
@@ -61,8 +61,8 @@ im MAR-Look (helle Bubbles für MAR, Navy `#0F172A` für die Nutzerin, Inter, ru
 ---
 
 ## Hintergrund (Person wird freigestellt)
-Vorschläge in `design/hintergruende.png`. **Empfehlung: 1 · Navy.** Er passt zum dunklen MAR-Chat und zu den
-schwarzen Frames aus Reel 02. Ein warmer Lichtschein hinter dir trennt die dunkelbraune Kleidung vom Hintergrund.
+**Entschieden: „Warmes Studio“** im MAR-Look, siehe `design/mar-look.png` und `STYLE.md` Abschnitt 0.
+Du trägst Dunkelbraun und hebst dich vom hellen Greige gut ab.
 
 **Damit das Freistellen sauber wird:**
 - 1–2 m **vor einer glatten, einfarbigen Wand** stehen oder sitzen, ideal hell bis mittelgrau. **Nicht braun** (Kleidung) und keine Fenster oder Regale direkt hinter dir.
@@ -74,6 +74,7 @@ schwarzen Frames aus Reel 02. Ein warmer Lichtschein hinter dir trennt die dunke
 
 ---
 
-## Offene Fragen
-1. Hintergrund: 1, 2 oder 3?
-2. Gibt es ein MAR-Logo? Sonst schreibe ich „MAR“ in der Serifenschrift als Wortmarke.
+## Entschieden
+- Hintergrund: Warmes Studio.
+- Logo: `design/mar-logo.png`.
+- Farben und Schriften: siehe `STYLE.md` Abschnitt 0.
