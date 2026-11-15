@@ -29,35 +29,51 @@ Ca. 85 Wörter, das ergibt nach dem Schnitt **≈ 25–30 s**.
 | 8 | Vielleicht ist dein Sales-Problem **[gar keins].** | Selfie nah | 🎞 „Sales-Problem“ als Karte, wird **durchgestrichen** · 🔊 Strich/Scratch |
 | 9 | Du siehst es nur nicht, wenn du immer **dieselbe Frage** stellst. | Halbnah | 🎞 **Blitz-Montage:** dieselbe Chat-Bubble stapelt sich 6× in 0,1-s-Schritten · 🔊 schnelles Ticken |
 | 10 | Deshalb: erst **[diagnostizieren]**, dann entscheiden, wo das **[Cash]** hingeht. | Selfie nah | 🎞 Zwei Schritt-Karten „1 Diagnose → 2 Entscheidung“ (Stil Reel 1, Fortschrittsbalken) · 🔊 Pop, Pop |
-| 11 | *CTA, fehlt noch*, Vorschlag: „Kommentiere **[DIAGNOSE]** und ich schick dir die erste MAR-Frage.“ | Selfie nah | Keyword groß als Akzent-Caption |
+| 11 | Kommentiere **[MAR]** und sei eine der ersten 20 Unternehmerinnen, die MAR auf ihr Business loslassen. | Selfie nah | „MAR“ riesig als Akzent-Caption, darunter Zähler-Karte „20 Plätze“ · 🔊 Pop |
 
 **Ton:** leiser Musikteppich, bei Satz 6 kurz rausnehmen (Stille betont „Problem“), danach wieder rein.
 
 ---
 
-## Reel 02 – „Echte Frage als Hook“
+## Reel 02 – „Echte Frage als Hook“ (15 s, ohne Sprache)
 
-### Hook (0–4 s)
-1. **Erstes Bild (0,0 s):** Du bist nah im Bild, Blick **nach unten oder zur Seite**, ganz ruhig.
-   Die Frage steht **sofort ab Frame 1** im Bild, sonst wird weggewischt:
-   > „Wann hast du zuletzt einen Kunden **[verloren]**?
-   > Und was war der **[Grund]**?“
-   - Schrift: Serifen-Titel (Stil Reel 1), groß, **hinter deinem Kopf**.
-2. **2 s Stille:** keine Musik, nur leiser Raumklang. Damit das Bild nicht „steht“, zoomt es in den 2 s **langsam rein** (100 % → 108 %).
-3. **Dein Blick:** Du hebst den Blick langsam **direkt in die Linse** und hältst ihn ~1 s. Erst dann setzt Musik bzw. Stimme ein.
+| Zeit | Bild | Ton |
+|---|---|---|
+| 0,0–4,5 s | MAR-Chat-Animation (wird von Claude gebaut, keine echte Bildschirmaufnahme): die MAR-Bubble tippt „Wann hast du zuletzt einen Kunden **verloren**?“. **Ab Frame 1** steht schon „Wann hast du“, kein leeres Bild. Groß, mittig, weiß auf Navy/Schwarz | 1× leiser Akzent-Sound beim Start |
+| 4,5–8,0 s | Zweite Zeile erscheint: „Und was war der **Grund**?“ | Stille |
+| 8,0–11,0 s | **Dein Frontal-Blick**, kein Text. Ganz langsamer Zoom 100 → 105 % | nur Raumton |
+| 11,0–14,0 s | Einblendung: „Das fragt MAR, bevor es *irgendetwas* empfiehlt.“ (Serif, Akzentwort kursiv) | weicher Ton-Einsatz |
+| 14,0–15,0 s | Schwarzer Endframe: „MAR · Business-Diagnostik-KI · Link in Bio“, klein darunter „Beispielfall“ | – |
 
-### Beim Dreh beachten
-- **Stativ**, absolut ruhige Kamera, Augenhöhe.
-- Den Blick 3–4 s lang halten, bevor du sprichst. Ich schneide auf die besten 1–1,5 s.
-- 3–4 Versionen drehen (Blick langsamer, schneller, mit leichtem Lächeln, ernst).
+**Dreh dafür:** nur der Blick. Stativ, Augenhöhe, Blick direkt in die Linse, **5 s halten**, kein Lächeln, ruhig atmen.
+3–4 Versionen machen. Ich nehme die ruhigste.
 
-### Hauptteil
-*Fehlt noch.* Was sagst du nach dem Blick? (siehe Fragen unten)
+**Datenschutz:** Der echte Chat-Screenshot enthält eine Kunden-E-Mail und echte Inhalte. Claude baut den Chat
+im MAR-Look (helle Bubbles für MAR, Navy `#0F172A` für die Nutzerin, Inter, runde Ecken) mit **erfundenem Text** nach.
+
+---
+
+## CTA-Bausteine (für alle Reels)
+- „Kommentiere **MAR** und sei in der ersten kostenlosen Beta-Runde dabei.“
+- „Kommentiere **MAR** und sei eine der ersten 20 Unternehmerinnen, die MAR auf ihr Business loslassen.“
+- Ohne Sprache (Reel 02): Endframe „Link in Bio“.
+
+---
+
+## Hintergrund (Person wird freigestellt)
+Vorschläge in `design/hintergruende.png`. **Empfehlung: 1 · Navy.** Er passt zum dunklen MAR-Chat und zu den
+schwarzen Frames aus Reel 02. Ein warmer Lichtschein hinter dir trennt die dunkelbraune Kleidung vom Hintergrund.
+
+**Damit das Freistellen sauber wird:**
+- 1–2 m **vor einer glatten, einfarbigen Wand** stehen oder sitzen, ideal hell bis mittelgrau. **Nicht braun** (Kleidung) und keine Fenster oder Regale direkt hinter dir.
+- Gesicht zum Fenster, Licht gleichmäßig. **Kein Gegenlicht.**
+- Haare möglichst glatt oder zurück, keine abstehenden Strähnen.
+- Stativ, Kamera bewegt sich nicht.
+- Hände nicht schnell aus dem Bild raus und wieder rein, und nichts in der Hand, was durchsichtig ist (Glas).
+- Ein grünes Tuch als Hintergrund wäre perfekt, ist aber kein Muss.
 
 ---
 
 ## Offene Fragen
-1. Reel 02: Text nach dem Hook?
-2. CTA für beide Reels: Keyword-Kommentar, Link in Bio oder Speichern?
-3. MAR-Branding: Farben, Schrift, Logo? Dann wird die Akzentfarbe deine Markenfarbe statt Gelb.
-4. Screenshots der MAR-Oberfläche (Chat mit Rückfrage) für die Overlays. Sonst baue ich eine neutrale Chat-Karte.
+1. Hintergrund: 1, 2 oder 3?
+2. Gibt es ein MAR-Logo? Sonst schreibe ich „MAR“ in der Serifenschrift als Wortmarke.

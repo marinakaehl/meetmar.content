@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">
+<style>
+body{margin:0;display:flex;gap:30px;background:#222;padding:30px;font-family:Inter}
+.f{width:360px;height:640px;position:relative;overflow:hidden;border-radius:14px}
+.f:after{content:"";position:absolute;inset:0;opacity:.10;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>")}
+.p{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:250px;height:330px}
+.head{position:absolute;left:83px;top:0;width:84px;height:104px;border-radius:50%;background:#c9a58a}
+.hair{position:absolute;left:73px;top:-8px;width:104px;height:130px;border-radius:50% 50% 40% 40%;background:#3b2a20}
+.body{position:absolute;left:0;top:120px;width:250px;height:230px;border-radius:110px 110px 0 0;background:#4a3326}
+.cap{position:absolute;left:0;right:0;top:300px;text-align:center;font-weight:800;font-size:44px;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.45)}
+.acc{position:absolute;left:0;right:0;top:360px;text-align:center;font-family:'Instrument Serif';font-style:italic;font-size:54px}
+.lab{position:absolute;left:14px;top:12px;font:700 13px Inter;letter-spacing:.08em;text-transform:uppercase}
+.chat{position:absolute;left:22px;right:22px;top:70px;padding:14px 16px;border-radius:18px;font:500 15px/1.4 Inter}
+/* 1 navy */
+.a{background:radial-gradient(ellipse 70% 45% at 50% 58%,#3a3f5c 0%,#1a2035 45%,#0b1020 100%)}
+.a .acc{color:#E9C9A0}.a .lab{color:#E9C9A0}.a .chat{background:#F1F4F8;color:#0F172A}
+/* 2 warm studio */
+.b{background:radial-gradient(ellipse 80% 55% at 35% 30%,#d9cbb8 0%,#b7a48d 45%,#7d6a57 100%)}
+.b .acc{color:#FFF1D6}.b .lab{color:#fff}.b .chat{background:#0F172A;color:#fff}
+/* 3 light paper */
+.c{background:radial-gradient(ellipse 85% 60% at 50% 40%,#f7f2ea 0%,#ece3d6 60%,#d8ccbb 100%)}
+.c .cap{color:#0F172A;text-shadow:none}.c .acc{color:#9a5b3a}.c .lab{color:#9a5b3a}.c .chat{background:#0F172A;color:#fff}
+</style></head><body>
+<div class="f a"><div class="lab">1 · Navy (MAR-Dunkel)</div><div class="chat">Wann hast du zuletzt einen Kunden verloren?</div><div class="p"><div class="hair"></div><div class="head"></div><div class="body"></div></div><div class="cap">Business</div><div class="acc">ganzes Business.</div></div>
+<div class="f b"><div class="lab">2 · Warmes Studio</div><div class="chat">Wann hast du zuletzt einen Kunden verloren?</div><div class="p"><div class="hair"></div><div class="head"></div><div class="body"></div></div><div class="cap">Business</div><div class="acc">ganzes Business.</div></div>
+<div class="f c"><div class="lab">3 · Hell / Papier</div><div class="chat">Wann hast du zuletzt einen Kunden verloren?</div><div class="p"><div class="hair"></div><div class="head"></div><div class="body"></div></div><div class="cap">Business</div><div class="acc">ganzes Business.</div></div>
+</body></html>
