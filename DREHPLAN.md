@@ -1,7 +1,7 @@
 # Drehplan – Reel 01 und Reel 02
 
 Schnitt nach `STYLE.md`. Legende:
-- **[Akzent]** = Wort wird gelb und kursiv eingeblendet.
+- **[Akzent]** = Akzentwort (helle Mono-Box oder ausgegraut, siehe `STYLE.md` Abschnitt 0).
 - **📍** = Kameraposition.
 - **🎞** = Overlay/Grafik.
 - **🔊** = Soundeffekt.
@@ -10,6 +10,36 @@ Allgemein für beide Reels:
 - Hochkant, Hauptkamera, Gesicht zum Fenster, Ansteckmikro oder Handy nah.
 - Jeden Satz bei Versprechern einfach nochmal sagen und weiterreden.
 - Pro Position den **ganzen Text** einmal durchsprechen. Ich wähle dann pro Satz die beste Position aus.
+
+---
+
+## 🎤 Sprechtext zum Ablesen
+
+### Reel 01
+> Du gibst ChatGPT eine Frage.
+> Du gibst MAR dein ganzes Business.
+>
+> Versteh mich nicht falsch, ChatGPT ist genial und ich nutze es selbst.
+> Aber es beantwortet genau das, was du fragst.
+> Und manchmal ist die Frage schon das Problem.
+>
+> MAR fragt erst mal zurück: Moment, wie kommst du da drauf?
+>
+> Vielleicht ist dein Sales-Problem gar keins.
+> Du siehst es nur nicht, wenn du immer dieselbe Frage stellst.
+>
+> Deshalb: erst diagnostizieren, dann entscheiden, wo das Cash hingeht.
+>
+> Kommentiere MAR und sei eine der Founding 20, die MAR auf ihr Business loslassen.
+
+**Hook-Headline (im Bild, hinter deinem Kopf):** „Du gibst MAR dein *ganzes* Business.“ („ganzes“ ausgegraut)
+
+### Reel 02 (kein Sprechtext, nur Blick)
+**Bildtexte:**
+1. „Wann hast du zuletzt einen Kunden verloren?“
+2. „Und was war der Grund?“
+3. „Das fragt MAR, bevor es irgendetwas empfiehlt.“
+4. Endframe: MAR-Logo · „Link in Bio“ · klein „Beispielfall“
 
 ---
 
@@ -29,7 +59,7 @@ Ca. 85 Wörter, das ergibt nach dem Schnitt **≈ 25–30 s**.
 | 8 | Vielleicht ist dein Sales-Problem **[gar keins].** | Selfie nah | 🎞 „Sales-Problem“ als Karte, wird **durchgestrichen** · 🔊 Strich/Scratch |
 | 9 | Du siehst es nur nicht, wenn du immer **dieselbe Frage** stellst. | Halbnah | 🎞 **Blitz-Montage:** dieselbe Chat-Bubble stapelt sich 6× in 0,1-s-Schritten · 🔊 schnelles Ticken |
 | 10 | Deshalb: erst **[diagnostizieren]**, dann entscheiden, wo das **[Cash]** hingeht. | Selfie nah | 🎞 Zwei Schritt-Karten „1 Diagnose → 2 Entscheidung“ (Stil Reel 1, Fortschrittsbalken) · 🔊 Pop, Pop |
-| 11 | Kommentiere **[MAR]** und sei eine der ersten 20 Unternehmerinnen, die MAR auf ihr Business loslassen. | Selfie nah | „MAR“ riesig als Akzent-Caption, darunter Zähler-Karte „20 Plätze“ · 🔊 Pop |
+| 11 | Kommentiere **[MAR]** und sei eine der **[Founding 20]**, die MAR auf ihr Business loslassen. | Selfie nah | „MAR“ riesig als Akzent-Box, darunter Karte „FOUNDING 20“ · 🔊 Pop |
 
 **Ton:** leiser Musikteppich, bei Satz 6 kurz rausnehmen (Stille betont „Problem“), danach wieder rein.
 
@@ -39,7 +69,7 @@ Ca. 85 Wörter, das ergibt nach dem Schnitt **≈ 25–30 s**.
 
 | Zeit | Bild | Ton |
 |---|---|---|
-| 0,0–4,5 s | MAR-Chat-Animation (wird von Claude gebaut, keine echte Bildschirmaufnahme): die MAR-Bubble tippt „Wann hast du zuletzt einen Kunden **verloren**?“. **Ab Frame 1** steht schon „Wann hast du“, kein leeres Bild. Groß, mittig, weiß auf Navy/Schwarz | 1× leiser Akzent-Sound beim Start |
+| 0,0–4,5 s | MAR-Chat-Animation (wird von Claude gebaut, keine echte Bildschirmaufnahme): die MAR-Bubble tippt „Wann hast du zuletzt einen Kunden **verloren**?“. **Ab Frame 1** steht schon „Wann hast du“, kein leeres Bild. Groß, mittig, Porzellan auf Carbon | 1× leiser Akzent-Sound beim Start |
 | 4,5–8,0 s | Zweite Zeile erscheint: „Und was war der **Grund**?“ | Stille |
 | 8,0–11,0 s | **Dein Frontal-Blick**, kein Text. Ganz langsamer Zoom 100 → 105 % | nur Raumton |
 | 11,0–14,0 s | Einblendung: „Das fragt MAR, bevor es *irgendetwas* empfiehlt.“ (Geist Light, Akzentwort grau) | weicher Ton-Einsatz |
@@ -49,13 +79,14 @@ Ca. 85 Wörter, das ergibt nach dem Schnitt **≈ 25–30 s**.
 3–4 Versionen machen. Ich nehme die ruhigste.
 
 **Datenschutz:** Der echte Chat-Screenshot enthält eine Kunden-E-Mail und echte Inhalte. Claude baut den Chat
-im MAR-Look (helle Bubbles für MAR, Navy `#0F172A` für die Nutzerin, Inter, runde Ecken) mit **erfundenem Text** nach.
+im MAR-Look (Carbon/Panel-Karten, Porzellan-Text, Geist + IBM Plex Mono, fast eckig) mit **erfundenem Text** nach.
 
 ---
 
 ## CTA-Bausteine (für alle Reels)
 - „Kommentiere **MAR** und sei in der ersten kostenlosen Beta-Runde dabei.“
 - „Kommentiere **MAR** und sei eine der ersten 20 Unternehmerinnen, die MAR auf ihr Business loslassen.“
+- „Kommentiere **MAR** und sei eine der **Founding 20**.“ (gleicher Begriff wie auf der Landingpage)
 - Ohne Sprache (Reel 02): Endframe „Link in Bio“.
 
 ---
