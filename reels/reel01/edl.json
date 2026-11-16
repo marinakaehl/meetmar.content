@@ -32,7 +32,7 @@
     {"type": "word", "text": "DIAGNOSE", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "diagnostizieren"}, "until": {"seg": 7, "word": "dann"}},
     {"type": "word", "text": "ENTSCHEIDUNG", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "dann"}, "until": {"seg": 7, "word": "damit"}},
     {"type": "word", "text": "CASH", "scale": 0.84, "at": {"seg": 7, "word": "Cash"}, "until": {"seg": 7, "word": "irgendwelche"}},
-    {"type": "word", "text": "20", "faint": true, "scale": 0.84, "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
+    {"type": "word", "text": "20", "faint": true, "y": 640, "scale": 0.84, "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
   ],
   "cards": [
     {"type": "chat", "bubbles": [

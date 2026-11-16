@@ -428,7 +428,7 @@ class Moments:
         base = self.studio[oy:oy + H, ox:ox + W]
         dk = max([self.w(m, t, 0.15, 0.15) for m in self.ms if m.get("dark")] + [0])
         if dk > 0: base = base * (1 - dk) + self.dark * dk
-        base = base + self.grain[int(t * 12) % 4]
+        base = base + self.grain[int(t * 4) % 4]
         layer = None
         for m in self.ms:
             a = self.w(m, t)
@@ -443,7 +443,7 @@ class Moments:
             else:
                 im = self._health(m, t)
             if a < 1: im = im.copy(); im.putalpha(im.getchannel("A").point(lambda v: int(v * a)))
-            y = 460 - im.height // 2 if m["type"] == "word" else 100
+            y = (m.get("y", 460)) - im.height // 2 if m["type"] == "word" else 100
             layer.alpha_composite(im, ((W - im.width) // 2, max(0, y)))
         if layer is not None:
             la = np.asarray(layer, np.float32); k = la[..., 3:] / 255; base = base * (1 - k) + la[..., :3] * k
