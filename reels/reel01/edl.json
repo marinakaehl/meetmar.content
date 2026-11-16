@@ -1,5 +1,5 @@
 {
-  "title": "Reel 01 – Eine Frage vs. dein ganzes Business",
+  "title": "Reel 01 – Eine Frage vs. dein ganzes Business (v3: Studio + Textur)",
   "sources": {
     "A": "raw/reel01/IMG_7079.mp4",
     "B": "raw/reel01/IMG_7080.mp4"
@@ -9,6 +9,8 @@
     "B": "reels/reel01/v7080_words.json"
   },
   "crop_bottom": 1215,
+  "background_image": "design/backgrounds/studio_beton.png",
+  "person_scale": 0.9,
   "segments": [
     {"src": "B", "from": 0.7, "to": 6.7, "hook": true, "fix": {"ma,": "MAR"}},
     {"src": "A", "from": 10.0, "to": 15.6, "accent": ["genial."]},
@@ -17,7 +19,7 @@
     {"src": "B", "from": 28.95, "to": 33.4, "fix": {"in": "In"}},
     {"src": "B", "from": 35.2, "to": 39.2},
     {"src": "B", "from": 39.4, "to": 43.7},
-    {"src": "A", "from": 55.8, "to": 64.3},
+    {"src": "A", "from": 55.8, "to": 64.3, "accent": ["Cash"]},
     {"src": "B", "from": 52.3, "to": 58.3, "fix": {"Ma,": "MAR,"}, "accent": ["Founding 20"]}
   ],
   "headline": [
@@ -25,22 +27,22 @@
     {"text": "Du gibst MAR dein ganzes Business.", "grey": ["ganzes"], "at": {"seg": 0, "word": "ma,"}}
   ],
   "moments": [
-    {"type": "plain", "scale": 0.86, "at": {"seg": 0, "word": "Du"}, "until": {"seg": 0, "end": true}},
-    {"type": "word", "text": "PROBLEM.", "dark": true, "scale": 0.84, "min": 1.4, "at": {"seg": 2, "word": "Problem."}, "until": {"seg": 2, "end": true}},
-    {"type": "health", "scale": 0.78, "at": {"seg": 5, "word": "Sales"}, "strike_at": {"seg": 5, "word": "gar"},
-     "focus_at": {"seg": 6, "word": "ganz"}, "until": {"seg": 6, "end": true}},
-    {"type": "word", "text": "DIAGNOSE", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "diagnostizieren"}, "until": {"seg": 7, "word": "dann"}},
-    {"type": "word", "text": "ENTSCHEIDUNG", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "dann"}, "until": {"seg": 7, "word": "damit"}},
-    {"type": "word", "text": "CASH", "scale": 0.84, "at": {"seg": 7, "word": "Cash"}, "until": {"seg": 7, "word": "irgendwelche"}},
-    {"type": "word", "text": "20", "faint": true, "y": 640, "scale": 0.84, "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
+    {"type": "plain", "scale": 0.94, "at": {"seg": 0, "word": "Du"}, "until": {"seg": 0, "end": true}},
+    {"type": "bw", "at": {"seg": 2, "word": "Aber"}, "until": {"seg": 2, "word": "Und"}},
+    {"type": "word", "text": "PROBLEM.", "min": 1.4, "at": {"seg": 2, "word": "Problem."}, "until": {"seg": 2, "end": true}},
+    {"type": "waterfall", "at": {"seg": 3, "word": "MAR"}, "until": {"seg": 4, "end": true},
+     "questions": [
+       "Moment. Wie kommst du da drauf?", "In welcher Wachstumsphase stehst du?", "Wie sieht dein Business-Fundament aus?",
+       "Wann hast du zuletzt eine Kundin verloren?", "Woher kommen deine besten Kundinnen?", "Was hast du schon ausprobiert?",
+       "Welches Angebot verkauft sich fast von allein?", "Wo verlierst du jede Woche Zeit?", "Was würdest du sofort streichen?",
+       "Was war der eigentliche Grund?", "Wer entscheidet in deinem Business?", "Was kostet dich eine neue Kundin?"]},
+    {"type": "knockout", "text": "MAR", "y": 760, "at": {"seg": 8, "word": "MAR,"}, "until": {"seg": 8, "end": true}}
   ],
   "cards": [
-    {"type": "chat", "bubbles": [
-      {"text": "Moment. Wie kommst du da drauf?", "at": {"seg": 3, "word": "Moment,"}, "typed_by": {"seg": 3, "end": true}},
-      {"text": "In welcher Wachstumsphase stehst du?", "at": {"seg": 4, "word": "in"}, "typed_by": {"seg": 4, "word": "Wie"}},
-      {"text": "Wie sieht dein Business-Fundament aus?", "at": {"seg": 4, "word": "Wie"}, "typed_by": {"seg": 4, "end": true}}
-    ], "until": {"seg": 4, "end": true}},
-    {"type": "cta", "text": "FÜR DIE FOUNDING 20 BEWERBEN  →", "sub": "PRIVATE BETA · KOSTENLOSE TEILNAHME", "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
+    {"type": "label", "text": "Sales-Problem", "at": {"seg": 5, "word": "Sales"}, "strike_at": {"seg": 5, "word": "gar"},
+     "note": "…oder ganz woanders?", "note_at": {"seg": 6, "word": "ganz"}, "until": {"seg": 6, "end": true}},
+    {"type": "stamp", "text": "DIAGNOSE", "at": {"seg": 7, "word": "diagnostizieren"}, "until": {"seg": 7, "word": "damit"}},
+    {"type": "cta", "text": "FÜR DIE FOUNDING 20 BEWERBEN  →", "sub": "PRIVATE BETA · KOSTENLOSE TEILNAHME", "at": {"seg": 8, "word": "dann"}, "until": {"seg": 8, "end": true}}
   ],
   "endframe": {"seconds": 1.2, "sub": "LINK IN BIO"}
 }

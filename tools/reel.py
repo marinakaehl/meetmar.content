@@ -188,6 +188,48 @@ def render_headline(items):
         y += 34
     return img
 
+INK = (168, 105, 100)  # MAR error/rust = Stempelfarbe
+GRAPHITE = (58, 56, 54)
+
+def paper(w, h, rot=0.0, tape=True, seed=0, color=(244, 241, 234)):
+    """Papierkarte mit Faserstruktur, weichem Schatten und optionalem Klebeband -> RGBA"""
+    r = np.random.default_rng(seed)
+    base = np.array(color, np.float32) + r.normal(0, 3.5, (h, w, 1)).astype(np.float32)
+    fib = np.asarray(Image.fromarray(r.normal(0, 1, (h // 8 + 1, w // 8 + 1)).astype(np.float32)).resize((w, h), Image.BICUBIC))
+    base += fib[..., None] * 4
+    card = Image.fromarray(base.clip(0, 255).astype(np.uint8)).convert("RGBA")
+    pad = 60; out = Image.new("RGBA", (w + 2 * pad, h + 2 * pad), (0, 0, 0, 0))
+    sh = Image.new("L", out.size, 0); ImageDraw.Draw(sh).rectangle([pad + 6, pad + 14, pad + w + 6, pad + h + 14], fill=110)
+    sh = sh.filter(ImageFilter.GaussianBlur(14))
+    out.paste((20, 16, 12, 255), (0, 0), sh)
+    out.alpha_composite(card, (pad, pad))
+    if tape:
+        tw, th = int(min(220, w * 0.45)), 46
+        tp = Image.new("RGBA", (tw, th), (226, 218, 200, 170)); dt = ImageDraw.Draw(tp)
+        for x in range(0, tw, 9):  # gezackte Enden
+            dt.polygon([(x, 0), (x + 4, 5), (x + 9, 0)], fill=(0, 0, 0, 0)); dt.polygon([(x, th), (x + 4, th - 5), (x + 9, th)], fill=(0, 0, 0, 0))
+        tp = tp.rotate(r.uniform(-6, 6), expand=True, resample=Image.BICUBIC)
+        out.alpha_composite(tp, (pad + (w - tp.width) // 2, max(0, pad - tp.height // 2)))
+    return out.rotate(rot, expand=True, resample=Image.BICUBIC)
+
+def pencil_line(d, x0, x1, y, prog, seed=1, width=6, color=GRAPHITE):
+    r = np.random.default_rng(seed); n = 24
+    xs = np.linspace(x0, x0 + (x1 - x0) * prog, n); ys = y + np.cumsum(r.normal(0, 1.4, n)) + np.linspace(0, -6, n)
+    d.line(list(zip(xs, ys)), fill=color + (235,), width=width, joint="curve")
+
+def stamp(text, seed=3, size=96):
+    f = font("IBMPlexMono-500.ttf", size); d0 = ImageDraw.Draw(Image.new("L", (1, 1)))
+    tw = int(spaced_len(d0, text, f, 14)); asc, desc = f.getmetrics()
+    w, h = tw + 100, asc + desc + 70
+    m = Image.new("L", (w, h), 0); d = ImageDraw.Draw(m)
+    d.rectangle([8, 8, w - 9, h - 9], outline=255, width=9); d.rectangle([24, 24, w - 25, h - 25], outline=255, width=3)
+    text_spaced(d, (50, 33), text, f, 255, 14)
+    r = np.random.default_rng(seed); n = np.asarray(m, np.float32) / 255
+    rough = np.asarray(Image.fromarray(r.normal(0, 1, (h // 3 + 1, w // 3 + 1)).astype(np.float32)).resize((w, h), Image.BICUBIC))
+    n = n * ((rough + r.normal(0, 0.6, (h, w))) > -0.9) * r.uniform(0.75, 1, (h, w))
+    im = Image.new("RGBA", (w, h), INK + (0,)); im.putalpha(Image.fromarray((n * 235).astype(np.uint8)))
+    return im.rotate(-7, expand=True, resample=Image.BICUBIC)
+
 class Cards:
     def __init__(self, cards, words, segb):
         self.cards = []; self.cache = {}
@@ -200,6 +242,10 @@ class Cards:
             elif c["type"] == "steps":
                 for s in c["steps"]: s["t"] = anchor(s["at"], words, segb)
                 c["t_in"] = c["steps"][0]["t"]
+            elif c["type"] == "label":
+                c["t_in"] = anchor(c["at"], words, segb)
+                if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
+                if "note_at" in c: c["t_note"] = anchor(c["note_at"], words, segb)
             else:
                 c["t_in"] = anchor(c["at"], words, segb)
                 if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
@@ -219,6 +265,12 @@ class Cards:
                 for s in c["steps"]: ev.append(("pop", s["t"]))
             elif c["type"] == "strike":
                 ev += [("pop", c["t_in"]), ("scratch", c["t_strike"])]
+            elif c["type"] == "label":
+                ev.append(("pop", c["t_in"]))
+                if "t_strike" in c: ev.append(("scratch", c["t_strike"]))
+                if "t_note" in c: ev.append(("scratch", c["t_note"]))
+            elif c["type"] == "stamp":
+                ev.append(("thud", c["t_in"] + 0.12))
             elif c["type"] == "cta":
                 ev += [("whoosh", c["t_in"] - 0.15), ("pop", c["t_in"] + 0.05)]
         return ev
@@ -293,6 +345,39 @@ class Cards:
                     if t < s["t"]: break
                     im = self._box(s["label"], 46, fill=PANEL, fg=PORC)
                     self._paste(layer, im, 100 + i * 60, y, t, s["t"], c["t_out"]); y += im.height + 22
+            elif c["type"] == "label":
+                key = ("lab", c["text"])
+                if key not in self.cache:
+                    f = font("IBMPlexMono-500.ttf", 62); d0 = ImageDraw.Draw(Image.new("L", (1, 1)))
+                    tw = int(spaced_len(d0, c["text"].upper(), f, 10)); self.cache[key] = (f, tw)
+                f, tw = self.cache[key]
+                st = ease((t - c["t_strike"]) / 0.35) if "t_strike" in c and t >= c["t_strike"] else 0
+                nt = (t - c["t_note"]) / 0.6 if "t_note" in c and t >= c["t_note"] else 0
+                pk = ("labimg", round(st, 2), min(1, round(nt, 2)))
+                if pk not in self.cache:
+                    w, h = tw + 110, 150
+                    im = paper(w, h, rot=0, tape=True, seed=5)
+                    d = ImageDraw.Draw(im); ox, oy = 60, 60
+                    text_spaced(d, (ox + 55, oy + 38), c["text"].upper(), f, CARBON + (255,), 10)
+                    if st > 0: pencil_line(d, ox + 35, ox + w - 35, oy + 78, st, seed=2, width=8)
+                    im = im.rotate(-3, expand=True, resample=Image.BICUBIC)
+                    self.cache = {k2: v for k2, v in self.cache.items() if k2[0] != "labimg"}; self.cache[pk] = im
+                im = self.cache[pk]
+                self._paste(layer, im, (W - im.width) // 2, 170, t, c["t_in"], c["t_out"])
+                if nt > 0 and t <= c["t_out"] + 0.2:
+                    fh = font("Caveat-500.ttf", 84); txt = c["note"]; k = int(len(txt) * min(1, nt))
+                    dl = ImageDraw.Draw(layer); tw2 = dl.textlength(txt, font=fh)
+                    a2 = 1 - ease((t - c["t_out"]) / 0.18)
+                    dl.text(((W - tw2) / 2, 170 + im.height - 30), txt[:k], font=fh, fill=GRAPHITE + (int(255 * a2),))
+            elif c["type"] == "stamp":
+                key = ("stamp", c["text"])
+                if key not in self.cache: self.cache[key] = stamp(c["text"])
+                im = self.cache[key]; p = ease((t - c["t_in"]) / 0.16)
+                a = 1 - ease((t - c["t_out"]) / 0.2)
+                if a > 0:
+                    s = 1.6 - 0.6 * p; im2 = im.resize((int(im.width * s), int(im.height * s)), Image.BICUBIC)
+                    if a * min(1, p * 1.5) < 1: im2.putalpha(im2.getchannel("A").point(lambda v: int(v * a * min(1, p * 1.5))))
+                    layer.alpha_composite(im2, ((W - im2.width) // 2, 330 - im2.height // 2))
             elif c["type"] == "cta":
                 im = self._box(c["text"], 42, spacing=5, pad=(40, 32))
                 self._paste(layer, im, (W - im.width) // 2, 300, t, c["t_in"], c["t_out"] + 1)
@@ -345,6 +430,8 @@ def make_studio(pad=80):
     c0 = np.array([228, 216, 200], np.float32); c1 = np.array([154, 135, 116], np.float32)
     return c0 * (1 - d[..., None]) + c1 * d[..., None]
 
+CARBON_ARR = np.array(CARBON, np.float32)
+
 def make_dark():
     yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
     d = np.sqrt(((xx - 540) / 900) ** 2 + ((yy - 700) / 1100) ** 2).clip(0, 1)
@@ -352,7 +439,12 @@ def make_dark():
     return c0 * (1 - d[..., None]) + c1 * d[..., None]
 
 class Moments:
-    def __init__(self, ms, words, segb):
+    def __init__(self, ms, words, segb, bg_image=None):
+        self.photo = None
+        if bg_image:
+            ph = Image.open(os.path.join(ROOT, bg_image)).convert("RGB")
+            sc = max(1.12 * W / ph.width, 1.12 * H / ph.height)
+            self.photo = np.asarray(ph.resize((int(ph.width * sc), int(ph.height * sc)), Image.LANCZOS), np.float32)
         self.ms = []
         for m in ms:
             m = dict(m); m["t_in"] = anchor(m["at"], words, segb); m["t_out"] = anchor(m["until"], words, segb)
@@ -376,6 +468,7 @@ class Moments:
         ev = []
         for m in self.ms:
             if m["type"] == "word": ev.append(("thud" if m.get("dark") else "pop", m["t_in"]))
+            if m["type"] in ("waterfall", "knockout"): ev.append(("whoosh", m["t_in"] - 0.2))
             if m["type"] == "health":
                 ev.append(("whoosh", m["t_in"] - 0.2))
                 if "strike" in m: ev.append(("scratch", m["strike"]))
@@ -423,17 +516,80 @@ class Moments:
                         tuple(int(c) for c in MUTED) + (int(255 * fo),), 4)
         return im
 
+    def _waterfall(self, m, t, a):
+        qs = m["questions"]; key = ("wf",)
+        if key not in self.cache:
+            cards = []
+            fq = font("Geist-400.ttf", 40); fl = font("IBMPlexMono-500.ttf", 20)
+            for i, q in enumerate(qs):
+                d0 = ImageDraw.Draw(Image.new("L", (1, 1))); lines, cur = [], ""
+                for w_ in q.split():
+                    tt = (cur + " " + w_).strip()
+                    if cur and d0.textlength(tt, font=fq) > 330: lines.append(cur); cur = w_
+                    else: cur = tt
+                lines.append(cur)
+                h = 70 + 50 * len(lines) + 30
+                im = paper(390, h, rot=np.random.default_rng(i).uniform(-4, 4), tape=(i % 3 == 0), seed=20 + i)
+                d = ImageDraw.Draw(im); ox = (im.width - 390) // 2; oy = (im.height - h) // 2
+                text_spaced(d, (ox + 30, oy + 26), "MAR", fl, MUTED + (255,), 6)
+                for k, ln in enumerate(lines): d.text((ox + 30, oy + 62 + 50 * k), ln, font=fq, fill=CARBON + (255,))
+                cards.append(im)
+            self.cache[key] = cards
+        cards = self.cache[key]
+        L = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        el = (t - m["t_in"]) * m.get("speed", 170)
+        for ci, (x, y0) in enumerate([(-40, 0), (330, 420), (700, 180)]):
+            y = y0 + 700 - el  # erste Karte startet im unteren Bilddrittel und faehrt nach oben
+            k = ci
+            while y < H:
+                im = cards[k % len(cards)]
+                if y > -im.height: L.alpha_composite(im, (x, int(y)))
+                y += im.height + 70; k += 3
+        if a < 1: L.putalpha(L.getchannel("A").point(lambda v: int(v * a)))
+        return L
+
+    def post(self, img, fg_full, t):
+        """Filter nach dem Personen-Composite: Schwarz-Weiss, Text-Fenster"""
+        for m in self.ms:
+            a = self.w(m, t, 0.25, 0.25)
+            if a <= 0: continue
+            if m["type"] == "bw":
+                g = img @ np.array([0.30, 0.59, 0.11], np.float32)
+                img = img * (1 - a) + (g[..., None] * np.array([1.0, 0.99, 0.97], np.float32)) * a
+            elif m["type"] == "knockout":
+                key = ("ko", m["text"])
+                if key not in self.cache:
+                    mk = Image.new("L", (W, H), 0); d = ImageDraw.Draw(mk); size = 900
+                    while True:
+                        f = font("Geist-700.ttf", size)
+                        if d.textlength(m["text"], font=f) < 1000: break
+                        size -= 20
+                    bb = d.textbbox((0, 0), m["text"], font=f)
+                    d.text(((W - (bb[2] - bb[0])) / 2 - bb[0], m.get("y", 560) - bb[1]), m["text"], font=f, fill=255)
+                    self.cache[key] = np.asarray(mk, np.float32)[..., None] / 255
+                k = self.cache[key]
+                frame = CARBON_ARR * (1 - k) + fg_full * k
+                img = img * (1 - a) + frame * a
+        return img
+
     def background(self, t):
-        ox = int(80 + 50 * math.sin(t * 0.35)); oy = int(80 + 40 * math.cos(t * 0.27))
-        base = self.studio[oy:oy + H, ox:ox + W]
+        if self.photo is not None:  # langsame Kamerafahrt ueber das Foto
+            ph = self.photo; mx, my = ph.shape[1] - W, ph.shape[0] - H
+            ox = int(mx * (0.5 + 0.35 * math.sin(t * 0.11))); oy = int(my * (0.5 + 0.3 * math.cos(t * 0.08)))
+            base = ph[oy:oy + H, ox:ox + W]
+        else:
+            ox = int(80 + 50 * math.sin(t * 0.35)); oy = int(80 + 40 * math.cos(t * 0.27))
+            base = self.studio[oy:oy + H, ox:ox + W]
         dk = max([self.w(m, t, 0.15, 0.15) for m in self.ms if m.get("dark")] + [0])
         if dk > 0: base = base * (1 - dk) + self.dark * dk
         base = base + self.grain[int(t * 4) % 4]
         layer = None
         for m in self.ms:
             a = self.w(m, t)
-            if a <= 0 or m["type"] == "plain": continue
+            if a <= 0 or m["type"] in ("plain", "bw", "knockout"): continue
             if layer is None: layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            if m["type"] == "waterfall":
+                layer.alpha_composite(self._waterfall(m, t, a)); continue
             if m["type"] == "word":
                 col = PORC if m.get("dark") else ((203, 188, 169) if m.get("faint") else CARBON)
                 im = self._word(m["text"], col)
@@ -563,7 +719,7 @@ def main():
     voice = load_audio(f"{work}/voice.wav", SR)
     cards = Cards(edl.get("cards", []), words, segb)
     ev = cards.events()
-    moments = Moments(edl.get("moments", []), words, segb); ev += moments.events()
+    moments = Moments(edl.get("moments", []), words, segb, edl.get("background_image")); ev += moments.events()
     hl = edl.get("headline", [])
     for i, h in enumerate(hl[1:], 1): ev.append(("whoosh", anchor(h["at"], words, segb) - 0.2))
     for i, s in enumerate(edl["segments"]):
@@ -615,7 +771,8 @@ def main():
             fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
             al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
             base = moments.background(t)
-            s = moments.scale(t)
+            s = moments.scale(t) * edl.get("person_scale", 1.0)
+            fg_full = fg
             if s < 0.999:
                 sw, sh = int(W * s), int(H * s); ox = (W - sw) // 2; oy = H - sh
                 fg2 = np.zeros_like(fg); al2 = np.zeros_like(al)
@@ -630,6 +787,7 @@ def main():
                     la = np.asarray(lay, np.float32); k = la[..., 3:] / 255 * (1 - ease((t - hook_end) / 0.25))
                     base = base * (1 - k) + la[..., :3] * k
             img = base * (1 - al) + fg * al
+            img = moments.post(img, fg_full, t)
             cl = cards.draw(t)
             if cl is not None:
                 ca = np.asarray(cl, np.float32); k = ca[..., 3:] / 255; img = img * (1 - k) + ca[..., :3] * k
