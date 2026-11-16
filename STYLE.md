@@ -169,3 +169,39 @@ Dabei bleibt **der echte Raum als Hintergrund**. Ersetzt wird er nur in Effekt-M
 **Was das Reel ausmacht:** Jeder Satz kündigt einen Effekt an, und er passiert genau in dem Moment, in dem er gesagt wird.
 Der Inhalt *ist* die Effekt-Demo. Für MAR heißt das: Was du sagst, wird sofort sichtbar
 („MAR stellt dir Rückfragen“ → Fragen regnen hinter dir herunter).
+
+---
+
+## 6. Effekt-Bibliothek (Referenz 4: „Why Claude edits look the same“)
+
+Kernaussage des Reels: KI-Schnitte sehen alle gleich aus, weil Code-Grafiken **perfekt sauber und flach** sind.
+Die Lösung der Creatorin ist **Textur, Tiefe, Verspieltheit**: analoge Collage-Elemente, die wie gebastelt wirken.
+→ Das gilt auch für unsere Pipeline. Unsere Karten sind Code-Grafik, also eher flach.
+
+| # | Effekt (Zeit) | Was passiert |
+|---|---|---|
+| 1 | **Collage-Hook** (0–4 s) | Mischung aus kleinem Handschrift-„why“, großer gelber Serif „Claude edits“ und Schreibschrift „look the same“. Oben ein Papier-Etikett mit Mini-Foto |
+| 2 | **Papier-Wortschnipsel** (3–5 s) | Wörter auf gerissenen Papierstreifen, leicht gedreht. „captions“ wird **von Hand durchgestrichen**, „effects“ kommt dazu |
+| 3 | **Foto mit Klebeband** (6–8 s) | Polaroid-artiges Foto, oben mit Tape „angeklebt“ |
+| 4 | **Zerknülltes Papier** (8–9 s) | Handgeschriebenes „texture“ auf echtem zerknittertem Papier |
+| 5 | **Logo-Karte + Tape-Label** (9–12 s) | Karte mit App-Logos, darunter ein Klebeband-Etikett „Claude + HyperFrames“ |
+| 6 | **Code-Monitor + Sticker** (13–19 s) | Retro-Bildschirm, Code wird getippt. Rote Etiketten „PERFECTLY clean / flat“, Kritzel-Kreise und Glitzer. Bei „flat“ wird das Bild **schwarz-weiß** |
+| 7 | **Handschrift groß über dem Kopf** (19–21 s) | „But I have a fix for that…“ in gelbem Pinselstift |
+| 8 | **Notizzettel** (21–25 s) | Gerissenes Linienpapier mit handschriftlicher Liste, Punkte erscheinen nacheinander |
+| 9 | **Erpresserbrief-Wort + Sticker** (25–29 s) | „texture“, „dimension“ als Papier-Labels, „whimsy“ aus ausgeschnittenen Einzelbuchstaben, Stern-Sticker |
+| 10 | **Pinnwand-Vollbild** (29–34 s) | Kork-Hintergrund, gelber Notizblock mit Schritten 1–4 (Nummern in Stern-Stickern). Die Creatorin klein als **runder Ausschnitt** unten |
+| 11 | **App-Screenshot im Rahmen** (35–44 s) | Screenshot ihrer Web-App über ihr, Tape-Label mit Schrittnummer. Rote Labels „raw footage / vision / script“ ploppen auf, „!!“-Kritzel |
+| 12 | **Untertitel** | einzelnes Wort, klein, weiß, kursiv, **links** auf Brusthöhe, sehr dezent |
+
+**Rhythmus:** Etwa alle 2 Sekunden kommt ein neues Collage-Element, das Gesicht bleibt immer frei.
+
+### Übertragung auf MAR: „Diagnose-Akte“ statt Bastel-Collage
+Die verspielte Bastel-Optik (Pink, Glitzer, Sterne) passt nicht zur ruhigen MAR-Marke.
+Die **Idee „Textur statt flach“** lässt sich aber in eine passende Welt übersetzen: **Befund und Akte**.
+- Karten als **bedrucktes Papier** (leichte Papierstruktur, Schatten, minimal gedreht) statt flacher Rechtecke
+- **Stempel** („DIAGNOSE“, „BEFUND“, „RÜCKFRAGE“) mit Druckfarbe und leicht unregelmäßigem Abdruck
+- **Klebeband und Büroklammer** halten Karten fest, in Porzellan/Warmgrau
+- **Handschriftliche Randnotizen** und Kringel in Graphit, z. B. ein Kreis um „SALES 41“ mit „wirklich?“
+- **Befundbogen** als Vollbild: Business-Health-Werte wie ein Laborbericht auf Papier
+- **Dich als runder Ausschnitt** auf der Akte bei Erklär-Passagen
+- **Schwarz-Weiß-Moment** bei „flach/falsch“-Aussagen (z. B. „ChatGPT beantwortet nur, was du fragst“)
