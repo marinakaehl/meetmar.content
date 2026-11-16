@@ -9,8 +9,8 @@
     "B": "reels/reel01/v7080_words.json"
   },
   "crop_bottom": 1215,
-  "background_image": "design/backgrounds/studio_beton.png",
-  "person_scale": 0.9,
+  "background_image": "design/backgrounds/studio_sonne.png",
+  "person_scale": 1.0,
   "segments": [
     {"src": "B", "from": 0.7, "to": 6.7, "hook": true, "fix": {"ma,": "MAR"}},
     {"src": "A", "from": 10.0, "to": 15.6, "accent": ["genial."]},
@@ -27,7 +27,7 @@
     {"text": "Du gibst MAR dein ganzes Business.", "grey": ["ganzes"], "at": {"seg": 0, "word": "ma,"}}
   ],
   "moments": [
-    {"type": "plain", "scale": 0.94, "at": {"seg": 0, "word": "Du"}, "until": {"seg": 0, "end": true}},
+    {"type": "plain", "scale": 1.0, "at": {"seg": 0, "word": "Du"}, "until": {"seg": 0, "end": true}},
     {"type": "bw", "at": {"seg": 2, "word": "Aber"}, "until": {"seg": 2, "word": "Und"}},
     {"type": "word", "text": "PROBLEM.", "min": 1.4, "at": {"seg": 2, "word": "Problem."}, "until": {"seg": 2, "end": true}},
     {"type": "waterfall", "at": {"seg": 3, "word": "MAR"}, "until": {"seg": 4, "end": true},
