@@ -29,7 +29,7 @@
   },
   {
    "src": "C",
-   "from": 15.3,
+   "from": 19.9,
    "to": 27.0,
    "punch": "Problem"
   },
@@ -85,9 +85,9 @@
  ],
  "headline": [
   {
-   "small": "Du gibst ChatGPT",
+   "small": "DU GIBST CHATGPT",
    "big": [
-    "EINE FRAGE."
+    "eine Frage."
    ],
    "at": {
     "seg": 0,
@@ -95,10 +95,13 @@
    }
   },
   {
-   "small": "Du gibst MAR dein",
+   "small": "DU GIBST MAR DEIN",
    "big": [
-    "KOMPLETTES",
-    "BUSINESS."
+    "komplettes",
+    "Business."
+   ],
+   "grey": [
+    "komplettes"
    ],
    "at": {
     "seg": 0,

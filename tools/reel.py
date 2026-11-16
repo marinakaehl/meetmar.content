@@ -65,7 +65,7 @@ def plan(edl):
             v[int(w[0] * 100):int(w[0] * 100) + 10] = True
         vad[k] = v
     clips, words_out, seg_bounds = [], [], []
-    t_out = edl.get("intro", {}).get("seconds", 0.0); zoom_cycle = [1.10, 1.24]; zi = 0
+    t_out = edl.get("intro", {}).get("seconds", 0.0); zoom_cycle = [1.06, 1.14]; zi = 0
     for si, seg in enumerate(edl["segments"]):
         if seg.get("silent"):  # stiller Blick: ein Clip, langsamer Zoom
             n = round((seg["to"] - seg["from"]) * FPS)
@@ -115,7 +115,7 @@ def plan(edl):
             cuts.append(cout)
             for a_, b_ in zip(cuts, cuts[1:]):
                 n = round((b_ - a_) * FPS)
-                z = 1.10 if seg.get("hook") else zoom_cycle[zi % 2]
+                z = 1.06 if seg.get("hook") else zoom_cycle[zi % 2]
                 if not seg.get("hook"): zi += 1
                 clips.append({"src": seg["src"], "in": a_, "out": a_ + n / FPS, "frames": n, "t0": t_out, "zoom": z, "seg": si})
                 t_out += n / FPS
@@ -134,8 +134,8 @@ def plan(edl):
         if seg.get("punch"):
             for w in words_out:
                 if w["seg"] == si and w["text"].startswith(seg["punch"]):
-                    k = w["clip"]; clips[k]["zoom"] = 1.36
-                    while k > 0 and clips[k - 1]["seg"] == si and clips[k - 1]["frames"] / FPS < 0.6: k -= 1; clips[k]["zoom"] = 1.36
+                    k = w["clip"]; clips[k]["zoom"] = 1.22
+                    while k > 0 and clips[k - 1]["seg"] == si and clips[k - 1]["frames"] / FPS < 0.6: k -= 1; clips[k]["zoom"] = 1.22
         seg_bounds.append((seg_start, t_out))
     return srcs, clips, words_out, seg_bounds, t_out
 
@@ -231,32 +231,31 @@ def stamp(text, seed=3, size=96):
     return im.rotate(-7, expand=True, resample=Image.BICUBIC)
 
 def render_hook(item, rel):
-    """Kleine Zeile + riesige Schlagworte, Woerter ploppen versetzt rein (rel = Sekunden seit Start)."""
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
-    fs = font("Geist-400.ttf", 66)
-    a0 = ease(rel / 0.25)
-    d.text((84, 150), item["small"], font=fs, fill=CARBON + (int(255 * a0),))
-    lines = item["big"]; size = 190
-    while size > 90:
-        fb = font("Geist-600.ttf", size)
-        if max(d.textlength(l, font=fb) for l in lines) <= 930: break
+    """Zentrierter, leichter Hook: Mono-Zeile + grosse Geist-Light-Zeilen, Woerter blenden weich ein."""
+    txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
+    fm = font("IBMPlexMono-500.ttf", 34); a0 = ease(rel / 0.3)
+    sw = spaced_len(d, item["small"], fm, 12)
+    text_spaced(d, ((W - sw) / 2, 200 - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
+    lines = item["big"]; size = 160
+    while size > 80:
+        fb = font("Geist-300.ttf", size)
+        if max(d.textlength(l, font=fb) for l in lines) <= 900: break
         size -= 6
-    y = 240; k = 0
+    y = 268; k = 0
     for ln in lines:
-        x = 80
+        x = (W - d.textlength(ln, font=fb)) / 2
         for wd in ln.split(" "):
-            p = ease((rel - 0.18 - 0.14 * k) / 0.22)
+            p = ease((rel - 0.2 - 0.16 * k) / 0.35)
             if p > 0:
-                s = 1.25 - 0.25 * p
-                col = WARMGREY if wd.strip(".,?!") in item.get("grey", []) else CARBON
-                ww = int(d.textlength(wd, font=fb)) + 20; asc, desc = fb.getmetrics()
-                wi = Image.new("RGBA", (ww, asc + desc + 20), (0, 0, 0, 0))
-                ImageDraw.Draw(wi).text((0, 0), wd, font=fb, fill=col + (int(255 * p),))
-                if s != 1: wi = wi.resize((int(wi.width * s), int(wi.height * s)), Image.BICUBIC)
-                img.alpha_composite(wi, (int(x - (wi.width - ww) / 2), int(y - (wi.height - asc - desc - 20) / 2)))
+                col = (94, 84, 75) if wd.strip(".,?!") in item.get("grey", []) else CARBON
+                d.text((x, y + 22 * (1 - p)), wd, font=fb, fill=col + (int(255 * p),))
             x += d.textlength(wd + " ", font=fb); k += 1
-        y += int(size * 0.98)
-    return img
+        y += int(size * 1.02)
+    # weicher heller Schleier hinter der Schrift fuer Lesbarkeit
+    m = txt.getchannel("A").filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(38))
+    haze = Image.new("RGBA", (W, H), PORC + (0,)); haze.putalpha(m.point(lambda v: int(min(255, v * 1.6) * 0.62)))
+    haze.alpha_composite(txt)
+    return haze
 
 class Cards:
     def __init__(self, cards, words, segb):
@@ -651,14 +650,21 @@ class Matte:
         a = self.s.run(None, {self.n: x.transpose(2, 0, 1)[None]})[0][0, 0]
         return np.asarray(Image.fromarray((a * 255).clip(0, 255).astype(np.uint8)).resize((rgb.shape[1], rgb.shape[0]), Image.BILINEAR), np.float32) / 255
 
-def framing(alpha, zoom, crop_bottom, face_pos=0.42):
-    rows = np.where(alpha[:, 200:520].mean(1) > 0.3)[0]
-    head_top = rows[0] if len(rows) else 300
-    cols = np.where(alpha[head_top:head_top + 300].mean(0) > 0.5)[0]
-    cx = (cols[0] + cols[-1]) / 2 if len(cols) else SRC_W / 2
+FACE_CACHE = {}
+
+def framing(alpha, zoom, crop_bottom, face_pos=0.42, src=None, zmin=1.06):
+    if src in FACE_CACHE: head_top, cx = FACE_CACHE[src]
+    else:
+        rows = np.where(alpha[:, 200:520].mean(1) > 0.3)[0]
+        head_top = rows[0] if len(rows) else 300
+        cols = np.where(alpha[head_top:head_top + 300].mean(0) > 0.5)[0]
+        cx = (cols[0] + cols[-1]) / 2 if len(cols) else SRC_W / 2
+        if src is not None: FACE_CACHE[src] = (head_top, cx)
     cw, ch = SRC_W / zoom, SRC_H / zoom
     face_y = head_top + 170
-    y0 = min(max(face_y - face_pos * ch, 0), crop_bottom - ch)
+    ch0 = SRC_H / zmin  # Gesicht bei jeder Zoomstufe auf derselben relativen Hoehe wie bei der kleinsten
+    y00 = min(max(face_y - face_pos * ch0, 0), crop_bottom - ch0); f0 = (face_y - y00) / ch0
+    y0 = min(max(face_y - f0 * ch, 0), crop_bottom - ch)
     x0 = min(max(cx - cw / 2, 0), SRC_W - cw)
     return (x0, y0, x0 + cw, y0 + ch)
 
@@ -798,8 +804,8 @@ def main():
             a = matte(f); a = a if prev is None else 0.65 * a + 0.35 * prev; prev = a
             if box is None:
                 fp = 0.30 if edl["segments"][c["seg"]].get("hook") else 0.42
-                box = box0 = framing(a, c["zoom"], edl.get("crop_bottom", SRC_H), fp)
-                box1 = framing(a, c["zoom_to"], edl.get("crop_bottom", SRC_H), fp) if "zoom_to" in c else None
+                box = box0 = framing(a, c["zoom"], edl.get("crop_bottom", SRC_H), 0.42, c["src"])
+                box1 = framing(a, c["zoom_to"], edl.get("crop_bottom", SRC_H), 0.42, c["src"]) if "zoom_to" in c else None
             if box1 is not None:
                 q = fi / max(1, c["frames"] - 1); q = q * q * (3 - 2 * q)
                 box = tuple(x0 + (x1 - x0) * q for x0, x1 in zip(box0, box1))
