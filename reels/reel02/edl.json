@@ -1,0 +1,33 @@
+{
+  "title": "Reel 02 – Echte Frage als Hook",
+  "sources": {"C": "raw/reel02/IMG_7082.mp4"},
+  "transcripts": {"C": "reels/reel02/IMG_7082_words.json"},
+  "crop_bottom": 1215,
+  "intro": {
+    "seconds": 5.6,
+    "label": "MAR",
+    "lines": [
+      {"text": "Wann hast du zuletzt einen Kunden verloren?", "at": 0.0, "pre": 12, "typed_by": 2.0},
+      {"text": "Und was war der Grund?", "at": 3.0, "typed_by": 4.1, "grey": true}
+    ]
+  },
+  "segments": [
+    {"src": "C", "from": 15.5, "to": 17.3, "silent": true},
+    {"src": "C", "from": 6.0, "to": 8.2},
+    {"src": "C", "from": 10.3, "to": 11.8},
+    {"src": "C", "from": 21.4, "to": 23.6},
+    {"src": "C", "from": 34.4, "to": 40.2, "accent": ["Zusammenhang"], "punch": "Zusammenhang"},
+    {"src": "C", "from": 42.0, "to": 51.9, "accent": ["Rückfrage", "challengt."], "punch": "challengt."},
+    {"src": "C", "from": 55.4, "to": 57.2, "aside": true},
+    {"src": "C", "from": 79.1, "to": 84.0, "accent": ["zurück."], "punch": "She"},
+    {"src": "C", "from": 67.0, "to": 68.4, "fix": {"los,": "los.", "lass": "Lass"}}
+  ],
+  "headline": [],
+  "cards": [
+    {"type": "chat", "bubbles": [
+      {"text": "Und was war der Grund?", "at": {"seg": 5, "word": "Rückfrage"}, "typed_by": {"seg": 5, "end": true}}
+    ], "until": {"seg": 5, "end": true}},
+    {"type": "cta", "text": "MAR AUF DEIN BUSINESS LOSLASSEN  →", "sub": "PRIVATE BETA · LINK IN BIO", "at": {"seg": 8, "word": "Lass"}, "until": {"seg": 8, "end": true}}
+  ],
+  "endframe": {"seconds": 1.4, "sub": "LINK IN BIO · BEISPIELFALL"}
+}

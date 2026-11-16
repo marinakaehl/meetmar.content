@@ -65,8 +65,13 @@ def plan(edl):
             v[int(w[0] * 100):int(w[0] * 100) + 10] = True
         vad[k] = v
     clips, words_out, seg_bounds = [], [], []
-    t_out = 0.0; zoom_cycle = [1.10, 1.24]; zi = 0
+    t_out = edl.get("intro", {}).get("seconds", 0.0); zoom_cycle = [1.10, 1.24]; zi = 0
     for si, seg in enumerate(edl["segments"]):
+        if seg.get("silent"):  # stiller Blick: ein Clip, langsamer Zoom
+            n = round((seg["to"] - seg["from"]) * FPS)
+            clips.append({"src": seg["src"], "in": seg["from"], "out": seg["from"] + n / FPS, "frames": n, "t0": t_out,
+                          "zoom": 1.08, "zoom_to": 1.20, "seg": si})
+            seg_bounds.append((t_out, t_out + n / FPS)); t_out += n / FPS; continue
         allw = norm_words(trans[seg["src"]], seg.get("fix", {}))
         ws = [w for w in allw if seg["from"] <= w["start"] < seg["to"]]
         before = [w for w in allw if w["start"] < seg["from"]]; after = [w for w in allw if w["start"] >= seg["to"]]
@@ -299,6 +304,36 @@ class Cards:
                 self._paste(layer, s_im, (W - s_im.width) // 2, 300 + im.height + 26, t, c["t_in"] + 0.15, c["t_out"] + 1)
         return layer
 
+def render_intro(intro, t):
+    img = Image.new("RGB", (W, H), CARBON); d = ImageDraw.Draw(img)
+    f = font("Geist-300.ttf", 92); fl = font("IBMPlexMono-500.ttf", 26); lh = 104
+    text_spaced(d, (96, 560), intro.get("label", "MAR"), fl, MUTED, 10)
+    y = 640; cur_pos = None
+    for ln in intro["lines"]:
+        if t < ln["at"]: break
+        pre = ln.get("pre", 0); n_all = len(ln["text"])
+        p = (t - ln["at"]) / max(0.1, ln["typed_by"] - ln["at"])
+        n = min(n_all, pre + int((n_all - pre) * min(max(p, 0), 1)))
+        col = (150, 147, 156) if ln.get("grey") else PORC
+        words = ln["text"][:n].split(" ")
+        lines, cur = [], ""
+        for w in ln["text"].split(" "):  # Umbruch nach vollem Text, damit nichts springt
+            tt = (cur + " " + w).strip()
+            if cur and d.textlength(tt, font=f) > 880: lines.append(cur); cur = w
+            else: cur = tt
+        lines.append(cur)
+        shown = n; x = 96
+        for full in lines:
+            part = full[:max(0, shown)]; shown -= len(full) + 1
+            d.text((96, y), part, font=f, fill=col); x = 96 + d.textlength(part, font=f)
+            if shown < 0: cur_pos = (x, y); break
+            y += lh
+        else: cur_pos = (x, y - lh)
+        y += lh + 50
+    if cur_pos and int(t * 2.2) % 2 == 0:
+        d.rectangle([cur_pos[0] + 8, cur_pos[1] + 14, cur_pos[0] + 14, cur_pos[1] + 96], fill=PORC)
+    return img
+
 # ---------------------------------------------------------------- matting
 class Matte:
     def __init__(self):
@@ -335,6 +370,7 @@ def captions(words, edl, segb, end_t, path):
              "[V4+ Styles]",
              "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
              "Style: Cap,Geist SemiBold,118,&H00EAEFF1,&H00EAEFF1,&H000F1010,&H000F1010,0,0,0,0,100,100,-1,0,1,0,0,5,0,0,0,1",
+             "Style: Small,Geist,58,&H00EAEFF1,&H00EAEFF1,&H000F1010,&H780F1010,0,0,0,0,100,100,0,0,1,0,3,5,0,0,0,1",
              "Style: Acc,IBM Plex Mono Medium,78,&H000F1010,&H000F1010,&H00EAEFF1,&H00EAEFF1,0,0,0,0,100,100,8,0,3,24,0,5,0,0,0,1",
              "", "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     ws = [w for w in words if w["seg"] not in hook]
@@ -343,6 +379,11 @@ def captions(words, edl, segb, end_t, path):
         t1 = min(nxt, t0 + 1.2) if nxt - t0 < 1.5 else t0 + 0.6
         if t1 - t0 < 0.1: t1 = t0 + 0.1
         txt = w["text"]; pos = r"\an5\pos(540,1420)"; pop = r"\fscx86\fscy86\t(0,90,\fscx100\fscy100)"
+        if edl["segments"][w["seg"]].get("aside"):
+            if i == 0 or ws[i - 1]["seg"] != w["seg"]:
+                seg_ws = [x for x in ws if x["seg"] == w["seg"]]; t1s = segb[w["seg"]][1]
+                lines.append(f"Dialogue: 1,{ass_time(t0)},{ass_time(t1s)},Small,,0,0,0,,{{{pos}\\fad(120,120)}}{' '.join(x['text'] for x in seg_ws)}")
+            continue
         if any((w["seg"], a) == (s, a) and (txt == a or txt.startswith(a)) for s, a in acc):
             lab = txt.strip(",.?!").upper()
             lines.append(f"Dialogue: 1,{ass_time(t0)},{ass_time(t1)},Acc,,0,0,0,,{{{pos}{pop}}}{lab}")
@@ -413,6 +454,7 @@ def main():
         if s.get("punch") == "Problem.":
             ev.append(("thud", next(w["t"] for w in words if w["seg"] == i and w["text"].startswith("Problem"))))
     if end_s: ev.append(("whoosh", total - 0.22))
+    if edl.get("intro"): ev.append(("pop", 0.05))
     rng = np.random.default_rng(3); fx = np.zeros_like(voice)
     vr = np.sqrt((voice ** 2).mean()) + 1e-9
     for k, t0 in ev:
@@ -430,17 +472,28 @@ def main():
                             "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", f"{work}/video.mp4"],
                            stdin=subprocess.PIPE)
     done = 0; limit = preview * FPS if preview else 1e9
+    intro = edl.get("intro")
+    if intro:
+        for k in range(round(intro["seconds"] * FPS)):
+            if done >= limit: break
+            enc.stdin.write(np.asarray(render_intro(intro, k / FPS)).tobytes()); done += 1
     for ci, c in enumerate(clips):
         if done >= limit: break
         raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{c['in']:.3f}", "-i", srcs[c["src"]], "-frames:v", str(c["frames"]),
                               "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
         fr = np.frombuffer(raw, np.uint8).reshape(-1, SRC_H, SRC_W, 3)
-        prev = None; box = None
+        prev = None; box = None; box1 = None
         for fi in range(c["frames"]):
             if done >= limit: break
             f = fr[min(fi, len(fr) - 1)]; t = c["t0"] + fi / FPS
             a = matte(f); a = a if prev is None else 0.65 * a + 0.35 * prev; prev = a
-            if box is None: box = framing(a, c["zoom"], edl.get("crop_bottom", SRC_H), 0.30 if edl["segments"][c["seg"]].get("hook") else 0.42)
+            if box is None:
+                fp = 0.30 if edl["segments"][c["seg"]].get("hook") else 0.42
+                box = box0 = framing(a, c["zoom"], edl.get("crop_bottom", SRC_H), fp)
+                box1 = framing(a, c["zoom_to"], edl.get("crop_bottom", SRC_H), fp) if "zoom_to" in c else None
+            if box1 is not None:
+                q = fi / max(1, c["frames"] - 1); q = q * q * (3 - 2 * q)
+                box = tuple(x0 + (x1 - x0) * q for x0, x1 in zip(box0, box1))
             fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
             al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
             base = bg.copy()
