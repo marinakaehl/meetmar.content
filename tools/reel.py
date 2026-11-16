@@ -223,15 +223,15 @@ class Cards:
                 ev += [("whoosh", c["t_in"] - 0.15), ("pop", c["t_in"] + 0.05)]
         return ev
 
-    def _bubble(self, label, text):
-        key = ("b", label, text)
+    def _bubble(self, label, text, cursor=False):
+        key = ("b", label, text, cursor)
         if key in self.cache: return self.cache[key]
         fl = font("IBMPlexMono-500.ttf", 24); ft = font("Geist-400.ttf", 44)
         tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
         lines = []; cur = ""
         for w in text.split(" "):
             t = (cur + " " + w).strip()
-            if cur and tmp.textlength(t + "▍", font=ft) > 780: lines.append(cur); cur = w
+            if cur and tmp.textlength(t + "  ", font=ft) > 780: lines.append(cur); cur = w
             else: cur = t
         lines.append(cur)
         h = 34 + 30 + 18 + 56 * len(lines) + 26
@@ -240,6 +240,9 @@ class Cards:
         text_spaced(d, (40, 30), label, fl, MUTED + (255,), 6)
         y = 30 + 30 + 18
         for ln in lines: d.text((40, y), ln, font=ft, fill=PORC + (255,)); y += 56
+        if cursor:
+            x = 40 + d.textlength(lines[-1], font=ft) + 6; yc = y - 56
+            d.rectangle([x, yc + 8, x + 5, yc + 52], fill=PORC + (255,))
         self.cache[key] = im; return im
 
     def _box(self, text, size, spacing=10, pad=(34, 22), fill=PORC, fg=CARBON, strike=0.0):
@@ -274,12 +277,11 @@ class Cards:
             if layer is None: layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
             if c["type"] == "chat":
                 y = 210
-                for b in c["bubbles"]:
-                    if t < b["t"]: break
+                vis = [b for b in c["bubbles"] if t >= b["t"]][-2:]
+                for b in vis:
                     p = (t - b["t"] - 0.12) / max(0.3, b["t_done"] - b["t"] - 0.15)
                     n = int(len(b["text"]) * min(max(p, 0), 1))
-                    cursor = "▍" if p < 1.05 and int(t * 3) % 2 == 0 else ""
-                    im = self._bubble("MAR", b["text"][:n] + cursor if n or cursor else " ")
+                    im = self._bubble("MAR", b["text"][:n], p < 1.05 and int(t * 3) % 2 == 0)
                     self._paste(layer, im, 100, y, t, b["t"], c["t_out"]); y += self._bubble("MAR", b["text"]).height + 18
             elif c["type"] == "strike":
                 st = ease((t - c["t_strike"]) / 0.3) if t >= c["t_strike"] else 0
@@ -292,11 +294,11 @@ class Cards:
                     im = self._box(s["label"], 46, fill=PANEL, fg=PORC)
                     self._paste(layer, im, 100 + i * 60, y, t, s["t"], c["t_out"]); y += im.height + 22
             elif c["type"] == "cta":
-                im = self._box(c["text"], 34, spacing=6, pad=(38, 30))
+                im = self._box(c["text"], 42, spacing=5, pad=(40, 32))
                 self._paste(layer, im, (W - im.width) // 2, 300, t, c["t_in"], c["t_out"] + 1)
                 key = ("sub", c["sub"])
                 if key not in self.cache:
-                    f = font("IBMPlexMono-400.ttf", 24); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+                    f = font("IBMPlexMono-400.ttf", 28); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
                     sw = int(spaced_len(d0, c["sub"], f, 6)) + 4
                     s_im = Image.new("RGBA", (sw, 40), (0, 0, 0, 0)); text_spaced(ImageDraw.Draw(s_im), (0, 4), c["sub"], f, CARBON + (200,), 6)
                     self.cache[key] = s_im
@@ -527,8 +529,8 @@ def main():
     dur = ["-t", str(preview)] if preview else []
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav",
                     "-vf", f"subtitles={work}/captions.ass:fontsdir={FONTS},eq=contrast=1.03:saturation=1.03",
-                    "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
-                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", *dur,
+                    "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
+                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", *dur,
                     "-movflags", "+faststart", out], check=True)
     srt = os.path.splitext(out)[0] + ".srt"
     with open(srt, "w") as fh:
