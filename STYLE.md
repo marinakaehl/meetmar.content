@@ -147,3 +147,25 @@ Wenn du nicht vor der Kamera sein willst oder ein Ablauf erklärt wird:
 2. Claude sagen: „Schneide `raw/<videoname>` nach STYLE.md.“
 3. Claude transkribiert, schneidet, setzt Untertitel und Effekte und legt die Datei in `out/<videoname>.mp4` ab, dazu eine Untertitel-Datei.
 4. Änderungen einfach beschreiben („Hook kürzer“, „mehr Zooms“, „anderes Akzentwort“).
+
+---
+
+## 5. Effekt-Bibliothek (Referenz 3: „Just copy my reel“)
+
+Analyse der Bildschirmaufnahme (57 s). Die Creatorin benennt jeden Effekt selbst im Voiceover.
+Dabei bleibt **der echte Raum als Hintergrund**. Ersetzt wird er nur in Effekt-Momenten.
+
+| # | Effekt (Zeit) | Was passiert | MAR-Version | Status |
+|---|---|---|---|---|
+| 1 | **Wasserfall** (0–4 s, 33–37 s) | Raster aus eigenen Reel-Thumbnails scrollt langsam von unten nach oben **hinter** der freigestellten Person. Dazu Hook-Titel in kursiver Serif + kleine Versal-Zeile | Wand aus **MAR-Fragekarten** („Wann hast du zuletzt …?“, „Was war der Grund?“ …) scrollt hinter dir: „MAR hat 100 Fragen, ChatGPT keine“ | ✅ baubar |
+| 2 | **Claude-Chatfenster** (8–14 s) | Helle Chatkarte mittig, Link wird eingefügt, Prompt wird getippt | haben wir als MAR-Chatkarte | ✅ vorhanden |
+| 3 | **Hintergrund-Farbwechsel** (15–17 s) | Raum wird durch Vollfarbe (Terrakotta) ersetzt, großes Serif-Wort „colour“ über dem Kopf | Farbwechsel auf Carbon/Espresso, Wort in Porzellan | ✅ vorhanden (Dark-Flash) |
+| 4 | **Großes Wort hinter dem Kopf** (18–24 s) | „funky“ in riesiger schwarzer Kursiv-Serif, der Kopf verdeckt die Mitte. Auf Zuruf **Farbwechsel zu Pink** | „ZUSAMMENHANG“, „RÜCKFRAGE“; Farbwechsel Carbon → Warmgrau oder Durchstreichen auf Zuruf | ✅ vorhanden, Farbwechsel neu |
+| 5 | **Karussell** (25–31 s) | Reihe aus Reel-Thumbnails gleitet auf Hüfthöhe **vor** der Person von rechts nach links („swipe“) | Karussell aus MAR-Fragen oder deinen bisherigen Reels | ✅ baubar |
+| 6 | **Text-Fenster / Knockout** (38–46 s) | Vollfarbe mit riesigem Blocktext „JUST COPY ME“, **in den Buchstaben läuft das Video** | „MAR“ riesig auf Carbon, dein Video läuft in den Buchstaben (CTA oder Endframe) | ✅ baubar |
+| 7 | **Schild in der Hand** (47–55 s) | „Open“-Schild hängt an den Fingern und folgt der Hand, auf Fingerschnippen wechselt es zu „Closed“ | Schild „BETA: OFFEN“ → „20 PLÄTZE“ oder „FRAGE“ → „DIAGNOSE“ | ⚠️ braucht Hand-Tracking. Alternative: Schild an fester Stelle, wenn du die Hand ruhig hältst |
+| 8 | **Untertitel** | kleine weiße Label-Box mit dunkler Schrift, 2–3 Wörter, unteres Drittel | Alternative zu unseren großen Wort-für-Wort-Captions | ✅ als Variante |
+
+**Was das Reel ausmacht:** Jeder Satz kündigt einen Effekt an, und er passiert genau in dem Moment, in dem er gesagt wird.
+Der Inhalt *ist* die Effekt-Demo. Für MAR heißt das: Was du sagst, wird sofort sichtbar
+(„MAR stellt dir Rückfragen“ → Fragen regnen hinter dir herunter).
