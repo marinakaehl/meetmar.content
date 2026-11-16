@@ -10,34 +10,37 @@
   },
   "crop_bottom": 1215,
   "segments": [
-    {"src": "B", "from": 0.7, "to": 6.7, "hook": true,
-     "fix": {"ma,": "MAR"}},
+    {"src": "B", "from": 0.7, "to": 6.7, "hook": true, "fix": {"ma,": "MAR"}},
     {"src": "A", "from": 10.0, "to": 15.6, "accent": ["genial."]},
-    {"src": "A", "from": 25.0, "to": 28.9},
-    {"src": "B", "from": 19.4, "to": 21.8, "accent": ["Problem."], "punch": "Problem."},
-    {"src": "A", "from": 34.6, "to": 41.3, "fix": {"Ma,": "MAR", "verreg": "fragt", "zurück.": "zurück."}, "accent": ["Moment,"], "punch": "Moment,"},
+    {"src": "B", "from": 15.5, "to": 22.2, "punch": "Problem."},
+    {"src": "A", "from": 34.6, "to": 41.3, "fix": {"Ma,": "MAR", "verreg": "fragt"}, "accent": ["Moment,"], "punch": "Moment,"},
     {"src": "B", "from": 28.95, "to": 33.4, "fix": {"in": "In"}},
-    {"src": "B", "from": 35.2, "to": 39.2, "punch": "kein"},
+    {"src": "B", "from": 35.2, "to": 39.2},
     {"src": "B", "from": 39.4, "to": 43.7},
-    {"src": "A", "from": 55.8, "to": 64.3, "accent": ["diagnostizieren", "Cash"], "punch": "Cash"},
+    {"src": "A", "from": 55.8, "to": 64.3},
     {"src": "B", "from": 52.3, "to": 58.3, "fix": {"Ma,": "MAR,"}, "accent": ["Founding 20"]}
   ],
   "headline": [
     {"text": "Du gibst ChatGPT eine Frage.", "grey": ["eine"], "at": {"seg": 0, "word": "Du"}},
     {"text": "Du gibst MAR dein ganzes Business.", "grey": ["ganzes"], "at": {"seg": 0, "word": "ma,"}}
   ],
+  "moments": [
+    {"type": "plain", "scale": 0.86, "at": {"seg": 0, "word": "Du"}, "until": {"seg": 0, "end": true}},
+    {"type": "word", "text": "PROBLEM.", "dark": true, "scale": 0.84, "min": 1.4, "at": {"seg": 2, "word": "Problem."}, "until": {"seg": 2, "end": true}},
+    {"type": "health", "scale": 0.78, "at": {"seg": 5, "word": "Sales"}, "strike_at": {"seg": 5, "word": "gar"},
+     "focus_at": {"seg": 6, "word": "ganz"}, "until": {"seg": 6, "end": true}},
+    {"type": "word", "text": "DIAGNOSE", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "diagnostizieren"}, "until": {"seg": 7, "word": "dann"}},
+    {"type": "word", "text": "ENTSCHEIDUNG", "dark": true, "scale": 0.84, "at": {"seg": 7, "word": "dann"}, "until": {"seg": 7, "word": "damit"}},
+    {"type": "word", "text": "CASH", "scale": 0.84, "at": {"seg": 7, "word": "Cash"}, "until": {"seg": 7, "word": "irgendwelche"}},
+    {"type": "word", "text": "20", "faint": true, "scale": 0.84, "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
+  ],
   "cards": [
     {"type": "chat", "bubbles": [
-      {"text": "Moment. Wie kommst du da drauf?", "at": {"seg": 4, "word": "Moment,"}, "typed_by": {"seg": 4, "end": true}},
-      {"text": "In welcher Wachstumsphase stehst du?", "at": {"seg": 5, "word": "in"}, "typed_by": {"seg": 5, "word": "Wie"}},
-      {"text": "Wie sieht dein Business-Fundament aus?", "at": {"seg": 5, "word": "Wie"}, "typed_by": {"seg": 5, "end": true}}
-    ], "until": {"seg": 5, "end": true}},
-    {"type": "strike", "text": "Sales-Problem", "at": {"seg": 6, "word": "Sales"}, "strike_at": {"seg": 6, "word": "gar"}, "until": {"seg": 6, "end": true}},
-    {"type": "steps", "steps": [
-      {"label": "01  DIAGNOSE", "at": {"seg": 8, "word": "diagnostizieren"}},
-      {"label": "02  ENTSCHEIDUNG", "at": {"seg": 8, "word": "entscheiden,"}}
-    ], "until": {"seg": 8, "word": "damit"}},
-    {"type": "cta", "text": "FÜR DIE FOUNDING 20 BEWERBEN  →", "sub": "PRIVATE BETA · KOSTENLOSE TEILNAHME", "at": {"seg": 9, "word": "Founding"}, "until": {"seg": 9, "end": true}}
+      {"text": "Moment. Wie kommst du da drauf?", "at": {"seg": 3, "word": "Moment,"}, "typed_by": {"seg": 3, "end": true}},
+      {"text": "In welcher Wachstumsphase stehst du?", "at": {"seg": 4, "word": "in"}, "typed_by": {"seg": 4, "word": "Wie"}},
+      {"text": "Wie sieht dein Business-Fundament aus?", "at": {"seg": 4, "word": "Wie"}, "typed_by": {"seg": 4, "end": true}}
+    ], "until": {"seg": 4, "end": true}},
+    {"type": "cta", "text": "FÜR DIE FOUNDING 20 BEWERBEN  →", "sub": "PRIVATE BETA · KOSTENLOSE TEILNAHME", "at": {"seg": 8, "word": "Founding"}, "until": {"seg": 8, "end": true}}
   ],
   "endframe": {"seconds": 1.2, "sub": "LINK IN BIO"}
 }

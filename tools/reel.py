@@ -336,6 +336,119 @@ def render_intro(intro, t):
         d.rectangle([cur_pos[0] + 8, cur_pos[1] + 14, cur_pos[0] + 14, cur_pos[1] + 96], fill=PORC)
     return img
 
+# ---------------------------------------------------------------- motion-graphics hintergrund
+def make_studio(pad=80):
+    """Warmes Studio, etwas groesser als das Bild -> langsames Driften des Lichts per Ausschnitt."""
+    h, w = H + 2 * pad, W + 2 * pad
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    d = np.sqrt(((xx - w / 2) / 820) ** 2 + ((yy - 760 - pad) / 1150) ** 2).clip(0, 1) ** 1.3
+    c0 = np.array([228, 216, 200], np.float32); c1 = np.array([154, 135, 116], np.float32)
+    return c0 * (1 - d[..., None]) + c1 * d[..., None]
+
+def make_dark():
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    d = np.sqrt(((xx - 540) / 900) ** 2 + ((yy - 700) / 1100) ** 2).clip(0, 1)
+    c0 = np.array([42, 33, 29], np.float32); c1 = np.array(CARBON, np.float32)
+    return c0 * (1 - d[..., None]) + c1 * d[..., None]
+
+class Moments:
+    def __init__(self, ms, words, segb):
+        self.ms = []
+        for m in ms:
+            m = dict(m); m["t_in"] = anchor(m["at"], words, segb); m["t_out"] = anchor(m["until"], words, segb)
+            m["t_out"] = max(m["t_out"], m["t_in"] + m.get("min", 0))
+            for k in ("strike_at", "focus_at"):
+                if k in m: m[k.replace("_at", "")] = anchor(m[k], words, segb)
+            self.ms.append(m)
+        self.studio = make_studio(); self.dark = make_dark(); self.cache = {}
+        self.grain = [np.random.default_rng(i).normal(0, 3.0, (H, W, 1)).astype(np.float32) for i in range(4)]
+
+    def w(self, m, t, fi=0.18, fo=0.18):
+        return min(ease((t - m["t_in"]) / fi), 1 - ease((t - m["t_out"]) / fo))
+
+    def scale(self, t):
+        s = 1.0
+        for m in self.ms:
+            if "scale" in m: s = min(s, 1 - (1 - m["scale"]) * self.w(m, t, 0.22, 0.22))
+        return s
+
+    def events(self):
+        ev = []
+        for m in self.ms:
+            if m["type"] == "word": ev.append(("thud" if m.get("dark") else "pop", m["t_in"]))
+            if m["type"] == "health":
+                ev.append(("whoosh", m["t_in"] - 0.2))
+                if "strike" in m: ev.append(("scratch", m["strike"]))
+                if "focus" in m: ev.append(("pop", m["focus"]))
+        return ev
+
+    def _word(self, text, color):
+        key = ("w", text, color)
+        if key not in self.cache:
+            d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1))); size = 420
+            while size > 120:
+                f = font("Geist-600.ttf", size)
+                if d0.textlength(text, font=f) <= 990: break
+                size -= 10
+            tw = int(d0.textlength(text, font=f)); asc, desc = f.getmetrics()
+            im = Image.new("RGBA", (tw + 40, asc + desc + 40), (0, 0, 0, 0))
+            ImageDraw.Draw(im).text((20, 20), text, font=f, fill=color + (255,))
+            self.cache[key] = im
+        return self.cache[key]
+
+    def _health(self, m, t):
+        rows = [("STRATEGY", 78), ("POSITIONING", 64), ("SALES", 41), ("OPERATIONS", 70), ("FINANCE", 82), ("LEADERSHIP", 58)]
+        im = Image.new("RGBA", (900, 700), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        d.rectangle([0, 0, 899, 699], fill=PANEL + (250,), outline=LINE + (255,), width=2)
+        fm = font("IBMPlexMono-400.ttf", 24); fb = font("Geist-300.ttf", 120)
+        text_spaced(d, (44, 40), "BUSINESS HEALTH", fm, MUTED + (255,), 6)
+        d.text((44, 80), "72", font=fb, fill=PORC + (255,)); text_spaced(d, (200, 160), "/ 100", fm, MUTED + (255,), 6)
+        st = ease((t - m["strike"]) / 0.3) if "strike" in m and t >= m["strike"] else 0
+        fo = ease((t - m["focus"]) / 0.3) if "focus" in m and t >= m["focus"] else 0
+        y = 250
+        for i, (lab, val) in enumerate(rows):
+            grow = ease((t - m["t_in"] - 0.08 * i) / 0.6)
+            hi = (lab == "SALES" and st == 0 and fo == 0) or (lab == "POSITIONING" and fo > 0)
+            dim = fo > 0 and lab not in ("POSITIONING", "SALES")
+            col = PORC if hi else (MUTED if not dim else LINE)
+            text_spaced(d, (44, y), ("• " if hi else "") + lab, fm, col + (255,), 6)
+            vs = str(val); d.text((856 - d.textlength(vs, font=fm), y), vs, font=fm, fill=col + (255,))
+            d.rectangle([44, y + 40, 856, y + 41], fill=LINE + (255,))
+            d.rectangle([44, y + 39, 44 + 812 * val / 100 * grow, y + 42 + (2 if hi else 0)], fill=col + (255,))
+            if lab == "SALES" and st > 0:
+                d.rectangle([40, y + 13, 40 + 820 * st, y + 17], fill=(168, 105, 100, 255))
+            y += 64
+        if fo > 0:
+            text_spaced(d, (44, 640), "POSITIONING 64 —— SALES 41 · MÖGLICHER ZUSAMMENHANG", font("IBMPlexMono-400.ttf", 19),
+                        tuple(int(c) for c in MUTED) + (int(255 * fo),), 4)
+        return im
+
+    def background(self, t):
+        ox = int(80 + 50 * math.sin(t * 0.35)); oy = int(80 + 40 * math.cos(t * 0.27))
+        base = self.studio[oy:oy + H, ox:ox + W]
+        dk = max([self.w(m, t, 0.15, 0.15) for m in self.ms if m.get("dark")] + [0])
+        if dk > 0: base = base * (1 - dk) + self.dark * dk
+        base = base + self.grain[int(t * 12) % 4]
+        layer = None
+        for m in self.ms:
+            a = self.w(m, t)
+            if a <= 0 or m["type"] == "plain": continue
+            if layer is None: layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            if m["type"] == "word":
+                col = PORC if m.get("dark") else ((203, 188, 169) if m.get("faint") else CARBON)
+                im = self._word(m["text"], col)
+                p = ease((t - m["t_in"]) / 0.28); dur = max(0.5, m["t_out"] - m["t_in"])
+                s = 1.12 - 0.12 * p + 0.04 * min(1, (t - m["t_in"]) / dur)
+                im = im.resize((int(im.width * s), int(im.height * s)), Image.BICUBIC)
+            else:
+                im = self._health(m, t)
+            if a < 1: im = im.copy(); im.putalpha(im.getchannel("A").point(lambda v: int(v * a)))
+            y = 460 - im.height // 2 if m["type"] == "word" else 100
+            layer.alpha_composite(im, ((W - im.width) // 2, max(0, y)))
+        if layer is not None:
+            la = np.asarray(layer, np.float32); k = la[..., 3:] / 255; base = base * (1 - k) + la[..., :3] * k
+        return base
+
 # ---------------------------------------------------------------- matting
 class Matte:
     def __init__(self):
@@ -450,6 +563,7 @@ def main():
     voice = load_audio(f"{work}/voice.wav", SR)
     cards = Cards(edl.get("cards", []), words, segb)
     ev = cards.events()
+    moments = Moments(edl.get("moments", []), words, segb); ev += moments.events()
     hl = edl.get("headline", [])
     for i, h in enumerate(hl[1:], 1): ev.append(("whoosh", anchor(h["at"], words, segb) - 0.2))
     for i, s in enumerate(edl["segments"]):
@@ -479,8 +593,10 @@ def main():
         for k in range(round(intro["seconds"] * FPS)):
             if done >= limit: break
             enc.stdin.write(np.asarray(render_intro(intro, k / FPS)).tobytes()); done += 1
+    rg = [float(x) for x in sys.argv[sys.argv.index("--range") + 1].split("-")] if "--range" in sys.argv else None
     for ci, c in enumerate(clips):
         if done >= limit: break
+        if rg and (c["t0"] + c["frames"] / FPS < rg[0] or c["t0"] > rg[1]): continue
         raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{c['in']:.3f}", "-i", srcs[c["src"]], "-frames:v", str(c["frames"]),
                               "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
         fr = np.frombuffer(raw, np.uint8).reshape(-1, SRC_H, SRC_W, 3)
@@ -498,7 +614,14 @@ def main():
                 box = tuple(x0 + (x1 - x0) * q for x0, x1 in zip(box0, box1))
             fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
             al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
-            base = bg.copy()
+            base = moments.background(t)
+            s = moments.scale(t)
+            if s < 0.999:
+                sw, sh = int(W * s), int(H * s); ox = (W - sw) // 2; oy = H - sh
+                fg2 = np.zeros_like(fg); al2 = np.zeros_like(al)
+                fg2[oy:, ox:ox + sw] = np.asarray(Image.fromarray(fg.astype(np.uint8)).resize((sw, sh), Image.BILINEAR), np.float32)
+                al2[oy:, ox:ox + sw, 0] = np.asarray(Image.fromarray((al[..., 0] * 255).astype(np.uint8)).resize((sw, sh), Image.BILINEAR), np.float32) / 255
+                fg, al = fg2, al2
             if t < hook_end + 0.25:
                 lay = None
                 for ts, L in hl_layers:
