@@ -230,6 +230,34 @@ def stamp(text, seed=3, size=96):
     im = Image.new("RGBA", (w, h), INK + (0,)); im.putalpha(Image.fromarray((n * 235).astype(np.uint8)))
     return im.rotate(-7, expand=True, resample=Image.BICUBIC)
 
+def render_hook(item, rel):
+    """Kleine Zeile + riesige Schlagworte, Woerter ploppen versetzt rein (rel = Sekunden seit Start)."""
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    fs = font("Geist-400.ttf", 66)
+    a0 = ease(rel / 0.25)
+    d.text((84, 150), item["small"], font=fs, fill=CARBON + (int(255 * a0),))
+    lines = item["big"]; size = 190
+    while size > 90:
+        fb = font("Geist-600.ttf", size)
+        if max(d.textlength(l, font=fb) for l in lines) <= 930: break
+        size -= 6
+    y = 240; k = 0
+    for ln in lines:
+        x = 80
+        for wd in ln.split(" "):
+            p = ease((rel - 0.18 - 0.14 * k) / 0.22)
+            if p > 0:
+                s = 1.25 - 0.25 * p
+                col = WARMGREY if wd.strip(".,?!") in item.get("grey", []) else CARBON
+                ww = int(d.textlength(wd, font=fb)) + 20; asc, desc = fb.getmetrics()
+                wi = Image.new("RGBA", (ww, asc + desc + 20), (0, 0, 0, 0))
+                ImageDraw.Draw(wi).text((0, 0), wd, font=fb, fill=col + (int(255 * p),))
+                if s != 1: wi = wi.resize((int(wi.width * s), int(wi.height * s)), Image.BICUBIC)
+                img.alpha_composite(wi, (int(x - (wi.width - ww) / 2), int(y - (wi.height - asc - desc - 20) / 2)))
+            x += d.textlength(wd + " ", font=fb); k += 1
+        y += int(size * 0.98)
+    return img
+
 class Cards:
     def __init__(self, cards, words, segb):
         self.cards = []; self.cache = {}
@@ -366,9 +394,13 @@ class Cards:
                 self._paste(layer, im, (W - im.width) // 2, 170, t, c["t_in"], c["t_out"])
                 if nt > 0 and t <= c["t_out"] + 0.2:
                     fh = font("Caveat-500.ttf", 84); txt = c["note"]; k = int(len(txt) * min(1, nt))
-                    dl = ImageDraw.Draw(layer); tw2 = dl.textlength(txt, font=fh)
+                    tw2 = int(ImageDraw.Draw(layer).textlength(txt, font=fh))
+                    nk = ("notepaper", txt)
+                    if nk not in self.cache: self.cache[nk] = paper(tw2 + 70, 120, rot=2.5, tape=False, seed=9, color=(250, 247, 238))
+                    npi = self.cache[nk]; ny = 170 + im.height - 40
+                    self._paste(layer, npi, (W - npi.width) // 2 + 60, ny - 60, t, c["t_note"], c["t_out"])
                     a2 = 1 - ease((t - c["t_out"]) / 0.18)
-                    dl.text(((W - tw2) / 2, 170 + im.height - 30), txt[:k], font=fh, fill=GRAPHITE + (int(255 * a2),))
+                    ImageDraw.Draw(layer).text(((W - tw2) / 2 + 60, ny + 6), txt[:k], font=fh, fill=GRAPHITE + (int(255 * a2),))
             elif c["type"] == "stamp":
                 key = ("stamp", c["text"])
                 if key not in self.cache: self.cache[key] = stamp(c["text"])
@@ -722,6 +754,8 @@ def main():
     moments = Moments(edl.get("moments", []), words, segb, edl.get("background_image")); ev += moments.events()
     hl = edl.get("headline", [])
     for i, h in enumerate(hl[1:], 1): ev.append(("whoosh", anchor(h["at"], words, segb) - 0.2))
+    for i, h in enumerate(hl):
+        if "big" in h: ev.append(("thud", (anchor(h["at"], words, segb) if i else 0.0) + 0.25))
     for i, s in enumerate(edl["segments"]):
         if s.get("punch") == "Problem.":
             ev.append(("thud", next(w["t"] for w in words if w["seg"] == i and w["text"].startswith("Problem"))))
@@ -738,7 +772,8 @@ def main():
     bg = make_bg(); matte = Matte()
     hl_layers = []
     for i, h in enumerate(hl):
-        hl_layers.append((anchor(h["at"], words, segb) if i else 0.0, render_headline([(hl[i]["text"], hl[i]["grey"])])))
+        ts = anchor(h["at"], words, segb) if i else 0.0
+        hl_layers.append((ts, h if "big" in h else render_headline([(h["text"], h["grey"])])))
     hook_end = max((b for (a, b), s in zip(segb, edl["segments"]) if s.get("hook")), default=0)
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
                             "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", f"{work}/video.mp4"],
@@ -782,7 +817,8 @@ def main():
             if t < hook_end + 0.25:
                 lay = None
                 for ts, L in hl_layers:
-                    if t >= ts: lay = L
+                    if t >= ts:
+                        lay = render_hook(L, t - ts) if isinstance(L, dict) else L
                 if lay is not None:
                     la = np.asarray(lay, np.float32); k = la[..., 3:] / 255 * (1 - ease((t - hook_end) / 0.25))
                     base = base * (1 - k) + la[..., :3] * k
