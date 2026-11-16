@@ -22,21 +22,24 @@ if var == "b":  # Wort hinter dem Kopf
     fb = reel.font("Geist-600.ttf", 250); tw = d.textlength("FRAGE?", font=fb)
     d.text(((W - tw) / 2, 470), "FRAGE?", font=fb, fill=reel.CARBON + (255,))
     la = np.asarray(L, np.float32); k = la[..., 3:] / 255; bg = bg * (1 - k) + la[..., :3] * k
-img = Image.fromarray((bg * (1 - al) + fg * al).clip(0, 255).astype(np.uint8)).convert("RGBA")
-d = ImageDraw.Draw(img)
-fm = reel.font("IBMPlexMono-500.ttf", 34); fl = reel.font("Geist-300.ttf", 128)
+fm = reel.font("IBMPlexMono-500.ttf", 40); _sz = 180
+while ImageDraw.Draw(Image.new("L", (1, 1))).textlength("dein Business.", font=reel.font("Geist-300.ttf", _sz)) > 990: _sz -= 4
+fl = reel.font("Geist-300.ttf", _sz)
+txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
 def center_mono(y, s):
-    w = reel.spaced_len(d, s, fm, 12); reel.text_spaced(d, ((W - w) / 2, y), s, fm, reel.CARBON + (235,), 12)
+    w = reel.spaced_len(d, s, fm, 14); reel.text_spaced(d, ((W - w) / 2, y), s, fm, reel.CARBON + (235,), 14)
 def center_big(y, s, col=reel.CARBON):
     d.text(((W - d.textlength(s, font=fl)) / 2, y), s, font=fl, fill=col + (255,))
-txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
 if var == "a":
-    center_mono(300, "CHATGPT BEKOMMT"); center_big(345, "eine Frage.")
-    center_mono(520, "MAR BEKOMMT"); center_big(565, "dein Business.")
+    center_mono(250, "CHATGPT BEKOMMT"); center_big(292, "eine Frage.")
+    center_mono(530, "MAR BEKOMMT"); center_big(574, "dein Business.")
 else:
     center_mono(300, "IST ES WIRKLICH DIE ANTWORT"); center_mono(350, "ODER SCHON DIE")
 from PIL import ImageFilter
-m = txt.getchannel("A").filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(38))
-haze = Image.new("RGBA", (W, H), reel.PORC + (0,)); haze.putalpha(m.point(lambda v: int(min(255, v * 1.6) * 0.62)))
-img.alpha_composite(haze); img.alpha_composite(txt)
-img.convert("RGB").save(out); print("ok", out)
+m = txt.getchannel("A").filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(40))
+haze = Image.new("RGBA", (W, H), reel.PORC + (0,)); haze.putalpha(m.point(lambda v: int(min(255, v * 1.6) * 0.6)))
+haze.alpha_composite(txt)
+# Schrift HINTER die Person legen
+la = np.asarray(haze, np.float32); k = la[..., 3:] / 255; bg = bg * (1 - k) + la[..., :3] * k
+img = Image.fromarray((bg * (1 - al) + fg * al).clip(0, 255).astype(np.uint8))
+img.save(out); print("ok", out)

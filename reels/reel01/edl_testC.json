@@ -1,0 +1,215 @@
+{
+ "title": "Reel 01 – Testvariante C (Kurzversion)",
+ "sources": {
+  "C": "raw/reel01/IMG_7087.mp4"
+ },
+ "transcripts": {
+  "C": "reels/reel01/IMG_7087_words.json"
+ },
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "segments": [
+  {
+   "src": "C",
+   "from": 0.0,
+   "to": 5.6,
+   "hook": true,
+   "fix": {
+    "mar": "MAR"
+   }
+  },
+  {
+   "src": "C",
+   "from": 9.0,
+   "to": 15.2,
+   "accent": [
+    "genial,"
+   ]
+  },
+  {
+   "src": "C",
+   "from": 19.9,
+   "to": 27.0,
+   "punch": "Problem"
+  },
+  {
+   "src": "C",
+   "from": 32.2,
+   "to": 38.3,
+   "fix": {
+    "Mar": "MAR"
+   },
+   "accent": [
+    "Moment"
+   ],
+   "punch": "Moment"
+  },
+  {
+   "src": "C",
+   "from": 45.4,
+   "to": 50.9
+  },
+  {
+   "src": "C",
+   "from": 65.6,
+   "to": 72.3,
+   "accent": [
+    "Cash"
+   ]
+  },
+  {
+   "src": "C",
+   "from": 73.6,
+   "to": 79.0,
+   "fix": {
+    "Mar,": "MAR,"
+   },
+   "accent": [
+    "Founding 20"
+   ]
+  }
+ ],
+ "headline": [
+  {
+   "small": "DU GIBST CHATGPT",
+   "big": [
+    "eine Frage."
+   ],
+   "at": {
+    "seg": 0,
+    "word": "Jetzt"
+   }
+  },
+  {
+   "small": "DU GIBST MAR DEIN",
+   "big": [
+    "komplettes",
+    "Business."
+   ],
+   "grey": [
+    "komplettes"
+   ],
+   "at": {
+    "seg": 0,
+    "word": "aber"
+   }
+  }
+ ],
+ "moments": [
+  {
+   "type": "bw",
+   "at": {
+    "seg": 2,
+    "word": "aber"
+   },
+   "until": {
+    "seg": 2,
+    "word": "Und"
+   }
+  },
+  {
+   "type": "word",
+   "text": "PROBLEM?",
+   "min": 1.6,
+   "at": {
+    "seg": 2,
+    "word": "Problem"
+   },
+   "until": {
+    "seg": 2,
+    "end": true
+   }
+  },
+  {
+   "type": "waterfall",
+   "at": {
+    "seg": 3,
+    "word": "Mar"
+   },
+   "until": {
+    "seg": 3,
+    "end": true
+   },
+   "questions": [
+    "Moment. Wie kommst du da drauf?",
+    "In welcher Wachstumsphase stehst du?",
+    "Wie sieht dein Business-Fundament aus?",
+    "Wann hast du zuletzt eine Kundin verloren?",
+    "Woher kommen deine besten Kundinnen?",
+    "Was hast du schon ausprobiert?",
+    "Welches Angebot verkauft sich fast von allein?",
+    "Wo verlierst du jede Woche Zeit?",
+    "Was würdest du sofort streichen?",
+    "Was war der eigentliche Grund?",
+    "Wer entscheidet in deinem Business?",
+    "Was kostet dich eine neue Kundin?"
+   ]
+  },
+  {
+   "type": "knockout",
+   "text": "MAR",
+   "y": 760,
+   "at": {
+    "seg": 6,
+    "word": "MAR,"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "label",
+   "text": "Sales-Problem",
+   "at": {
+    "seg": 4,
+    "word": "vielleicht"
+   },
+   "strike_at": {
+    "seg": 4,
+    "word": "Sales"
+   },
+   "note": "…oder ganz woanders?",
+   "note_at": {
+    "seg": 4,
+    "word": "ganz"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "DIAGNOSE",
+   "at": {
+    "seg": 5,
+    "word": "diagnostizieren"
+   },
+   "until": {
+    "seg": 5,
+    "word": "wo"
+   }
+  },
+  {
+   "type": "cta",
+   "text": "FÜR DIE FOUNDING 20 BEWERBEN  →",
+   "sub": "PRIVATE BETA · LINK IN BIO",
+   "at": {
+    "seg": 6,
+    "word": "dann"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.2,
+  "sub": "LINK IN BIO"
+ }
+}

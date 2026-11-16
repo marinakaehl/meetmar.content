@@ -74,6 +74,7 @@ def plan(edl):
             seg_bounds.append((t_out, t_out + n / FPS)); t_out += n / FPS; continue
         allw = norm_words(trans[seg["src"]], seg.get("fix", {}))
         ws = [w for w in allw if seg["from"] <= w["start"] < seg["to"]]
+        if seg.get("cap_first") and ws: ws[0] = {**ws[0], "text": ws[0]["text"][:1].upper() + ws[0]["text"][1:]}
         before = [w for w in allw if w["start"] < seg["from"]]; after = [w for w in allw if w["start"] >= seg["to"]]
         lo = max(before[-1]["end"] if before else 0, ws[0]["start"] - 0.15)
         hi = min(after[0]["start"] - 0.02 if after else 1e9, ws[-1]["end"] + 0.25)
@@ -761,7 +762,7 @@ def main():
     hl = edl.get("headline", [])
     for i, h in enumerate(hl[1:], 1): ev.append(("whoosh", anchor(h["at"], words, segb) - 0.2))
     for i, h in enumerate(hl):
-        if "big" in h: ev.append(("thud", (anchor(h["at"], words, segb) if i else 0.0) + 0.25))
+        if "big" in h: ev.append(("thud", (anchor(h["at"], words, segb) if (i or h.get("anchored")) else 0.0) + 0.25))
     for i, s in enumerate(edl["segments"]):
         if s.get("punch") == "Problem.":
             ev.append(("thud", next(w["t"] for w in words if w["seg"] == i and w["text"].startswith("Problem"))))
@@ -778,7 +779,7 @@ def main():
     bg = make_bg(); matte = Matte()
     hl_layers = []
     for i, h in enumerate(hl):
-        ts = anchor(h["at"], words, segb) if i else 0.0
+        ts = anchor(h["at"], words, segb) if (i or h.get("anchored")) else 0.0
         hl_layers.append((ts, h if "big" in h else render_headline([(h["text"], h["grey"])])))
     hook_end = max((b for (a, b), s in zip(segb, edl["segments"]) if s.get("hook")), default=0)
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
@@ -820,7 +821,8 @@ def main():
                 fg2[oy:, ox:ox + sw] = np.asarray(Image.fromarray(fg.astype(np.uint8)).resize((sw, sh), Image.BILINEAR), np.float32)
                 al2[oy:, ox:ox + sw, 0] = np.asarray(Image.fromarray((al[..., 0] * 255).astype(np.uint8)).resize((sw, sh), Image.BILINEAR), np.float32) / 255
                 fg, al = fg2, al2
-            if t < hook_end + 0.25:
+            hook_start = min((a for (a, b), s in zip(segb, edl["segments"]) if s.get("hook")), default=0)
+            if hook_start - 0.01 <= t < hook_end + 0.25:
                 lay = None
                 for ts, L in hl_layers:
                     if t >= ts:
