@@ -1,0 +1,491 @@
+#!/usr/bin/env python3
+"""MAR Reel-Schnitt: EDL (edl.json) -> fertiges 1080x1920 Reel.
+
+Schritte: Sprechpausen per Energie-VAD rausschneiden, Jump-Cut-Zooms,
+Hintergrund freistellen (MODNet) -> "Warmes Studio", Hook-Headline hinter dem Kopf,
+animierte Brand-Karten, Wort-fuer-Wort-Untertitel (ASS), Soundeffekte, Lautheit -14 LUFS.
+
+Aufruf:  python3 tools/reel.py reels/reel01/edl.json out/reel01.mp4 [--preview SECONDS]
+"""
+import json, math, os, subprocess, sys, random
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FONTS = os.path.join(ROOT, "design", "fonts")
+W, H, FPS, SR = 1080, 1920, 30, 48000
+SRC_W, SRC_H = 720, 1280
+
+# Brand
+CARBON = (16, 16, 15); PANEL = (28, 28, 25); LINE = (52, 52, 49)
+PORC = (241, 239, 234); MUTED = (167, 164, 159); WARMGREY = (122, 110, 99); LOGO_BLACK = (7, 7, 6)
+
+def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), size)
+
+# ---------------------------------------------------------------- audio helpers
+def load_audio(path, sr):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vn", "-ac", "1", "-ar", str(sr),
+                          "-f", "f32le", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
+
+def rms_db(a, sr, hop=0.01):
+    n = int(sr * hop); m = len(a) // n
+    f = a[:m * n].reshape(m, n)
+    return 20 * np.log10(np.sqrt((f ** 2).mean(1)) + 1e-9)
+
+# ---------------------------------------------------------------- planning
+def norm_words(words, fix):
+    out = []
+    for s, e, t, p in words:
+        raw = t
+        if out and (t.startswith("-") or (t.isdigit() and out[-1]["text"].lower() == "founding")):
+            o = out[-1]; o["text"] += t if t.startswith("-") else " " + t; o["end"] = e; o["raw"] += t; continue
+        out.append({"start": s, "end": e, "text": fix.get(t, t), "raw": raw})
+    return out
+
+def plan(edl):
+    srcs = {k: os.path.join(ROOT, v) for k, v in edl["sources"].items()}
+    trans = {k: json.load(open(os.path.join(ROOT, v))) for k, v in edl["transcripts"].items()}
+    vad = {}
+    for k, p in srcs.items():
+        a = load_audio(p, 16000); db = rms_db(a, 16000)
+        floor, speech = np.percentile(db, 10), np.percentile(db, 90)
+        thr = max(floor + 12, speech - 19)
+        v = db > thr
+        # Loecher < 120 ms fuellen (Plosive, kurze Stopps)
+        i = 0
+        while i < len(v):
+            if not v[i]:
+                j = i
+                while j < len(v) and not v[j]: j += 1
+                if 0 < i and j < len(v) and (j - i) < 12: v[i:j] = True
+                i = j
+            else: i += 1
+        for w in trans[k]:  # Wortanfaenge schuetzen (leise Silben)
+            v[int(w[0] * 100):int(w[0] * 100) + 10] = True
+        vad[k] = v
+    clips, words_out, seg_bounds = [], [], []
+    t_out = 0.0; zoom_cycle = [1.10, 1.24]; zi = 0
+    for si, seg in enumerate(edl["segments"]):
+        allw = norm_words(trans[seg["src"]], seg.get("fix", {}))
+        ws = [w for w in allw if seg["from"] <= w["start"] < seg["to"]]
+        before = [w for w in allw if w["start"] < seg["from"]]; after = [w for w in allw if w["start"] >= seg["to"]]
+        lo = max(before[-1]["end"] if before else 0, ws[0]["start"] - 0.15)
+        hi = min(after[0]["start"] - 0.02 if after else 1e9, ws[-1]["end"] + 0.25)
+        v = vad[seg["src"]]
+        a0 = max(0, int((ws[0]["start"] - 0.15) * 100)); a1 = int((ws[-1]["end"] + 0.25) * 100)
+        # sprachliche Regionen im Segment
+        regs, i = [], a0
+        while i < a1:
+            if v[i]:
+                j = i
+                while j < a1 and v[j]: j += 1
+                regs.append([i / 100, j / 100]); i = j
+            else: i += 1
+        merged = []
+        for r in regs:
+            if merged and r[0] - merged[-1][1] < 0.16: merged[-1][1] = r[1]
+            else: merged.append(r)
+        merged = [r for r in merged if r[1] - r[0] > 0.12 or any(r[0] - .05 <= w["start"] < r[1] for w in ws)]
+        if not merged: merged = [[ws[0]["start"], ws[-1]["end"]]]
+        merged[0][0] = min(merged[0][0], ws[0]["start"])
+        seg_start = t_out
+        for r in merged:
+            cin, cout = max(lo, r[0] - 0.05), min(hi, r[1] + 0.07)
+            for c in clips:  # keine doppelt verwendeten Audio-Stellen
+                if c["src"] == seg["src"] and c["in"] <= cin < c["out"]: cin = c["out"]
+            if cout - cin < 0.1: continue
+            n = max(1, round((cout - cin) * FPS)); cout = cin + n / FPS
+            # lange Passagen an Wortgrenzen teilen (Zoom-Wechsel ohne Zeitsprung)
+            cuts = [cin]
+            if not seg.get("hook"):
+                starts = [w["start"] for w in ws if cin + 0.9 < w["start"] < cout - 0.9]
+                while starts and cout - cuts[-1] > 2.6:
+                    cand = [s for s in starts if s - cuts[-1] > 1.2]
+                    if not cand: break
+                    punct = {w2["start"] for w1, w2 in zip(ws, ws[1:]) if w1["text"][-1:] in ".,?!:"}
+                    s = min(cand, key=lambda s: abs(s - cuts[-1] - 1.9) - (0.7 if s in punct else 0))
+                    if cout - s < 0.9: break
+                    cuts.append(cin + round((s - 0.03 - cin) * FPS) / FPS)
+            cuts.append(cout)
+            for a_, b_ in zip(cuts, cuts[1:]):
+                n = round((b_ - a_) * FPS)
+                z = 1.10 if seg.get("hook") else zoom_cycle[zi % 2]
+                if not seg.get("hook"): zi += 1
+                clips.append({"src": seg["src"], "in": a_, "out": a_ + n / FPS, "frames": n, "t0": t_out, "zoom": z, "seg": si})
+                t_out += n / FPS
+        # Woerter auf neue Zeitachse
+        segclips = [k for k, c in enumerate(clips) if c["seg"] == si]
+        for w in ws:
+            def dist(k):
+                c = clips[k]; return 0 if c["in"] <= w["start"] < c["out"] else min(abs(w["start"] - c["in"]), abs(w["start"] - c["out"]))
+            k = min(segclips, key=dist); c = clips[k]
+            s = c["t0"] + min(max(0, w["start"] - c["in"]), c["frames"] / FPS - 0.1)
+            words_out.append({**w, "t": s, "seg": si, "clip": k})
+        # Zoom-Wechsel nur bei Clips >= 0.6 s; kurze Clips uebernehmen den Zoom des naechsten
+        sc = [c for c in clips if c["seg"] == si]
+        for a_, b_ in zip(sc[::-1][1:], sc[::-1]):
+            if a_["frames"] / FPS < 0.6: a_["zoom"] = b_["zoom"]
+        if seg.get("punch"):
+            for w in words_out:
+                if w["seg"] == si and w["text"].startswith(seg["punch"]):
+                    k = w["clip"]; clips[k]["zoom"] = 1.36
+                    while k > 0 and clips[k - 1]["seg"] == si and clips[k - 1]["frames"] / FPS < 0.6: k -= 1; clips[k]["zoom"] = 1.36
+        seg_bounds.append((seg_start, t_out))
+    return srcs, clips, words_out, seg_bounds, t_out
+
+def anchor(a, words, segb):
+    if a.get("end"): return segb[a["seg"]][1]
+    for w in words:
+        if w["seg"] == a["seg"] and (w["raw"] == a["word"] or w["text"] == a["word"] or w["text"].startswith(a["word"])):
+            return w["t"]
+    raise KeyError(a)
+
+# ---------------------------------------------------------------- graphics
+def ease(x): x = min(max(x, 0), 1); return 1 - (1 - x) ** 3
+
+def text_spaced(d, xy, s, f, fill, spacing):
+    x, y = xy
+    for ch in s:
+        d.text((x, y), ch, font=f, fill=fill); x += d.textlength(ch, font=f) + spacing
+    return x
+
+def spaced_len(d, s, f, spacing): return sum(d.textlength(c, font=f) + spacing for c in s) - spacing
+
+def make_bg():
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    d = np.sqrt(((xx - 540) / 820) ** 2 + ((yy - 760) / 1150) ** 2).clip(0, 1) ** 1.3
+    c0 = np.array([228, 216, 200], np.float32); c1 = np.array([154, 135, 116], np.float32)
+    g = c0 * (1 - d[..., None]) + c1 * d[..., None]
+    rng = np.random.default_rng(7); g += rng.normal(0, 3.2, g.shape[:2])[..., None]
+    return g.clip(0, 255).astype(np.float32)
+
+def wrap(d, words_cols, f, maxw):
+    lines, cur = [], []
+    for w, c in words_cols:
+        test = " ".join(x for x, _ in cur + [(w, c)])
+        if cur and d.textlength(test, font=f) > maxw: lines.append(cur); cur = [(w, c)]
+        else: cur.append((w, c))
+    if cur: lines.append(cur)
+    return lines
+
+def render_headline(items):
+    """items: [(text, greywords)] -> RGBA layer"""
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    f = font("Geist-400.ttf", 96); y = 170; lh = 104
+    for text, grey in items:
+        wc = [(w, WARMGREY if w.strip(".,") in grey else CARBON) for w in text.split()]
+        for line in wrap(d, wc, f, 900):
+            x = 84
+            for w, c in line:
+                d.text((x, y), w, font=f, fill=c + (255,)); x += d.textlength(w + " ", font=f)
+            y += lh
+        y += 34
+    return img
+
+class Cards:
+    def __init__(self, cards, words, segb):
+        self.cards = []; self.cache = {}
+        for c in cards:
+            c = dict(c); c["t_in"] = None
+            if c["type"] == "chat":
+                for b in c["bubbles"]:
+                    b["t"] = anchor(b["at"], words, segb); b["t_done"] = anchor(b["typed_by"], words, segb) - 0.15
+                c["t_in"] = c["bubbles"][0]["t"]
+            elif c["type"] == "steps":
+                for s in c["steps"]: s["t"] = anchor(s["at"], words, segb)
+                c["t_in"] = c["steps"][0]["t"]
+            else:
+                c["t_in"] = anchor(c["at"], words, segb)
+                if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
+            c["t_out"] = anchor(c["until"], words, segb)
+            self.cards.append(c)
+
+    def events(self):
+        """Soundeffekt-Zeitpunkte"""
+        ev = []
+        for c in self.cards:
+            if c["type"] == "chat":
+                for b in c["bubbles"]:
+                    ev.append(("pop", b["t"]))
+                    n = len(b["text"]); dur = max(0.3, b["t_done"] - b["t"] - 0.15)
+                    for k in range(0, n, 2): ev.append(("tick", b["t"] + 0.12 + dur * k / n))
+            elif c["type"] == "steps":
+                for s in c["steps"]: ev.append(("pop", s["t"]))
+            elif c["type"] == "strike":
+                ev += [("pop", c["t_in"]), ("scratch", c["t_strike"])]
+            elif c["type"] == "cta":
+                ev += [("whoosh", c["t_in"] - 0.15), ("pop", c["t_in"] + 0.05)]
+        return ev
+
+    def _bubble(self, label, text):
+        key = ("b", label, text)
+        if key in self.cache: return self.cache[key]
+        fl = font("IBMPlexMono-500.ttf", 24); ft = font("Geist-400.ttf", 44)
+        tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+        lines = []; cur = ""
+        for w in text.split(" "):
+            t = (cur + " " + w).strip()
+            if cur and tmp.textlength(t + "▍", font=ft) > 780: lines.append(cur); cur = w
+            else: cur = t
+        lines.append(cur)
+        h = 34 + 30 + 18 + 56 * len(lines) + 26
+        im = Image.new("RGBA", (880, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        d.rounded_rectangle([0, 0, 879, h - 1], radius=4, fill=PANEL + (246,), outline=LINE + (255,), width=2)
+        text_spaced(d, (40, 30), label, fl, MUTED + (255,), 6)
+        y = 30 + 30 + 18
+        for ln in lines: d.text((40, y), ln, font=ft, fill=PORC + (255,)); y += 56
+        self.cache[key] = im; return im
+
+    def _box(self, text, size, spacing=10, pad=(34, 22), fill=PORC, fg=CARBON, strike=0.0):
+        key = ("x", text, size, round(strike, 2))
+        if key in self.cache: return self.cache[key]
+        f = font("IBMPlexMono-500.ttf", size); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+        tw = spaced_len(d0, text, f, spacing); asc, desc = f.getmetrics()
+        w, h = int(tw + 2 * pad[0]), int(asc + desc + 2 * pad[1])
+        im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        d.rectangle([0, 0, w - 1, h - 1], fill=fill + (255,))
+        text_spaced(d, (pad[0], pad[1]), text, f, fg + (255,), spacing)
+        if strike > 0:
+            yy = h // 2 + 2; d.rectangle([pad[0] - 10, yy - 3, pad[0] - 10 + (tw + 20) * strike, yy + 3], fill=fg + (255,))
+        self.cache[key] = im; return im
+
+    @staticmethod
+    def _paste(layer, im, x, y, t, t_in, t_out):
+        a_in = ease((t - t_in) / 0.22); a_out = 1 - ease((t - t_out) / 0.18)
+        a = min(a_in, a_out)
+        if a <= 0: return
+        s = 0.92 + 0.08 * a_in
+        if s != 1: im = im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.BICUBIC)
+        if a < 1:
+            im = im.copy(); al = im.getchannel("A").point(lambda v: int(v * a)); im.putalpha(al)
+        cx = x + (im.width / s - im.width) / 2 if s != 1 else x
+        layer.alpha_composite(im, (int(cx), int(y + (1 - a_in) * 18)))
+
+    def draw(self, t):
+        layer = None
+        for c in self.cards:
+            if not (c["t_in"] - 0.01 <= t <= c["t_out"] + 0.2): continue
+            if layer is None: layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            if c["type"] == "chat":
+                y = 210
+                for b in c["bubbles"]:
+                    if t < b["t"]: break
+                    p = (t - b["t"] - 0.12) / max(0.3, b["t_done"] - b["t"] - 0.15)
+                    n = int(len(b["text"]) * min(max(p, 0), 1))
+                    cursor = "▍" if p < 1.05 and int(t * 3) % 2 == 0 else ""
+                    im = self._bubble("MAR", b["text"][:n] + cursor if n or cursor else " ")
+                    self._paste(layer, im, 100, y, t, b["t"], c["t_out"]); y += self._bubble("MAR", b["text"]).height + 18
+            elif c["type"] == "strike":
+                st = ease((t - c["t_strike"]) / 0.3) if t >= c["t_strike"] else 0
+                im = self._box(c["text"].upper(), 64, strike=st)
+                self._paste(layer, im, (W - im.width) // 2, 330, t, c["t_in"], c["t_out"])
+            elif c["type"] == "steps":
+                y = 290
+                for i, s in enumerate(c["steps"]):
+                    if t < s["t"]: break
+                    im = self._box(s["label"], 46, fill=PANEL, fg=PORC)
+                    self._paste(layer, im, 100 + i * 60, y, t, s["t"], c["t_out"]); y += im.height + 22
+            elif c["type"] == "cta":
+                im = self._box(c["text"], 34, spacing=6, pad=(38, 30))
+                self._paste(layer, im, (W - im.width) // 2, 300, t, c["t_in"], c["t_out"] + 1)
+                key = ("sub", c["sub"])
+                if key not in self.cache:
+                    f = font("IBMPlexMono-400.ttf", 24); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+                    sw = int(spaced_len(d0, c["sub"], f, 6)) + 4
+                    s_im = Image.new("RGBA", (sw, 40), (0, 0, 0, 0)); text_spaced(ImageDraw.Draw(s_im), (0, 4), c["sub"], f, CARBON + (200,), 6)
+                    self.cache[key] = s_im
+                s_im = self.cache[key]
+                self._paste(layer, s_im, (W - s_im.width) // 2, 300 + im.height + 26, t, c["t_in"] + 0.15, c["t_out"] + 1)
+        return layer
+
+# ---------------------------------------------------------------- matting
+class Matte:
+    def __init__(self):
+        import onnxruntime as ort
+        from huggingface_hub import hf_hub_download
+        m = hf_hub_download("Xenova/modnet", "onnx/model.onnx")
+        so = ort.SessionOptions(); so.intra_op_num_threads = os.cpu_count()
+        self.s = ort.InferenceSession(m, so, providers=["CPUExecutionProvider"]); self.n = self.s.get_inputs()[0].name
+    def __call__(self, rgb):
+        h = 672; w = int(rgb.shape[1] * h / rgb.shape[0]) // 32 * 32
+        x = np.asarray(Image.fromarray(rgb).resize((w, h), Image.BILINEAR), np.float32) / 127.5 - 1
+        a = self.s.run(None, {self.n: x.transpose(2, 0, 1)[None]})[0][0, 0]
+        return np.asarray(Image.fromarray((a * 255).clip(0, 255).astype(np.uint8)).resize((rgb.shape[1], rgb.shape[0]), Image.BILINEAR), np.float32) / 255
+
+def framing(alpha, zoom, crop_bottom, face_pos=0.42):
+    rows = np.where(alpha[:, 200:520].mean(1) > 0.3)[0]
+    head_top = rows[0] if len(rows) else 300
+    cols = np.where(alpha[head_top:head_top + 300].mean(0) > 0.5)[0]
+    cx = (cols[0] + cols[-1]) / 2 if len(cols) else SRC_W / 2
+    cw, ch = SRC_W / zoom, SRC_H / zoom
+    face_y = head_top + 170
+    y0 = min(max(face_y - face_pos * ch, 0), crop_bottom - ch)
+    x0 = min(max(cx - cw / 2, 0), SRC_W - cw)
+    return (x0, y0, x0 + cw, y0 + ch)
+
+# ---------------------------------------------------------------- captions
+def ass_time(t): return f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
+
+def captions(words, edl, segb, end_t, path):
+    f = font("Geist-600.ttf", 118); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    acc = {(i, a) for i, s in enumerate(edl["segments"]) for a in s.get("accent", [])}
+    hook = {i for i, s in enumerate(edl["segments"]) if s.get("hook")}
+    lines = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {W}", f"PlayResY: {H}", "WrapStyle: 2", "",
+             "[V4+ Styles]",
+             "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
+             "Style: Cap,Geist SemiBold,118,&H00EAEFF1,&H00EAEFF1,&H000F1010,&H000F1010,0,0,0,0,100,100,-1,0,1,0,0,5,0,0,0,1",
+             "Style: Acc,IBM Plex Mono Medium,78,&H000F1010,&H000F1010,&H00EAEFF1,&H00EAEFF1,0,0,0,0,100,100,8,0,3,24,0,5,0,0,0,1",
+             "", "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
+    ws = [w for w in words if w["seg"] not in hook]
+    for i, w in enumerate(ws):
+        t0 = w["t"]; nxt = ws[i + 1]["t"] if i + 1 < len(ws) else end_t
+        t1 = min(nxt, t0 + 1.2) if nxt - t0 < 1.5 else t0 + 0.6
+        if t1 - t0 < 0.1: t1 = t0 + 0.1
+        txt = w["text"]; pos = r"\an5\pos(540,1420)"; pop = r"\fscx86\fscy86\t(0,90,\fscx100\fscy100)"
+        if any((w["seg"], a) == (s, a) and (txt == a or txt.startswith(a)) for s, a in acc):
+            lab = txt.strip(",.?!").upper()
+            lines.append(f"Dialogue: 1,{ass_time(t0)},{ass_time(t1)},Acc,,0,0,0,,{{{pos}{pop}}}{lab}")
+        else:
+            tw = d0.textlength(txt, font=f); sc = min(100, int(100 * 940 / tw)) if tw > 0 else 100
+            fs = rf"\fscx{sc}\fscy{sc}" if sc < 100 else ""
+            pop2 = pop.replace("100", str(sc)) if sc < 100 else pop
+            lines.append(f"Dialogue: 0,{ass_time(t0)},{ass_time(t1)},Cap,,0,0,0,,{{{pos}{fs}{pop2}\\1a&HFF&\\3a&H60&\\bord14\\blur18}}{txt}")
+            lines.append(f"Dialogue: 1,{ass_time(t0)},{ass_time(t1)},Cap,,0,0,0,,{{{pos}{fs}{pop2}}}{txt}")
+    open(path, "w").write("\n".join(lines) + "\n")
+
+# ---------------------------------------------------------------- sfx
+def sfx(kind, rng):
+    t = lambda d: np.arange(int(SR * d)) / SR
+    if kind == "pop":
+        x = t(0.09); f = 950 * np.exp(-x * 30) + 260
+        s = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-x * 45); return 0.55 * s
+    if kind == "tick":
+        x = t(0.025); n = rng.normal(0, 1, len(x)); n = np.diff(n, prepend=0)
+        return 0.10 * n * np.exp(-x * 260) * rng.uniform(0.7, 1.1)
+    if kind == "whoosh":
+        x = t(0.42); n = rng.normal(0, 1, len(x))
+        k = np.exp(-((x - 0.26) / 0.11) ** 2)
+        y = np.zeros_like(n); a = 0.0
+        for i in range(len(n)):
+            c = 0.04 + 0.25 * k[i]; a += c * (n[i] - a); y[i] = a
+        return 0.9 * y * k
+    if kind == "scratch":
+        x = t(0.22); n = np.diff(rng.normal(0, 1, len(x)), prepend=0)
+        return 0.16 * n * np.sin(np.pi * x / 0.22) ** 0.5
+    if kind == "thud":
+        x = t(0.3); return 0.5 * np.sin(2 * np.pi * 70 * x) * np.exp(-x * 14)
+    raise ValueError(kind)
+
+# ---------------------------------------------------------------- main
+def main():
+    edl_path, out = sys.argv[1], sys.argv[2]
+    preview = float(sys.argv[sys.argv.index("--preview") + 1]) if "--preview" in sys.argv else None
+    edl = json.load(open(edl_path)); work = os.path.splitext(out)[0] + "_work"; os.makedirs(work, exist_ok=True)
+    srcs, clips, words, segb, total = plan(edl)
+    end_s = edl.get("endframe", {}).get("seconds", 0)
+    json.dump({"clips": clips, "words": words, "segments": segb}, open(f"{work}/plan.json", "w"), ensure_ascii=False, indent=1)
+    print(f"Clips: {len(clips)}  Laenge: {total:.1f}s + Endframe {end_s}s")
+
+    # ---- Audio
+    audio = {k: load_audio(p, SR) for k, p in srcs.items()}
+    voice = np.zeros(int((total + end_s) * SR) + SR, np.float32)
+    fade = int(0.008 * SR)
+    for c in clips:
+        a = audio[c["src"]][int(c["in"] * SR):int(c["out"] * SR)].copy()
+        r = np.linspace(0, 1, fade); a[:fade] *= r; a[-fade:] *= r[::-1]
+        i0 = int(c["t0"] * SR); voice[i0:i0 + len(a)] += a
+    import wave
+    def wav(p, x):
+        with wave.open(p, "wb") as wf:
+            wf.setnchannels(1); wf.setsampwidth(2); wf.setframerate(SR)
+            wf.writeframes((x.clip(-1, 1) * 32767).astype(np.int16).tobytes())
+    wav(f"{work}/voice_raw.wav", voice)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{work}/voice_raw.wav", "-af",
+                    "highpass=f=80,afftdn=nf=-28,acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3",
+                    f"{work}/voice.wav"], check=True)
+    voice = load_audio(f"{work}/voice.wav", SR)
+    cards = Cards(edl.get("cards", []), words, segb)
+    ev = cards.events()
+    hl = edl.get("headline", [])
+    for i, h in enumerate(hl[1:], 1): ev.append(("whoosh", anchor(h["at"], words, segb) - 0.2))
+    for i, s in enumerate(edl["segments"]):
+        if s.get("punch") == "Problem.":
+            ev.append(("thud", next(w["t"] for w in words if w["seg"] == i and w["text"].startswith("Problem"))))
+    if end_s: ev.append(("whoosh", total - 0.22))
+    rng = np.random.default_rng(3); fx = np.zeros_like(voice)
+    vr = np.sqrt((voice ** 2).mean()) + 1e-9
+    for k, t0 in ev:
+        s = sfx(k, rng); s = s / (np.abs(s).max() + 1e-9) * vr * {"pop": 1.4, "tick": 0.55, "whoosh": 1.2, "scratch": 0.9, "thud": 1.6}[k]
+        i0 = max(0, int(t0 * SR)); fx[i0:i0 + len(s)] += s[:len(fx) - i0]
+    wav(f"{work}/mix.wav", voice + fx)
+
+    # ---- Video
+    bg = make_bg(); matte = Matte()
+    hl_layers = []
+    for i, h in enumerate(hl):
+        hl_layers.append((anchor(h["at"], words, segb) if i else 0.0, render_headline([(hl[i]["text"], hl[i]["grey"])])))
+    hook_end = max((b for (a, b), s in zip(segb, edl["segments"]) if s.get("hook")), default=0)
+    enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
+                            "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", f"{work}/video.mp4"],
+                           stdin=subprocess.PIPE)
+    done = 0; limit = preview * FPS if preview else 1e9
+    for ci, c in enumerate(clips):
+        if done >= limit: break
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{c['in']:.3f}", "-i", srcs[c["src"]], "-frames:v", str(c["frames"]),
+                              "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
+        fr = np.frombuffer(raw, np.uint8).reshape(-1, SRC_H, SRC_W, 3)
+        prev = None; box = None
+        for fi in range(c["frames"]):
+            if done >= limit: break
+            f = fr[min(fi, len(fr) - 1)]; t = c["t0"] + fi / FPS
+            a = matte(f); a = a if prev is None else 0.65 * a + 0.35 * prev; prev = a
+            if box is None: box = framing(a, c["zoom"], edl.get("crop_bottom", SRC_H), 0.30 if edl["segments"][c["seg"]].get("hook") else 0.42)
+            fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
+            al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
+            base = bg.copy()
+            if t < hook_end + 0.25:
+                lay = None
+                for ts, L in hl_layers:
+                    if t >= ts: lay = L
+                if lay is not None:
+                    la = np.asarray(lay, np.float32); k = la[..., 3:] / 255 * (1 - ease((t - hook_end) / 0.25))
+                    base = base * (1 - k) + la[..., :3] * k
+            img = base * (1 - al) + fg * al
+            cl = cards.draw(t)
+            if cl is not None:
+                ca = np.asarray(cl, np.float32); k = ca[..., 3:] / 255; img = img * (1 - k) + ca[..., :3] * k
+            enc.stdin.write(img.clip(0, 255).astype(np.uint8).tobytes()); done += 1
+        print(f"  Clip {ci + 1}/{len(clips)}  ({done} Frames)", flush=True)
+    if end_s and done < limit:
+        logo = Image.open(os.path.join(ROOT, "design", "mar-logo.png")).convert("RGB")
+        logo = logo.resize((960, int(960 * logo.height / logo.width)), Image.LANCZOS)
+        ef = Image.new("RGB", (W, H), LOGO_BLACK); ef.paste(logo, ((W - logo.width) // 2, (H - logo.height) // 2 - 60))
+        dd = ImageDraw.Draw(ef); fsub = font("IBMPlexMono-400.ttf", 26); sub = edl["endframe"].get("sub", "")
+        text_spaced(dd, ((W - spaced_len(dd, sub, fsub, 8)) / 2, H // 2 + 250), sub, fsub, MUTED, 8)
+        efa = np.asarray(ef, np.float32)
+        for k in range(int(end_s * FPS)):
+            a = ease(k / 6); last = img if k == 0 else last
+            enc.stdin.write((last * (1 - a) + efa * a if k < 6 else efa).clip(0, 255).astype(np.uint8).tobytes())
+    enc.stdin.close(); enc.wait()
+
+    # ---- Untertitel + Mux
+    captions(words, edl, segb, total, f"{work}/captions.ass")
+    dur = ["-t", str(preview)] if preview else []
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav",
+                    "-vf", f"subtitles={work}/captions.ass:fontsdir={FONTS},eq=contrast=1.03:saturation=1.03",
+                    "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", *dur,
+                    "-movflags", "+faststart", out], check=True)
+    srt = os.path.splitext(out)[0] + ".srt"
+    with open(srt, "w") as fh:
+        hook = {i for i, s in enumerate(edl["segments"]) if s.get("hook")}
+        ws = words
+        for i, w in enumerate(ws):
+            t1 = ws[i + 1]["t"] if i + 1 < len(ws) else total
+            st = lambda x: f"{int(x // 3600):02d}:{int(x % 3600 // 60):02d}:{int(x % 60):02d},{int(x * 1000 % 1000):03d}"
+            fh.write(f"{i + 1}\n{st(w['t'])} --> {st(t1)}\n{w['text']}\n\n")
+    print("fertig:", out)
+
+if __name__ == "__main__":
+    main()
