@@ -1,0 +1,154 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "title": "Serie Tag 3",
+ "series": {
+  "day": 3
+ },
+ "sources": {
+  "S": "raw/serie/IMG_7103.mp4"
+ },
+ "transcripts": {
+  "S": "reels/serie/IMG_7103_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 0.25,
+   "to": 6.0,
+   "hook": true,
+   "cap_first": true
+  },
+  {
+   "src": "S",
+   "from": 6.5,
+   "to": 9.5
+  },
+  {
+   "src": "S",
+   "from": 21.4,
+   "to": 50.8,
+   "accent": [
+    "12.000"
+   ]
+  },
+  {
+   "src": "S",
+   "from": 57.8,
+   "to": 78.8
+  },
+  {
+   "src": "S",
+   "from": 84.6,
+   "to": 92.45
+  },
+  {
+   "src": "S",
+   "from": 117.0,
+   "to": 131.4
+  }
+ ],
+ "headline": [
+  {
+   "small": "DIE EHRLICHE VERSION",
+   "big": [
+    "Warum ich",
+    "MAR baue."
+   ],
+   "at": {
+    "seg": 0,
+    "word": "das"
+   }
+  }
+ ],
+ "moments": [
+  {
+   "type": "word",
+   "text": "12.000 €",
+   "min": 1.6,
+   "at": {
+    "seg": 2,
+    "word": "12.000"
+   },
+   "until": {
+    "seg": 2,
+    "word": "Und"
+   }
+  },
+  {
+   "type": "typewall",
+   "text": "TOOLS",
+   "size": 150,
+   "alpha": 0.85,
+   "at": {
+    "seg": 3,
+    "word": "überschwemmt"
+   },
+   "until": {
+    "seg": 3,
+    "word": "welche"
+   }
+  },
+  {
+   "type": "bw",
+   "at": {
+    "seg": 4,
+    "word": "Und"
+   },
+   "until": {
+    "seg": 4,
+    "word": "Aber"
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 03",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Marina"
+   },
+   "until": {
+    "seg": 1,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Keiner fragt dich",
+   "at": {
+    "seg": 3,
+    "word": "keiner"
+   },
+   "note": "…welche Frage du dir zuerst stellen solltest.",
+   "note_at": {
+    "seg": 3,
+    "word": "welche"
+   },
+   "until": {
+    "seg": 3,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "MORGEN: MAR STELLT DIR EINE FRAGE  →",
+   "sub": "FOLG MIR FÜR TAG 04",
+   "at": {
+    "seg": 5,
+    "word": "morgen"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 03 / 30 · FOLG FÜR TAG 04"
+ }
+}

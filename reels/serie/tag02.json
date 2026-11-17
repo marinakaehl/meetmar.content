@@ -1,0 +1,137 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "title": "Serie Tag 2",
+ "series": {
+  "day": 2
+ },
+ "sources": {
+  "S": "raw/serie/IMG_7101.mp4"
+ },
+ "transcripts": {
+  "S": "reels/serie/IMG_7101_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 0.0,
+   "to": 3.95,
+   "hook": true
+  },
+  {
+   "src": "S",
+   "from": 6.0,
+   "to": 14.0
+  },
+  {
+   "src": "S",
+   "from": 17.1,
+   "to": 24.5
+  },
+  {
+   "src": "S",
+   "from": 26.3,
+   "to": 30.8
+  },
+  {
+   "src": "S",
+   "from": 39.7,
+   "to": 44.5
+  },
+  {
+   "src": "S",
+   "from": 46.4,
+   "to": 55.5,
+   "accent": [
+    "richtige."
+   ]
+  },
+  {
+   "src": "S",
+   "from": 58.6,
+   "to": 69.15
+  }
+ ],
+ "headline": [
+  {
+   "small": "VOR DEM NÄCHSTEN KURS",
+   "big": [
+    "3 Fragen."
+   ],
+   "at": {
+    "seg": 0,
+    "word": "Bevor"
+   },
+   "max_size": 190
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 02",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Marina"
+   },
+   "until": {
+    "seg": 1,
+    "word": "eine"
+   }
+  },
+  {
+   "type": "checklist",
+   "title": "3 FRAGEN VOR DEM NÄCHSTEN KURS",
+   "at": {
+    "seg": 2,
+    "word": "Erste"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   },
+   "items": [
+    {
+     "text": "Ist das wirklich mein Problem?",
+     "at": {
+      "seg": 2,
+      "word": "ist"
+     }
+    },
+    {
+     "text": "Warum hat es nicht funktioniert?",
+     "at": {
+      "seg": 3,
+      "word": "warum"
+     }
+    },
+    {
+     "text": "Was wäre anders, wenn gelöst?",
+     "at": {
+      "seg": 4,
+      "word": "was"
+     }
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "text": "KARUSSELL IM FEED · SPEICHERN  →",
+   "sub": "MORGEN: WARUM ICH MAR BAUE",
+   "at": {
+    "seg": 6,
+    "word": "Die"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 02 / 30 · FOLG FÜR TAG 03"
+ }
+}

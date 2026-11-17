@@ -38,8 +38,10 @@ def norm_words(words, fix):
     out = []
     for s, e, t, p in words:
         raw = t
-        if out and (t.startswith("-") or (t.isdigit() and out[-1]["text"].lower() == "founding")):
-            o = out[-1]; o["text"] += t if t.startswith("-") else " " + t; o["end"] = e; o["raw"] += t; continue
+        if out and (t.startswith("-") or t.startswith(".0") or (t.isdigit() and out[-1]["text"].lower() == "founding")):
+            o = out[-1]; o["text"] += t if t[0] in "-." else " " + t; o["end"] = e; o["raw"] += t; continue
+        if out and t in ("%", "%."):
+            o = out[-1]; o["text"] += " " + t; o["end"] = e; o["raw"] += t; continue
         out.append({"start": s, "end": e, "text": fix.get(t, t), "raw": raw})
     return out
 
@@ -142,8 +144,11 @@ def plan(edl):
 
 def anchor(a, words, segb):
     if a.get("end"): return segb[a["seg"]][1]
+    for w in words:  # erst exakte Treffer, dann Wortanfang
+        if w["seg"] == a["seg"] and (w["raw"] == a["word"] or w["text"] == a["word"]):
+            return w["t"]
     for w in words:
-        if w["seg"] == a["seg"] and (w["raw"] == a["word"] or w["text"] == a["word"] or w["text"].startswith(a["word"])):
+        if w["seg"] == a["seg"] and w["text"].startswith(a["word"]):
             return w["t"]
     raise KeyError(a)
 
@@ -236,13 +241,14 @@ def render_hook(item, rel):
     txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
     fm = font("IBMPlexMono-500.ttf", 34); a0 = ease(rel / 0.3)
     sw = spaced_len(d, item["small"], fm, 12)
-    text_spaced(d, ((W - sw) / 2, 200 - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
-    lines = item["big"]; size = 160
+    y_small = item.get("y", 270)
+    text_spaced(d, ((W - sw) / 2, y_small - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
+    lines = item["big"]; size = item.get("max_size", 150)
     while size > 80:
         fb = font("Geist-300.ttf", size)
         if max(d.textlength(l, font=fb) for l in lines) <= 900: break
         size -= 6
-    y = 268; k = 0
+    y = y_small + 66; k = 0
     for ln in lines:
         x = (W - d.textlength(ln, font=fb)) / 2
         for wd in ln.split(" "):
@@ -270,6 +276,12 @@ class Cards:
             elif c["type"] == "steps":
                 for s in c["steps"]: s["t"] = anchor(s["at"], words, segb)
                 c["t_in"] = c["steps"][0]["t"]
+            elif c["type"] == "prompt":
+                c["t_in"] = anchor(c["at"], words, segb); c["t_typed"] = anchor(c["typed_by"], words, segb)
+                if "reply" in c: c["t_reply"] = anchor(c["reply_at"], words, segb); c["t_reply_done"] = anchor(c["reply_typed_by"], words, segb)
+            elif c["type"] == "checklist":
+                c["t_in"] = anchor(c["at"], words, segb)
+                for it in c["items"]: it["t"] = anchor(it["at"], words, segb)
             elif c["type"] == "label":
                 c["t_in"] = anchor(c["at"], words, segb)
                 if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
@@ -299,6 +311,13 @@ class Cards:
                 if "t_note" in c: ev.append(("scratch", c["t_note"]))
             elif c["type"] == "stamp":
                 ev.append(("thud", c["t_in"] + 0.12))
+            elif c["type"] == "prompt":
+                ev.append(("pop", c["t_in"]))
+                n = len(c["text"]); dur = max(0.4, c["t_typed"] - c["t_in"] - 0.2)
+                for k in range(0, n, 2): ev.append(("tick", c["t_in"] + 0.15 + dur * k / n))
+                if "t_reply" in c: ev.append(("pop", c["t_reply"]))
+            elif c["type"] == "checklist":
+                ev.append(("pop", c["t_in"])); ev += [("pop", it["t"]) for it in c["items"]]
             elif c["type"] == "cta":
                 ev += [("whoosh", c["t_in"] - 0.15), ("pop", c["t_in"] + 0.05)]
         return ev
@@ -391,16 +410,58 @@ class Cards:
                     im = im.rotate(-3, expand=True, resample=Image.BICUBIC)
                     self.cache = {k2: v for k2, v in self.cache.items() if k2[0] != "labimg"}; self.cache[pk] = im
                 im = self.cache[pk]
-                self._paste(layer, im, (W - im.width) // 2, 170, t, c["t_in"], c["t_out"])
+                self._paste(layer, im, (W - im.width) // 2, c.get("y", 170), t, c["t_in"], c["t_out"])
                 if nt > 0 and t <= c["t_out"] + 0.2:
                     fh = font("Caveat-500.ttf", 84); txt = c["note"]; k = int(len(txt) * min(1, nt))
                     tw2 = int(ImageDraw.Draw(layer).textlength(txt, font=fh))
                     nk = ("notepaper", txt)
                     if nk not in self.cache: self.cache[nk] = paper(tw2 + 70, 120, rot=2.5, tape=False, seed=9, color=(250, 247, 238))
-                    npi = self.cache[nk]; ny = 170 + im.height - 40
+                    npi = self.cache[nk]; ny = c.get("y", 170) + im.height - 40
                     self._paste(layer, npi, (W - npi.width) // 2 + 60, ny - 60, t, c["t_note"], c["t_out"])
                     a2 = 1 - ease((t - c["t_out"]) / 0.18)
                     ImageDraw.Draw(layer).text(((W - tw2) / 2 + 60, ny + 6), txt[:k], font=fh, fill=GRAPHITE + (int(255 * a2),))
+            elif c["type"] == "prompt":
+                p = (t - c["t_in"] - 0.15) / max(0.4, c["t_typed"] - c["t_in"] - 0.2)
+                n = int(len(c["text"]) * min(max(p, 0), 1)); txt = c["text"][:n]
+                key = ("prompt", txt, p < 1.05 and int(t * 3) % 2 == 0)
+                if key not in self.cache:
+                    fq = font("Geist-400.ttf", 42); fh = font("IBMPlexMono-400.ttf", 22)
+                    im = Image.new("RGBA", (900, 150), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+                    d.rounded_rectangle([0, 0, 899, 149], radius=26, fill=(250, 248, 244, 236), outline=(214, 208, 199, 255), width=2)
+                    text_spaced(d, (38, 22), c.get("label", "DEINE FRAGE"), fh, MUTED + (255,), 5)
+                    d.text((38, 60), txt if txt else "", font=fq, fill=CARBON + (255,))
+                    if key[2]:
+                        xc = 38 + d.textlength(txt, font=fq) + 6; d.rectangle([xc, 64, xc + 4, 108], fill=CARBON + (255,))
+                    d.ellipse([820, 50, 872, 102], fill=CARBON + (255,)); d.polygon([(838, 66), (860, 76), (838, 86)], fill=PORC + (255,))
+                    self.cache = {k: v for k, v in self.cache.items() if k[0] != "prompt"}; self.cache[key] = im
+                im = self.cache[key]
+                self._paste(layer, im, 90, c.get("y", 300), t, c["t_in"], c["t_out"])
+                if "t_reply" in c and t >= c["t_reply"]:
+                    pr = (t - c["t_reply"] - 0.12) / max(0.3, c["t_reply_done"] - c["t_reply"] - 0.15)
+                    nr = int(len(c["reply"]) * min(max(pr, 0), 1))
+                    imr = self._bubble("MAR", c["reply"][:nr], pr < 1.05 and int(t * 3) % 2 == 0)
+                    self._paste(layer, imr, 110, c.get("y", 300) + 175, t, c["t_reply"], c["t_out"])
+            elif c["type"] == "checklist":
+                done = sum(1 for it in c["items"] if t >= it["t"])
+                key = ("check", done)
+                if key not in self.cache:
+                    fh = font("IBMPlexMono-500.ttf", 22); fi = font("Geist-400.ttf", 38)
+                    h = 92 + 70 * len(c["items"]) + 20
+                    im = Image.new("RGBA", (900, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+                    d.rounded_rectangle([0, 0, 899, h - 1], radius=10, fill=PANEL + (244,), outline=LINE + (255,), width=2)
+                    text_spaced(d, (38, 32), c["title"], fh, MUTED + (255,), 5)
+                    cnt = f"{done} / {len(c['items'])}"; text_spaced(d, (860 - spaced_len(d, cnt, fh, 5), 32), cnt, fh, PORC + (255,), 5)
+                    for i, it in enumerate(c["items"]):
+                        y = 92 + 70 * i; on = i < done; cur = i == done - 1
+                        if on:
+                            d.ellipse([38, y + 4, 74, y + 40], fill=PORC + (255,))
+                            d.line([(47, y + 22), (54, y + 30), (66, y + 13)], fill=CARBON + (255,), width=4)
+                            d.text((96, y), it["text"], font=fi, fill=(PORC if cur else MUTED) + (255,))
+                        else:
+                            d.ellipse([38, y + 4, 74, y + 40], outline=LINE + (255,), width=3)
+                            d.rounded_rectangle([96, y + 14, 96 + 420 - 60 * i, y + 30], radius=8, fill=LINE + (255,))
+                    self.cache[key] = im
+                self._paste(layer, self.cache[key], 90, c.get("y", 280), t, c["t_in"], c["t_out"])
             elif c["type"] == "stamp":
                 key = ("stamp", c["text"])
                 if key not in self.cache: self.cache[key] = stamp(c["text"])
@@ -409,7 +470,7 @@ class Cards:
                 if a > 0:
                     s = 1.6 - 0.6 * p; im2 = im.resize((int(im.width * s), int(im.height * s)), Image.BICUBIC)
                     if a * min(1, p * 1.5) < 1: im2.putalpha(im2.getchannel("A").point(lambda v: int(v * a * min(1, p * 1.5))))
-                    layer.alpha_composite(im2, ((W - im2.width) // 2, 330 - im2.height // 2))
+                    layer.alpha_composite(im2, ((W - im2.width) // 2, c.get("y", 330) - im2.height // 2))
             elif c["type"] == "cta":
                 im = self._box(c["text"], 42, spacing=5, pad=(40, 32))
                 self._paste(layer, im, (W - im.width) // 2, 300, t, c["t_in"], c["t_out"] + 1)
@@ -500,7 +561,8 @@ class Moments:
         ev = []
         for m in self.ms:
             if m["type"] == "word": ev.append(("thud" if m.get("dark") else "pop", m["t_in"]))
-            if m["type"] in ("waterfall", "knockout"): ev.append(("whoosh", m["t_in"] - 0.2))
+            if m["type"] in ("waterfall", "knockout", "typewall"): ev.append(("whoosh", m["t_in"] - 0.2))
+            if m["type"] == "freeze": ev.append(("pop", m["t_in"]))
             if m["type"] == "health":
                 ev.append(("whoosh", m["t_in"] - 0.2))
                 if "strike" in m: ev.append(("scratch", m["strike"]))
@@ -618,10 +680,28 @@ class Moments:
         layer = None
         for m in self.ms:
             a = self.w(m, t)
-            if a <= 0 or m["type"] in ("plain", "bw", "knockout"): continue
+            if a <= 0 or m["type"] in ("plain", "bw", "knockout", "freeze"): continue
             if layer is None: layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
             if m["type"] == "waterfall":
                 layer.alpha_composite(self._waterfall(m, t, a)); continue
+            if m["type"] == "typewall":
+                key = ("tw", m["text"])
+                if key not in self.cache:
+                    f = font("Geist-600.ttf", m.get("size", 150)); rowh = int(m.get("size", 150) * 1.0)
+                    unit = (m["text"] + "  ") * 8
+                    rows = []
+                    for r_ in range(H // rowh + 2):
+                        im = Image.new("RGBA", (int(ImageDraw.Draw(Image.new("L", (1, 1))).textlength(unit, font=f)) + 10, rowh + 30), (0, 0, 0, 0))
+                        ImageDraw.Draw(im).text((0, 0), unit, font=f, fill=CARBON + (int(255 * m.get("alpha", 0.9)),))
+                        rows.append(im)
+                    self.cache[key] = (rows, rowh)
+                rows, rowh = self.cache[key]; el = t - m["t_in"]
+                Lw = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                for r_, im in enumerate(rows):
+                    dx = -((el * 60 * (1 if r_ % 2 else -1)) % 600) - (300 if r_ % 2 else 0)
+                    Lw.alpha_composite(im, (int(dx), r_ * rowh - 40)) if dx > -im.width else None
+                if a < 1: Lw.putalpha(Lw.getchannel("A").point(lambda v: int(v * a)))
+                layer.alpha_composite(Lw); continue
             if m["type"] == "word":
                 col = PORC if m.get("dark") else ((203, 188, 169) if m.get("faint") else CARBON)
                 im = self._word(m["text"], col)
@@ -636,6 +716,19 @@ class Moments:
         if layer is not None:
             la = np.asarray(layer, np.float32); k = la[..., 3:] / 255; base = base * (1 - k) + la[..., :3] * k
         return base
+
+def series_bar(day, total=30):
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    fm = font("IBMPlexMono-500.ttf", 28); x0, y0, gap = 70, 168, 6; segw = (W - 2 * x0 - (total - 1) * gap) / total
+    for i in range(total):
+        col = CARBON + (235,) if i < day else (16, 16, 15, 80)
+        d.rectangle([x0 + i * (segw + gap), y0, x0 + i * (segw + gap) + segw, y0 + 6], fill=col)
+    text_spaced(d, (x0, y0 + 22), f"TAG {day:02d} / {total}", fm, CARBON + (235,), 9)
+    s = "ICH BAUE MAR"; text_spaced(d, (W - x0 - spaced_len(d, s, fm, 9), y0 + 22), s, fm, CARBON + (190,), 9)
+    m = im.getchannel("A").filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.GaussianBlur(18))
+    hz = Image.new("RGBA", (W, H), PORC + (0,)); hz.putalpha(m.point(lambda v: int(min(255, v * 1.5) * 0.45)))
+    hz.alpha_composite(im)
+    return np.asarray(hz, np.float32)
 
 # ---------------------------------------------------------------- matting
 class Matte:
@@ -792,6 +885,8 @@ def main():
             if done >= limit: break
             enc.stdin.write(np.asarray(render_intro(intro, k / FPS)).tobytes()); done += 1
     rg = [float(x) for x in sys.argv[sys.argv.index("--range") + 1].split("-")] if "--range" in sys.argv else None
+    frozen = None
+    sbar = series_bar(edl["series"]["day"]) if edl.get("series") else None
     for ci, c in enumerate(clips):
         if done >= limit: break
         if rg and (c["t0"] + c["frames"] / FPS < rg[0] or c["t0"] > rg[1]): continue
@@ -812,6 +907,10 @@ def main():
                 box = tuple(x0 + (x1 - x0) * q for x0, x1 in zip(box0, box1))
             fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
             al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
+            fzm = [m for m in moments.ms if m["type"] == "freeze" and m["t_in"] <= t <= m["t_out"]]
+            if fzm:
+                if frozen is None or frozen[0] is not fzm[0]: frozen = (fzm[0], fg.copy(), al.copy())
+                fg, al = frozen[1], frozen[2]
             base = moments.background(t)
             s = moments.scale(t) * edl.get("person_scale", 1.0)
             fg_full = fg
@@ -830,8 +929,17 @@ def main():
                 if lay is not None:
                     la = np.asarray(lay, np.float32); k = la[..., 3:] / 255 * (1 - ease((t - hook_end) / 0.25))
                     base = base * (1 - k) + la[..., :3] * k
+            if fzm:  # Freeze-Sticker: Vollfarbe, weisse Kontur um die Person
+                fa = Image.fromarray((al[..., 0] * 255).astype(np.uint8))
+                ring = np.asarray(fa.filter(ImageFilter.MaxFilter(25)).filter(ImageFilter.GaussianBlur(1.5)), np.float32)[..., None] / 255
+                q = ease((t - fzm[0]["t_in"]) / 0.12)
+                flat = np.array(fzm[0].get("color", (42, 33, 29)), np.float32)
+                base = base * (1 - q) + flat * q
+                base = base * (1 - ring * q) + 255 * ring * q
             img = base * (1 - al) + fg * al
             img = moments.post(img, fg_full, t)
+            if sbar is not None:
+                k = sbar[..., 3:] / 255; img = img * (1 - k) + sbar[..., :3] * k
             cl = cards.draw(t)
             if cl is not None:
                 ca = np.asarray(cl, np.float32); k = ca[..., 3:] / 255; img = img * (1 - k) + ca[..., :3] * k
