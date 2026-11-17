@@ -30,11 +30,22 @@ Vor jedem Dreh beantwortest du dir einen Satz: *„Nach diesem Reel weiß meine 
 
 ---
 
+## Aufbau jeder Folge
+
+| Zeit | Du sagst | Claude legt drüber |
+|---|---|---|
+| **0–2 s** | **Hook** (jeden Tag anders) | Hook groß über dir + Serien-Leiste |
+| **2–4 s** | **Signatur-Satz** (immer gleich): *„Ich bin Marina, ich baue MAR – und das ist Tag X.“* | Stempel **„TAG X“** + Signatur-Sound |
+| **ab 4 s** | Inhalt | Untertitel, Effekte |
+| **Ende** | *„Morgen: … Folg mir, sonst verpasst du Tag X+1.“* | Outro-Karte |
+
+Der Signatur-Satz bleibt **unter 3 Sekunden**. Nur an Tag 1 darf er länger sein, weil dort die Challenge einmal erklärt wird.
+
 ## Sprechtexte
 
 Tipps für alle drei:
 - **Nicht ablesen, sondern erzählen.** Lies den Text 2–3× laut, dann sprich ihn frei nach. Abweichungen sind gut, die machen dich nahbar.
-- **Kein „Hallo“, kein „Tag 1“ sagen.** Das Intro mit Stempel und Leiste setzt Claude drüber. Du startest direkt mit dem ersten Satz.
+- **Erst der Hook, dann der Signatur-Satz.** Nie mit „Hallo“ starten. Der Stempel landet automatisch auf dem Signatur-Satz.
 - **Bei Versprechern:** kurz Pause, Satz nochmal. Claude schneidet.
 - Ziel: **35–45 Sekunden** nach dem Schnitt.
 
@@ -44,7 +55,7 @@ Tipps für alle drei:
 
 > Ich baue gerade eine KI, die dir widerspricht. Und zwar mit Absicht.
 >
-> Sie heißt MAR, und die nächsten 30 Tage nehme ich dich mit, während ich sie baue.
+> **Ich bin Marina, und die nächsten 30 Tage nehme ich dich mit, während ich MAR baue – eine KI für Unternehmerinnen, die erst fragt und dann antwortet. Das ist Tag 1.**
 >
 > Warum widersprechen? Weil ich bei so vielen Selbstständigen dasselbe sehe: Wir fragen uns „Wie bekomme ich mehr Kundinnen?“ und suchen dann überall Antworten. Bei ChatGPT, in Kursen, bei Coaches.
 >
@@ -65,6 +76,8 @@ Tipps für alle drei:
 **Nutzen:** 3 Prüffragen, die sie vor Fehlinvestitionen schützen.
 
 > Bevor du nochmal Geld in einen Kurs steckst, stell dir diese drei Fragen.
+>
+> **Ich bin Marina, ich baue MAR – und das ist Tag 2.**
 >
 > Erstens: Welches Problem soll dieser Kurs lösen, und hab ich überhaupt überprüft, ob das mein Problem ist? Oder fühlt es sich nur so an?
 >
@@ -93,6 +106,8 @@ Leitfragen dafür:
 - Was macht dir an dem Projekt ehrlich gesagt Angst?
 
 > Warum ich MAR baue. Die ehrliche Version.
+>
+> **Ich bin Marina, ich baue MAR – und das ist Tag 3.**
 >
 > [Der Moment: z. B. „Vor X Monaten saß ich da und hatte gerade … in … investiert. Und es hat nichts verändert.“]
 >
