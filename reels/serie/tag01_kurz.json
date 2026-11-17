@@ -1,0 +1,224 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "title": "Serie Tag 1 (Kurzversion)",
+ "series": {
+  "day": 1
+ },
+ "sources": {
+  "S": "raw/serie/IMG_7099.mp4"
+ },
+ "transcripts": {
+  "S": "reels/serie/IMG_7099_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 3.0,
+   "to": 8.55,
+   "hook": true
+  },
+  {
+   "src": "S",
+   "from": 9.05,
+   "to": 9.9,
+   "hook": true
+  },
+  {
+   "src": "S",
+   "from": 10.1,
+   "to": 15.95
+  },
+  {
+   "src": "S",
+   "from": 19.5,
+   "to": 22.6
+  },
+  {
+   "src": "S",
+   "from": 49.75,
+   "to": 62.2,
+   "fix": {
+    "Cloud": "Claude"
+   }
+  },
+  {
+   "src": "S",
+   "from": 77.6,
+   "to": 80.5,
+   "accent": [
+    "falsch"
+   ]
+  },
+  {
+   "src": "S",
+   "from": 83.65,
+   "to": 85.25,
+   "fix": {
+    "Ma": "MAR"
+   }
+  },
+  {
+   "src": "S",
+   "from": 104.95,
+   "to": 115.5
+  },
+  {
+   "src": "S",
+   "from": 140.1,
+   "to": 146.85
+  },
+  {
+   "src": "S",
+   "from": 149.0,
+   "to": 151.0,
+   "cap_first": true
+  }
+ ],
+ "headline": [
+  {
+   "small": "ICH BAUE GERADE EINE KI,",
+   "big": [
+    "die dir",
+    "widerspricht."
+   ],
+   "grey": [
+    "widerspricht."
+   ],
+   "at": {
+    "seg": 0,
+    "word": "Ich"
+   }
+  }
+ ],
+ "moments": [
+  {
+   "type": "freeze",
+   "color": [
+    42,
+    33,
+    29
+   ],
+   "at": {
+    "seg": 2,
+    "word": "Hi,"
+   },
+   "until": {
+    "seg": 2,
+    "word": "und"
+   }
+  },
+  {
+   "type": "bw",
+   "at": {
+    "seg": 4,
+    "word": "bekommen"
+   },
+   "until": {
+    "seg": 4,
+    "word": "So,"
+   }
+  },
+  {
+   "type": "word",
+   "text": "FALSCH?",
+   "min": 1.4,
+   "at": {
+    "seg": 5,
+    "word": "falsch"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "label",
+   "text": "Marina · baut MAR",
+   "y": 250,
+   "at": {
+    "seg": 2,
+    "word": "Hi,"
+   },
+   "until": {
+    "seg": 2,
+    "word": "Ich"
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "TAG 01",
+   "y": 420,
+   "at": {
+    "seg": 3,
+    "word": "Tag"
+   },
+   "until": {
+    "seg": 4,
+    "word": "viele"
+   }
+  },
+  {
+   "type": "prompt",
+   "text": "Wie bekomme ich mehr Kundinnen?",
+   "at": {
+    "seg": 4,
+    "word": "stellen"
+   },
+   "typed_by": {
+    "seg": 4,
+    "word": "bekommen"
+   },
+   "reply": "Woher weißt du, dass das dein Problem ist?",
+   "reply_at": {
+    "seg": 4,
+    "word": "So,"
+   },
+   "reply_typed_by": {
+    "seg": 4,
+    "end": true
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Heute für dich",
+   "at": {
+    "seg": 7,
+    "word": "Nimm"
+   },
+   "note": "Woher weiß ich, dass das wirklich mein Problem ist?",
+   "note_at": {
+    "seg": 7,
+    "word": "woher"
+   },
+   "until": {
+    "seg": 7,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "MORGEN: 3 FRAGEN VOR DEM NÄCHSTEN COACHING  →",
+   "sub": "FOLG MIR FÜR TAG 02",
+   "at": {
+    "seg": 8,
+    "word": "Morgen"
+   },
+   "until": {
+    "seg": 9,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 01 / 30 · FOLG FÜR TAG 02"
+ }
+}
