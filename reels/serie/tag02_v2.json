@@ -1,0 +1,144 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "title": "Serie Tag 2 (v2, Markanalyse)",
+ "series": {
+  "day": 2
+ },
+ "sources": {
+  "S": "raw/serie/IMG_7101.mp4"
+ },
+ "transcripts": {
+  "S": "reels/serie/IMG_7101_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 0.0,
+   "to": 3.95,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 17.1,
+   "to": 24.5
+  },
+  {
+   "src": "S",
+   "from": 26.3,
+   "to": 30.8
+  },
+  {
+   "src": "S",
+   "from": 39.7,
+   "to": 44.5
+  },
+  {
+   "src": "S",
+   "from": 46.4,
+   "to": 55.5,
+   "accent": [
+    "richtige."
+   ]
+  },
+  {
+   "src": "S",
+   "from": 62.2,
+   "to": 69.1
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "big": [
+    "3 Fragen,"
+   ],
+   "max_size": 170,
+   "sub": "bevor du nochmal Geld in einen Kurs steckst.",
+   "at": {
+    "seg": 0,
+    "word": "Bevor"
+   },
+   "y": 200,
+   "sub_size": 48
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "checklist",
+   "title": "3 FRAGEN VOR DEM NÄCHSTEN KURS",
+   "y": 280,
+   "y_from": 1080,
+   "move_at": {
+    "seg": 1,
+    "word": "ist"
+   },
+   "at": {
+    "seg": 0,
+    "word": "Bevor"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   },
+   "items": [
+    {
+     "text": "Ist das wirklich mein Problem?",
+     "at": {
+      "seg": 1,
+      "word": "ist"
+     }
+    },
+    {
+     "text": "Warum hat es nicht funktioniert?",
+     "at": {
+      "seg": 2,
+      "word": "warum"
+     }
+    },
+    {
+     "text": "Was wäre anders, wenn gelöst?",
+     "at": {
+      "seg": 3,
+      "word": "was"
+     }
+    }
+   ],
+   "lead": 0.3
+  },
+  {
+   "type": "stamp",
+   "text": "TAG 02",
+   "y": 430,
+   "at": {
+    "seg": 1,
+    "word": "Erste"
+   },
+   "until": {
+    "seg": 1,
+    "word": "ist"
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KARUSSELL IM FEED · SPEICHERN  →",
+   "sub": "MORGEN: WARUM ICH MAR BAUE",
+   "at": {
+    "seg": 5,
+    "word": "Und"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 02 / 30 · FOLG FÜR TAG 03"
+ }
+}

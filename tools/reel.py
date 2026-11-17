@@ -98,6 +98,7 @@ def plan(edl):
         if not merged: merged = [[ws[0]["start"], ws[-1]["end"]]]
         merged[0][0] = min(merged[0][0], ws[0]["start"])
         seg_start = t_out
+        if seg.get("tight_start") and merged: merged[0][0] = ws[0]["start"]
         for r in merged:
             cin, cout = max(lo, r[0] - 0.05), min(hi, r[1] + 0.07)
             for c in clips:  # keine doppelt verwendeten Audio-Stellen
@@ -140,6 +141,7 @@ def plan(edl):
                     k = w["clip"]; clips[k]["zoom"] = 1.22
                     while k > 0 and clips[k - 1]["seg"] == si and clips[k - 1]["frames"] / FPS < 0.6: k -= 1; clips[k]["zoom"] = 1.22
         seg_bounds.append((seg_start, t_out))
+    if clips and edl.get("open_zoom"): clips[0]["zoom_from"] = edl["open_zoom"]
     return srcs, clips, words_out, seg_bounds, t_out
 
 def anchor(a, words, segb):
@@ -239,10 +241,10 @@ def stamp(text, seed=3, size=96):
 def render_hook(item, rel):
     """Zentrierter, leichter Hook: Mono-Zeile + grosse Geist-Light-Zeilen, Woerter blenden weich ein."""
     txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
-    fm = font("IBMPlexMono-500.ttf", 34); a0 = ease(rel / 0.3)
-    sw = spaced_len(d, item["small"], fm, 12)
+    fm = font("IBMPlexMono-500.ttf", 34); a0 = 1.0 if item.get("instant") else ease(rel / 0.3)
+    sw = spaced_len(d, item.get("small", ""), fm, 12) if item.get("small") else 0
     y_small = item.get("y", 270)
-    text_spaced(d, ((W - sw) / 2, y_small - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
+    if item.get("small"): text_spaced(d, ((W - sw) / 2, y_small - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
     lines = item["big"]; size = item.get("max_size", 150)
     while size > 80:
         fb = font("Geist-300.ttf", size)
@@ -252,12 +254,17 @@ def render_hook(item, rel):
     for ln in lines:
         x = (W - d.textlength(ln, font=fb)) / 2
         for wd in ln.split(" "):
-            p = ease((rel - 0.2 - 0.16 * k) / 0.35)
+            p = 1.0 if item.get("instant") else ease((rel - 0.2 - 0.16 * k) / 0.35)
             if p > 0:
                 col = (94, 84, 75) if wd.strip(".,?!") in item.get("grey", []) else CARBON
                 d.text((x, y + 22 * (1 - p)), wd, font=fb, fill=col + (int(255 * p),))
             x += d.textlength(wd + " ", font=fb); k += 1
         y += int(size * 1.02)
+    if item.get("sub"):
+        fsub = font("Geist-300.ttf", item.get("sub_size", 62))
+        for li, sl in enumerate(item["sub"].split("\n")):
+            ws_ = d.textlength(sl, font=fsub)
+            d.text(((W - ws_) / 2, y + 8 + li * int(item.get("sub_size", 62) * 1.15)), sl, font=fsub, fill=(94, 84, 75, 255))
     # weicher heller Schleier hinter der Schrift fuer Lesbarkeit
     m = txt.getchannel("A").filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(38))
     haze = Image.new("RGBA", (W, H), PORC + (0,)); haze.putalpha(m.point(lambda v: int(min(255, v * 1.6) * 0.62)))
@@ -277,11 +284,13 @@ class Cards:
                 for s in c["steps"]: s["t"] = anchor(s["at"], words, segb)
                 c["t_in"] = c["steps"][0]["t"]
             elif c["type"] == "prompt":
-                c["t_in"] = anchor(c["at"], words, segb); c["t_typed"] = anchor(c["typed_by"], words, segb)
-                if "reply" in c: c["t_reply"] = anchor(c["reply_at"], words, segb); c["t_reply_done"] = anchor(c["reply_typed_by"], words, segb)
+                A = lambda x: c["t_in"] + x if isinstance(x, (int, float)) else anchor(x, words, segb)
+                c["t_in"] = anchor(c["at"], words, segb); c["t_typed"] = A(c["typed_by"])
+                if "reply" in c: c["t_reply"] = A(c["reply_at"]); c["t_reply_done"] = A(c["reply_typed_by"])
             elif c["type"] == "checklist":
                 c["t_in"] = anchor(c["at"], words, segb)
                 for it in c["items"]: it["t"] = anchor(it["at"], words, segb)
+                if "move_at" in c: c["t_move"] = anchor(c["move_at"], words, segb)
             elif c["type"] == "label":
                 c["t_in"] = anchor(c["at"], words, segb)
                 if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
@@ -289,7 +298,8 @@ class Cards:
             else:
                 c["t_in"] = anchor(c["at"], words, segb)
                 if "strike_at" in c: c["t_strike"] = anchor(c["strike_at"], words, segb)
-            c["t_out"] = anchor(c["until"], words, segb)
+            c["t_out"] = anchor(c["until"], words, segb) if isinstance(c["until"], dict) else c["t_in"] + c["until"]
+            if c.get("lead"): c["t_in"] -= c["lead"]
             self.cards.append(c)
 
     def events(self):
@@ -461,7 +471,9 @@ class Cards:
                             d.ellipse([38, y + 4, 74, y + 40], outline=LINE + (255,), width=3)
                             d.rounded_rectangle([96, y + 14, 96 + 420 - 60 * i, y + 30], radius=8, fill=LINE + (255,))
                     self.cache[key] = im
-                self._paste(layer, self.cache[key], 90, c.get("y", 280), t, c["t_in"], c["t_out"])
+                yy = c.get("y", 280)
+                if "t_move" in c: yy = c["y_from"] + (yy - c["y_from"]) * ease((t - c["t_move"]) / 0.45)
+                self._paste(layer, self.cache[key], 90, yy, t, c["t_in"], c["t_out"])
             elif c["type"] == "stamp":
                 key = ("stamp", c["text"])
                 if key not in self.cache: self.cache[key] = stamp(c["text"])
@@ -905,6 +917,9 @@ def main():
             if box1 is not None:
                 q = fi / max(1, c["frames"] - 1); q = q * q * (3 - 2 * q)
                 box = tuple(x0 + (x1 - x0) * q for x0, x1 in zip(box0, box1))
+            if c.get("zoom_from") and fi < 12:
+                if fi == 0: boxf = framing(a, c["zoom_from"], edl.get("crop_bottom", SRC_H), 0.42, c["src"])
+                q = ease(fi / 12); box = tuple(xf + (x0 - xf) * q for xf, x0 in zip(boxf, box0))
             fg = np.asarray(Image.fromarray(f).resize((W, H), Image.LANCZOS, box=box), np.float32)
             al = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR, box=box), np.float32)[..., None] / 255
             fzm = [m for m in moments.ms if m["type"] == "freeze" and m["t_in"] <= t <= m["t_out"]]
