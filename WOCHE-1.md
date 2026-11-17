@@ -16,17 +16,19 @@ Vor jedem Dreh beantwortest du dir einen Satz: *„Nach diesem Reel weiß meine 
 
 ## Wochenplan
 
-| Tag | Reel (Rahmen) | Hook | Nutzen für die Zuschauerin | Zusatz |
-|---|---|---|---|---|
-| **1** | 🔍 Neugier + 🧭 MAR | „Ich baue gerade eine KI, die dir widerspricht.“ | Versteht, warum die falsche Frage Geld kostet, und bekommt eine Reflexionsfrage | Story: „Serie startet heute“, Umfrage „Was fragst du ChatGPT am häufigsten?“ |
-| **2** | 💡 Mehrwert | „Bevor du in den nächsten Kurs investierst: Stell dir diese 3 Fragen.“ | 3 Prüffragen, die vor Fehlinvestitionen schützen | **Karussell:** die 3 Fragen zum Speichern |
-| **3** | 🤍 Nahbarkeit | „Warum ich MAR baue. Die ehrliche Version.“ | Lernt dich kennen, erkennt sich wieder | Story: Foto vom Arbeitsplatz, „Tag 3 ist online“ |
-| **4** | 💡 Mehrwert („MAR fragt“) | „Wann hast du zuletzt eine Kundin verloren? Und was war der Grund?“ | Eine Diagnosefrage, die sie sich nie gestellt hat | = Reel 2 (schon gedreht, Claude baut es neu im Serien-Look) |
-| **5** | 🧭 Klare Infos | „So arbeitet MAR, in 3 Schritten.“ | Versteht Diagnose → Intervention → Re-Analyse | **Karussell:** „So funktioniert MAR“ |
-| **6** | 💡 Mehrwert (falsche Frage) | „Mehr Content ist nicht die Lösung.“ | Erkennt, ob ihr Problem wirklich Reichweite ist | Story: Umfrage „Postest du gerade mehr als sonst?“ |
-| **7** | 🤍 Nahbarkeit + 🧭 MAR | „Woche 1 ist vorbei. Das ist passiert.“ | Ehrlicher Zwischenstand + wie man Founding 20 wird | Story: Q&A-Sticker „Frag mich alles zu MAR“ |
+**Rhythmus:** jeden Tag eine Folge (Reel). **3× groß** (35–45 s, voller Schnitt) + **4× klein** (15–25 s, ein Take, schlanker Schnitt). Dazu **2 Karussells** als Bonus.
 
-**Posten:** 18:30–19:30 Uhr. **Dreh:** Tag 1–3 in einem Batch (heute), Tag 5–7 am Donnerstag.
+| Tag | Format | Rahmen | Hook | Nutzen für die Zuschauerin | Zusatz |
+|---|---|---|---|---|---|
+| **1** | 🎬 **groß** | 🔍 + 🧭 | „Ich baue gerade eine KI, die dir widerspricht.“ | Versteht, warum die falsche Frage Geld kostet, und bekommt eine Reflexionsfrage | Story: Umfrage „Was fragst du ChatGPT am häufigsten?“ |
+| **2** | ⚡ klein | 💡 | „Bevor du in den nächsten Kurs investierst: 3 Fragen.“ | 3 Prüffragen gegen Fehlinvestitionen | **Karussell:** die 3 Fragen ausführlich |
+| **3** | 🎬 **groß** | 🤍 | „Warum ich MAR baue. Die ehrliche Version.“ | Lernt dich kennen, erkennt sich wieder | Story: Foto vom Arbeitsplatz |
+| **4** | ⚡ klein | 💡 | „Wann hast du zuletzt eine Kundin verloren?“ | Eine Diagnosefrage, die sie sich nie gestellt hat | = Reel 2, schon gedreht |
+| **5** | 🎬 **groß** | 🧭 | „So arbeitet MAR, in 3 Schritten.“ | Versteht Diagnose → Intervention → Re-Analyse | **Karussell:** „So funktioniert MAR“ |
+| **6** | ⚡ klein | 💡 | „Mehr Content ist nicht die Lösung.“ | Erkennt, ob ihr Problem wirklich Reichweite ist | Story: Umfrage |
+| **7** | ⚡ klein | 🤍 + 🧭 | „Woche 1 ist vorbei. Das ist passiert.“ | Ehrlicher Zwischenstand + Weg zu den Founding 20 | Story: Q&A-Sticker |
+
+**Posten:** 18:30–19:30 Uhr. **Dreh:** Tag 1–3 heute in einem Batch (Tag 2 ist kurz), Tag 5–7 am Donnerstag. Tag 4 ist schon fertig gedreht.
 
 ---
 
@@ -49,7 +51,7 @@ Tipps für alle drei:
 - **Bei Versprechern:** kurz Pause, Satz nochmal. Claude schneidet.
 - Ziel: **35–45 Sekunden** nach dem Schnitt.
 
-### TAG 1: 🔍 Neugier + 🧭 MAR
+### TAG 1: 🔍 Neugier + 🧭 MAR · 🎬 große Folge (~45 s)
 **Hook im Bild:** *„Ich baue eine KI, die dir widerspricht.“*
 **Nutzen:** Sie versteht, warum die falsche Frage Geld kostet, und nimmt eine Reflexionsfrage mit.
 
@@ -71,30 +73,29 @@ Tipps für alle drei:
 
 ---
 
-### TAG 2: 💡 Mehrwert
+### TAG 2: 💡 Mehrwert · ⚡ kleine Folge (~25 s)
 **Hook im Bild:** *„Bevor du in den nächsten Kurs investierst …“*
-**Nutzen:** 3 Prüffragen, die sie vor Fehlinvestitionen schützen.
+**Nutzen:** 3 Prüffragen, die sie vor Fehlinvestitionen schützen. Ausführlich im Karussell.
 
 > Bevor du nochmal Geld in einen Kurs steckst, stell dir diese drei Fragen.
 >
 > **Ich bin Marina, ich baue MAR – und das ist Tag 2.**
 >
-> Erstens: Welches Problem soll dieser Kurs lösen, und hab ich überhaupt überprüft, ob das mein Problem ist? Oder fühlt es sich nur so an?
+> Eins: Ist das wirklich mein Problem – oder fühlt es sich nur so an?
+> Zwei: Warum hat das, was ich schon probiert hab, nicht funktioniert?
+> Drei: Was genau wäre anders, wenn es gelöst ist?
 >
-> Zweitens: Was hab ich schon ausprobiert? Und *warum* hat es nicht funktioniert? Wenn du darauf keine Antwort hast, wird der nächste Kurs wahrscheinlich auch nicht funktionieren.
+> Kannst du eine davon nicht beantworten? Dann ist der Kurs vielleicht die falsche Lösung. Die ausführliche Version liegt im Karussell, speicher sie dir.
 >
-> Drittens: Wenn das Problem morgen gelöst wäre, was genau wäre dann anders? In Zahlen, in Stunden, in Kundinnen. Wenn du das nicht beantworten kannst, ist es vielleicht gar nicht das eigentliche Problem.
->
-> Das sind übrigens genau die Fragen, die ich MAR beibringe. Damit sie nicht einfach antwortet, sondern erstmal nachhakt.
->
-> Speicher dir das Reel für den nächsten Kurs, der dich anlacht. Und morgen erzähl ich dir, warum ich MAR überhaupt baue. Die ehrliche Version.
+> Morgen: warum ich MAR überhaupt baue. Folg mir, sonst verpasst du Tag 3.
 
-**Effekte:** Zahlen „1 / 2 / 3“ als Papier-Etiketten, die nacheinander angeklebt werden · bei „in Zahlen, in Stunden, in Kundinnen“ drei kleine Stempel · Outro „SPEICHERN“ mit Lesezeichen-Symbol
-**Karussell dazu:** Cover „3 Fragen vor dem nächsten Kurs“ → je eine Frage pro Slide → letzte Slide „MAR stellt diese Fragen für dich · Founding 20 · Link in Bio“
+**Effekte:** nur einer: die Zahlen „1 / 2 / 3“ als Papier-Etiketten · Outro „SPEICHERN“
+**Dreh:** ein Take, gern Selfie aus der Hand.
+**Karussell dazu:** Cover „3 Fragen vor dem nächsten Kurs“ → je eine Frage pro Slide mit Erklärung → letzte Slide „MAR stellt diese Fragen für dich · Founding 20 · Link in Bio“
 
 ---
 
-### TAG 3: 🤍 Nahbarkeit
+### TAG 3: 🤍 Nahbarkeit · 🎬 große Folge (~40 s)
 **Hook im Bild:** *„Warum ich MAR baue.“*
 **Nutzen:** Sie lernt dich kennen und erkennt sich in deiner Geschichte wieder.
 
