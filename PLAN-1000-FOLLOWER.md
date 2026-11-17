@@ -8,79 +8,75 @@ Die Stellschrauben unten sind die, die bei kleinen Accounts nachweislich am meis
 
 ---
 
-## 1. Die 3 Säulen (jeder Post zahlt auf eine ein)
+## 1. Das Konzept: Serie „Ich baue MAR“ – 30 Tage, 30 Folgen
 
-| Säule | Worum es geht | Warum es Follower bringt | Anteil |
-|---|---|---|---|
-| **A. Die falsche Frage** | Business-Mythen entlarven: „Dein Sales-Problem ist keins“, „Mehr Content ist nicht die Lösung“ | Aha-Effekt → wird **geteilt und gespeichert** | 40 % |
-| **B. Ich baue MAR** (Build in Public) | Gründerinnen-Reise: Rückschläge, erste Beta-Userinnen, wie MAR denkt | Menschen folgen **Menschen** und Geschichten mit Fortsetzung | 30 % |
-| **C. MAR fragt** (Mitmach-Format) | Jeden Tag eine echte MAR-Diagnosefrage, Zuschauerinnen antworten in den Kommentaren | Kommentare = stärkstes Reichweitensignal + Gratis-Marktforschung | 30 % |
+Jeden Tag eine Folge. **Die Rahmenhandlung ist immer dieselbe:** Du baust MAR und nimmst die Leute mit.
+Der **Inhalt jeder Folge** ist eines von drei Segmenten:
 
-**Zielgruppe in jedem Text klar benennen:** Selbstständige Frauen, Coaches, Dienstleisterinnen im DACH-Raum, 1–5 Jahre selbstständig.
-
----
-
-## 2. Der Rhythmus
-
-| Was | Wie oft | Aufwand für dich |
+| Segment | Inhalt | Anteil |
 |---|---|---|
-| **Reel „groß“** (Talking Head, voller Schnitt wie Reel 1) | 3× pro Woche (Mo/Mi/Fr) | 2× pro Woche 45 Min. Batch-Dreh, Schnitt macht Claude |
-| **Reel „schnell“** („MAR fragt“: Frage auf Schwarz + dein Blick, wie Reel 2) | 4× pro Woche (Di/Do/Sa/So) | 1× pro Woche 20 Min. Blicke/Reaktionen drehen, Rest baut Claude |
-| **Karussell** (5–7 Slides, Mythen/Checklisten) | 2× pro Woche | Text kommt von Claude, Design im MAR-Look |
-| **Stories** | täglich 3–5 | 10 Min., spontan: Umfragen, Behind the Scenes, Reel teilen |
-| **Interaktion** | täglich 30 Min. | siehe Abschnitt 4 |
+| **Die falsche Frage** | Ein Business-Mythos, den du beim Bauen von MAR entdeckt hast | ~40 % |
+| **MAR fragt** | Eine echte Diagnosefrage an die Zuschauerinnen, die Antworten kommen in die Kommentare | ~30 % |
+| **Hinter den Kulissen** | Was diese Woche passiert ist: Beta-Userinnen, Rückschläge, Entscheidungen | ~30 % |
 
-→ **1 Reel pro Tag** plus 2 Karussells pro Woche.
+**Wichtig:** Die meisten sehen nur **eine** Folge. Jede muss also allein funktionieren. Die Serie ist der Grund zu folgen, nicht die Voraussetzung, um zu verstehen.
 
-**Posting-Zeit:** zum Start 18:30–19:30 Uhr. Nach Woche 1 in den Insights unter „Zielgruppe“ → „Aktivste Zeiten“ nachjustieren.
+## 2. Das Wiedererkennungs-System (in jeder Folge identisch)
 
----
-
-## 3. Content-Kalender (30 Tage)
-
-**Woche 1: Wer bin ich, was ist MAR (Fundament)**
-| Tag | Format | Hook / Thema |
+| Zeit | Element | Wirkung |
 |---|---|---|
-| 1 | Reel groß | ✅ „Du gibst ChatGPT eine Frage. Du gibst MAR dein komplettes Business.“ (läuft) |
-| 2 | MAR fragt | „Wann hast du zuletzt eine Kundin verloren? Und was war der Grund?“ (Reel 2) |
-| 3 | Reel groß (B) | „Ich baue gerade eine KI, die Unternehmerinnen widerspricht. Tag 1.“ (Serienstart) |
-| 4 | Karussell (A) | „5 Probleme, die eigentlich keine sind – und was wirklich dahintersteckt“ |
-| 5 | MAR fragt | „Welches deiner Angebote verkauft sich fast von allein? Warum nur das?“ |
-| 6 | Reel groß (A) | „Du brauchst keine bessere Antwort. Du brauchst eine bessere Frage.“ |
-| 7 | MAR fragt | „Was würdest du sofort streichen, wenn du dürftest?“ |
+| **0,0–0,4 s** | Stempel **„TAG 07“** knallt ins Bild, dazu ein **Signatur-Sound** (immer derselbe dumpfe Stempel-Schlag) | Ton und Bild werden zum Markenzeichen, nach 3–4 Folgen erkennt man dich sofort |
+| **ab 0,0 s, die ganze Folge** | Oben die **Serien-Leiste**: 30 Segmente, die bis zum heutigen Tag gefüllt sind, dazu „TAG 07 / 30 · ICH BAUE MAR“ | Fortschritt sichtbar, macht neugierig auf das Ende |
+| **0,4–3 s** | **Hook der Folge**: dein erster Satz läuft bereits, groß und dünn über dir | Das Intro kostet **keine** Zeit, es läuft parallel zum Hook |
+| **Hauptteil** | Studio-Hintergrund, Wort-für-Wort-Untertitel und 1–2 Effekte aus der Effekt-Bibliothek | gewohnter Look |
+| **letzte 2 s** | Immer derselbe Satz: **„Morgen: [Teaser]. Folg mir, sonst verpasst du Tag 08.“** und eine Karte „MORGEN →“ | Follow-Grund, jeden Tag |
 
-**Woche 2: Mythen zerlegen (Reichweite)**
-| 8 | Reel groß (A) | „Mehr Content ist nicht die Lösung für mehr Kundinnen.“ |
+Konzeptbild: `design/serien_intro_konzept.png`
+
+**Für dich beim Dreh:** Jede Folge beginnt direkt mit dem Hook-Satz, kein „Hallo, Tag 7…“. Das Intro baut Claude drüber.
+Jede Folge endet mit dem „Morgen“-Satz.
+
+## 3. Rhythmus und Kalender
+
+- **1 Folge pro Tag** (Reel), 30–45 s lang, gepostet 18:30–19:30 Uhr.
+- **Stories täglich:** „Folge 7 ist online“ + Umfrage zum Thema. **Karussells** optional 1–2× pro Woche als Vertiefung einer Folge.
+- **Dreh:** 2× pro Woche Batch (Mo + Do), jeweils 3–4 Folgen à 3–5 Min. Rohmaterial.
+
+| Tag | Segment | Hook der Folge |
+|---|---|---|
+| 1 | Falsche Frage | ✅ „Du gibst ChatGPT eine Frage. Du gibst MAR dein komplettes Business.“ (= Folge 1, Intro nachträglich einbauen) |
+| 2 | MAR fragt | „Wann hast du zuletzt eine Kundin verloren? Und was war der Grund?“ (= Reel 2) |
+| 3 | Hinter den Kulissen | „Ich baue eine KI, die Unternehmerinnen widerspricht. Warum?“ |
+| 4 | Falsche Frage | „Mehr Content ist nicht die Lösung.“ |
+| 5 | MAR fragt | „Welches Angebot verkauft sich fast von allein – und warum nur das?“ |
+| 6 | Falsche Frage | „Du brauchst keine bessere Antwort. Du brauchst eine bessere Frage.“ |
+| 7 | Hinter den Kulissen | „Woche 1: So viele haben sich für die Founding 20 beworben.“ |
+| 8 | Falsche Frage | „Warum Kurse kaufen dein Business oft nicht weiterbringt.“ |
 | 9 | MAR fragt | „Woher kamen deine letzten 3 Kundinnen – wirklich?“ |
-| 10 | Reel groß (B) | „Tag 10: Das hat die erste Beta-Userin über MAR gesagt.“ |
-| 11 | Karussell (A) | „Dein Sales-Problem ist ein Positionierungs-Problem, wenn …“ (Checkliste) |
+| 10 | Hinter den Kulissen | „Das hat die erste Beta-Userin über MAR gesagt.“ |
+| 11 | Falsche Frage | „Dein Sales-Problem ist ein Positionierungs-Problem, wenn …“ |
 | 12 | MAR fragt | „Was kostet dich eine neue Kundin – in Stunden?“ |
-| 13 | Reel groß (A) | „Warum Kurse kaufen dein Business oft nicht weiterbringt.“ |
-| 14 | MAR fragt | „Wo verlierst du jede Woche Zeit, ohne es zu merken?“ |
+| 13 | Falsche Frage | „Preis erhöhen ist nicht immer die Antwort.“ |
+| 14 | Hinter den Kulissen | „Ich wollte MAR fast hinschmeißen. Das war der Grund.“ |
+| 15 | MAR fragt | Live: Eine Frage aus den Kommentaren von MAR durchleuchten lassen |
+| 16 | Falsche Frage | „ChatGPT vs. MAR: dieselbe Frage, zwei Antworten.“ (Bildschirm-Vergleich) |
+| 17 | MAR fragt | „Wer entscheidet in deinem Business – du oder deine Angst?“ |
+| 18 | Hinter den Kulissen | „So denkt MAR: die 7 Fragen, die sie jeder zuerst stellt.“ |
+| 19 | Falsche Frage | „Mehr Reichweite löst kein Angebotsproblem.“ |
+| 20 | MAR fragt | Antwort-Folge auf den meistgelikten Kommentar |
+| 21 | Hinter den Kulissen | **Collab-Folge** mit einer Coachin/Gründerin, die MAR testet |
+| 22 | Falsche Frage | „Du hast kein Zeitproblem. Du hast ein Prioritätenproblem.“ |
+| 23 | MAR fragt | „Was hast du schon alles ausprobiert, das nicht funktioniert hat?“ |
+| 24 | Hinter den Kulissen | „Noch X Plätze in den Founding 20 – das bekommst du.“ |
+| 25 | Falsche Frage | „Eine Nische finden ist nicht dein Problem.“ |
+| 26 | MAR fragt | Die meistdiskutierte Frage des Monats |
+| 27 | Hinter den Kulissen | Beta-Userin erzählt ihr Aha (anonymisiert oder Collab) |
+| 28 | Falsche Frage | Bestes Thema des Monats, neu erzählt mit stärkerem Hook |
+| 29 | MAR fragt | „Wenn MAR dir nur EINE Frage stellen dürfte – welche?“ |
+| 30 | Hinter den Kulissen | „Tag 30. Danke. So geht es mit MAR weiter.“ |
 
-**Woche 3: Beweis und Nähe (Vertrauen)**
-| 15 | Reel groß (C) | Live-Diagnose: Eine Kommentar-Frage aus Woche 1–2 von MAR „durchleuchten“ lassen |
-| 16 | MAR fragt | Frage aus den Kommentaren einer Followerin (mit Erwähnung → Teilen) |
-| 17 | Reel groß (B) | „Ich wollte MAR fast hinschmeißen. Das war der Grund.“ |
-| 18 | Karussell (C) | „Die 7 Fragen, die MAR jeder Unternehmerin zuerst stellt“ (Speicher-Magnet) |
-| 19 | MAR fragt | „Wer entscheidet in deinem Business – du oder deine Angst?“ |
-| 20 | Reel groß (A) | „ChatGPT vs. MAR: dieselbe Frage, zwei Antworten“ (Bildschirm-Vergleich) |
-| 21 | MAR fragt | „Was hast du schon alles ausprobiert, das nicht funktioniert hat?“ |
-
-**Woche 4: Founding 20 (Conversion + Schub)**
-| 22 | Reel groß (B) | „Noch X Plätze in den Founding 20 – das bekommst du“ |
-| 23 | MAR fragt | Antwort-Reel auf den meistgelikten Kommentar der Woche |
-| 24 | Reel groß (A) | **Collab-Reel** mit einer Coachin/Gründerin (siehe 4.) |
-| 25 | Karussell (B) | „30 Tage Build in Public: was ich gelernt habe“ |
-| 26 | MAR fragt | Die Frage, die in den Kommentaren am meisten diskutiert wurde |
-| 27 | Reel groß (C) | Beta-Userin erzählt (oder du erzählst anonymisiert) ihr Aha |
-| 28 | MAR fragt | „Wenn MAR dir nur EINE Frage stellen dürfte – welche sollte es sein?“ |
-| 29 | Reel groß | Bestes Reel des Monats **neu geschnitten** mit stärkerem Hook (Recycling) |
-| 30 | Reel groß (B) | „Tag 30. 1.000 von euch. Danke – und so geht's weiter.“ |
-
-**Grundregel:** Was in einer Woche am besten läuft (Wiedergabedauer, Shares), bekommt in der nächsten Woche **zwei Fortsetzungen**.
-
----
+**Grundregel:** Die beste Folge der Woche bekommt in der Woche darauf eine **Fortsetzung**
+(„Ihr habt bei Tag 4 so viel kommentiert, deshalb …“). Das verbindet die Folgen.
 
 ## 4. Interaktion: der unterschätzte Hebel bei kleinen Accounts
 
@@ -116,8 +112,8 @@ Liegst du an Tag 14 unter 200: mehr Säule A (Mythen) und mehr Collabs, dazu die
 
 ## 6. Workflow mit Claude
 
-- **Montag + Donnerstag:** 45 Min. Batch-Dreh von 3 Reels groß + 5 Min. Blicke und Reaktionen für „MAR fragt“.
+- **Montag + Donnerstag:** Batch-Dreh von 3–4 Folgen, jede beginnt mit dem Hook und endet mit dem „Morgen“-Satz.
   Hochladen in 720p, ohne Wasserzeichen.
 - **Claude schneidet** alles im festgelegten Stil (Studio, Effekte, Untertitel, Sound) und liefert Cover, Beschreibung mit Neugier-Satz und Hashtags.
-- **„MAR fragt“-Reels** baut Claude aus einem Vorrat an Blicken und Reaktionen. Du filmst einmal und bekommst mehrere Reels.
+- **Intro (Stempel + Serien-Leiste + Signatur-Sound) und Outro** setzt Claude automatisch, du musst nur die Tagesnummer nennen.
 - Skripte für die Reels „groß“ bekommst du jeweils vor dem Dreh, als Stichpunkte, damit du frei und nahbar sprichst.
