@@ -422,14 +422,22 @@ class Cards:
                 im = self.cache[pk]
                 self._paste(layer, im, (W - im.width) // 2, c.get("y", 170), t, c["t_in"], c["t_out"])
                 if nt > 0 and t <= c["t_out"] + 0.2:
-                    fh = font("Caveat-500.ttf", 84); txt = c["note"]; k = int(len(txt) * min(1, nt))
-                    tw2 = int(ImageDraw.Draw(layer).textlength(txt, font=fh))
+                    fh = font("Caveat-500.ttf", 76); txt = c["note"]; dl = ImageDraw.Draw(layer)
+                    nlines, cur = [], ""
+                    for wd in txt.split():
+                        tt = (cur + " " + wd).strip()
+                        if cur and dl.textlength(tt, font=fh) > 820: nlines.append(cur); cur = wd
+                        else: cur = tt
+                    nlines.append(cur)
+                    tw2 = int(max(dl.textlength(l, font=fh) for l in nlines)); lh2 = 84
                     nk = ("notepaper", txt)
-                    if nk not in self.cache: self.cache[nk] = paper(tw2 + 70, 120, rot=2.5, tape=False, seed=9, color=(250, 247, 238))
+                    if nk not in self.cache: self.cache[nk] = paper(tw2 + 70, 40 + lh2 * len(nlines), rot=2.0, tape=False, seed=9, color=(250, 247, 238))
                     npi = self.cache[nk]; ny = c.get("y", 170) + im.height - 40
-                    self._paste(layer, npi, (W - npi.width) // 2 + 60, ny - 60, t, c["t_note"], c["t_out"])
-                    a2 = 1 - ease((t - c["t_out"]) / 0.18)
-                    ImageDraw.Draw(layer).text(((W - tw2) / 2 + 60, ny + 6), txt[:k], font=fh, fill=GRAPHITE + (int(255 * a2),))
+                    self._paste(layer, npi, (W - npi.width) // 2 + 30, ny - 60, t, c["t_note"], c["t_out"])
+                    a2 = 1 - ease((t - c["t_out"]) / 0.18); left = int(len(txt) * min(1, nt))
+                    for li, ln in enumerate(nlines):
+                        show = ln[:max(0, left)]; left -= len(ln) + 1
+                        dl.text(((W - tw2) / 2 + 30, ny + 6 + li * lh2), show, font=fh, fill=GRAPHITE + (int(255 * a2),))
             elif c["type"] == "prompt":
                 p = (t - c["t_in"] - 0.15) / max(0.4, c["t_typed"] - c["t_in"] - 0.2)
                 n = int(len(c["text"]) * min(max(p, 0), 1)); txt = c["text"][:n]
@@ -484,7 +492,9 @@ class Cards:
                     if a * min(1, p * 1.5) < 1: im2.putalpha(im2.getchannel("A").point(lambda v: int(v * a * min(1, p * 1.5))))
                     layer.alpha_composite(im2, ((W - im2.width) // 2, c.get("y", 330) - im2.height // 2))
             elif c["type"] == "cta":
-                im = self._box(c["text"], 42, spacing=5, pad=(40, 32))
+                cs = 42
+                while cs > 22 and spaced_len(ImageDraw.Draw(Image.new("L", (1, 1))), c["text"], font("IBMPlexMono-500.ttf", cs), 5) + 80 > 980: cs -= 2
+                im = self._box(c["text"], cs, spacing=5, pad=(40, 32))
                 self._paste(layer, im, (W - im.width) // 2, 300, t, c["t_in"], c["t_out"] + 1)
                 key = ("sub", c["sub"])
                 if key not in self.cache:
