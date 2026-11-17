@@ -205,3 +205,59 @@ Die **Idee „Textur statt flach“** lässt sich aber in eine passende Welt üb
 - **Befundbogen** als Vollbild: Business-Health-Werte wie ein Laborbericht auf Papier
 - **Dich als runder Ausschnitt** auf der Akte bei Erklär-Passagen
 - **Schwarz-Weiß-Moment** bei „flach/falsch“-Aussagen (z. B. „ChatGPT beantwortet nur, was du fragst“)
+
+---
+
+## 7. Effekt-Katalog (Referenzen 5 + 6: „16 video effects Claude can create“, 2 Teile)
+
+Legende: ✅ mit der Pipeline baubar · ⚠️ nur angenähert · ⭐ passt besonders zu MAR
+
+### Hinter / um die Person (Freistellung nötig, haben wir)
+| Effekt | Was passiert | Status | MAR-Einsatz |
+|---|---|---|---|
+| **Cover Story** ⭐ | Magazin-Titel riesig hinter dem Kopf („EDIT“), Kopf überdeckt Buchstaben | ✅ | „MAR“ oder Folgen-Titel als Masthead in Geist Light, für große Folgen-Hooks |
+| **Scene Text** | Großes Wort wirkt „auf die Wand gemalt“ hinter der Person | ✅ | „PROBLEM?“ (haben wir), „FRAGE“ |
+| **Type Wall** ⭐ | Wand aus wiederholten Textzeilen hinter der Person („EVERYBODY'S…“) | ✅ | „POSTEN POSTEN POSTEN …“ bei „Mehr Content ist nicht die Lösung“ |
+| **Headline Wall** ⭐ | Wand aus Zetteln und Schlagzeilen hinter der Person | ✅ | Kommentare und Fragen der Community (Tag 7), Fragen-Wasserfall statisch |
+| **Couch Wall** | Raster aus eigenen Reel-Thumbnails hinter der Person | ✅ | später, wenn es genug eigene Folgen gibt („30 Tage MAR“) |
+| **Chart Grow** ⭐ | Linien-Chart wächst hinter der Person, Label „SCALE ↗“ | ✅ | Re-Analyse: „So sieht Fortschritt aus“, Business-Health-Werte steigen |
+| **Depth Scatter** | Wörter schweben in verschiedenen Tiefen um die Person, mit Bokeh | ✅ | Schlagworte „Strategie · Positionierung · Sales“ verteilt im Raum |
+| **Spotlight / Blackout** | Hintergrund wird schwarz, Lichtkegel auf Person, Wort teils hinter, teils vor ihr („stand“ hinter, „out“ vor) | ✅ | stärkster Moment einer Folge, max. 1× pro Folge |
+| **Vertigo** ⭐ | Dolly-Zoom: Hintergrund zoomt, Person bleibt gleich groß | ✅ | Aha-Moment („Und dann hab ich gemerkt …“) |
+| **Rack Focus** | Schärfe wandert vom Hintergrund zur Person, Serif-Wort taucht auf | ✅ | ruhige, persönliche Momente (Tag 3) |
+| **Clone** ⭐ | Person mehrfach nebeneinander | ✅ | „Ich bin Gründerin, Entwicklerin, Marketing und Support gleichzeitig“ |
+
+### Karten / UI im Bild
+| Effekt | Was passiert | Status | MAR-Einsatz |
+|---|---|---|---|
+| **Checklist** ⭐ | Karte „ALL YOU NEED TO DO · 0 of 3“, Punkte haken sich beim Sprechen ab | ✅ | Tag 2: die 3 Fragen haken sich ab |
+| **Promptbox** ⭐ | Eingabefeld schwebt im Raum, Text wird getippt | ✅ | Jemand tippt „Wie bekomme ich mehr Kundinnen?“ → MAR antwortet mit Gegenfrage |
+| **UI World** | Chat-Fenster oben, Clips fliegen hinein, Label „RAW CLIPS“ | ✅ | MAR-Chat bei Info-Folgen |
+| **Phone Mockup** ⭐ | Handy erscheint neben dem Kopf mit App-Screen | ✅ | MAR-Oberfläche zeigen (Tag 5), braucht Screenshots |
+| **Spatial Glass** | Milchglas-Panels (wie Apple Vision) schweben neben der Person | ✅ | elegante MAR-Info-Karten |
+| **The Stack** | UI-Karte und Video-Karte stapeln sich | ✅ | „Ehrliche Wahrheit über …“-Liste |
+| **Chip Row** ⭐ | Reihe von Pills/Tags am unteren Rand | ✅ | MAR-Bereiche: STRATEGIE · POSITIONIERUNG · SALES · FINANZEN |
+| **Greenscreen** | Person freigestellt vor App-Screenshot | ✅ | MAR-Dashboard als Hintergrund (Tag 5) |
+| **Pullback Reveal** ⭐ | Video schrumpft zurück und entpuppt sich als Fenster in einer App | ✅ | Ende einer Info-Folge: „…und das alles passiert hier drin“ → MAR-UI |
+
+### Freeze, Sticker, Annotation
+| Effekt | Was passiert | Status | MAR-Einsatz |
+|---|---|---|---|
+| **Freeze Sticker** ⭐ | Bild friert ein, Person wird zum Sticker mit weißem Rand auf Farbfläche, Badge „CERTIFIED“, Handschrift „NOT a tech bro“ | ✅ | Signatur-Satz Tag 1: Sticker „MARINA · BAUT MAR“, Notiz „keine Tech-Frau“ |
+| **Freeze Label** ⭐ | Standbild mit Beschriftungen und Linien zur Person („sucks at design“) | ✅ | Selbstironie: „hat 0 Ahnung von Code“ · „stellt zu viele Fragen“ |
+| **Sticky Text** | Etikett klebt neben dem Kopf und bewegt sich mit | ⚠️ (Kopfposition über Freistellung) | Rollen-Label „GRÜNDERIN“ |
+| **Doodle Box** ⭐ | Handgezeichnete weiße Linie umrandet die Person, Kritzel | ✅ (aus der Freistellungs-Kontur) | passt zum Papier-Look, für lockere Momente |
+| **Paper Cut** | Collage mit Kritzeln, Papier, Ziffern-Stickern „100%“ | ✅ | Zahlen-Momente („100 % Bauchgefühl“) |
+
+### Übergänge und Typo
+| Effekt | Was passiert | Status | MAR-Einsatz |
+|---|---|---|---|
+| **Digital Zoom** | Schneller Zoom auf das Gesicht + zweifarbige Riesen-Caption | ✅ | Punch-ins mit Akzentwort |
+| **Zoom Through Cut** | Mit Bewegungsunschärfe in die nächste Szene „durchzoomen“ | ✅ | Wechsel Hook → Inhalt |
+| **Frame Break** | Video wird zum Handy-Rahmen mit IG-Oberfläche | ✅ | „So sieht es bei dir im Feed aus“ |
+| **Serif Flow** ⭐ | Schwarzer Screen, elegante Typo „five variations / edits + posts“ | ✅ | = unser Text-Frame-Stil, als Zwischentitel („SEGMENT · DIE FALSCHE FRAGE“) |
+| **Shattered 3D** | Bild zerspringt in schwebende Scherben | ⚠️ | eher nicht (zu verspielt) |
+| **Glass Type** | 3D-Glasschrift mit Lichtbrechung | ⚠️ | eher nicht |
+
+**Regel für MAR:** pro Folge **max. 2–3 Effekte**, einer davon darf ein „großer“ sein (Blackout, Vertigo, Clone, Freeze).
+Effekte immer **an den Satz koppeln**, der sie auslöst. Nie Effekt um des Effekts willen.

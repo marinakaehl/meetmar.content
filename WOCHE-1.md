@@ -24,9 +24,9 @@ Vor jedem Dreh beantwortest du dir einen Satz: *„Nach diesem Reel weiß meine 
 | **2** | ⚡ klein | 💡 | „Bevor du in den nächsten Kurs investierst: 3 Fragen.“ | 3 Prüffragen gegen Fehlinvestitionen | **Karussell:** die 3 Fragen ausführlich |
 | **3** | 🎬 **groß** | 🤍 | „Warum ich MAR baue. Die ehrliche Version.“ | Lernt dich kennen, erkennt sich wieder | Story: Foto vom Arbeitsplatz |
 | **4** | ⚡ klein | 💡 | „Wann hast du zuletzt eine Kundin verloren?“ | Eine Diagnosefrage, die sie sich nie gestellt hat | = Reel 2, schon gedreht |
-| **5** | 🎬 **groß** | 🧭 | „So arbeitet MAR, in 3 Schritten.“ | Versteht Diagnose → Intervention → Re-Analyse | **Karussell:** „So funktioniert MAR“ |
-| **6** | ⚡ klein | 💡 | „Mehr Content ist nicht die Lösung.“ | Erkennt, ob ihr Problem wirklich Reichweite ist | Story: Umfrage |
-| **7** | ⚡ klein | 🤍 + 🧭 | „Woche 1 ist vorbei. Das ist passiert.“ | Ehrlicher Zwischenstand + Weg zu den Founding 20 | Story: Q&A-Sticker |
+| **5** | 🎬 **groß** | 🧭 | „So arbeitet MAR, in 3 Schritten.“ | Versteht Diagnose → Intervention → Re-Analyse | **Karussell:** „So funktioniert MAR“ · Effekte: Chip Row, Chart Grow, Pullback Reveal in die MAR-Oberfläche (dafür Screenshots von MAR nötig) |
+| **6** | ⚡ klein | 💡 | „Mehr Content ist nicht die Lösung.“ | Erkennt, ob ihr Problem wirklich Reichweite ist | Effekt: Type Wall „POSTEN POSTEN POSTEN“ hinter dir · Story: Umfrage |
+| **7** | ⚡ klein | 🤍 + 🧭 | „Woche 1 ist vorbei. Das ist passiert.“ | Ehrlicher Zwischenstand + Weg zu den Founding 20 | Effekt: Headline Wall aus euren Kommentaren · Story: Q&A-Sticker |
 
 **Posten:** 18:30–19:30 Uhr. **Dreh:** Tag 1–3 heute in einem Batch (Tag 2 ist kurz), Tag 5–7 am Donnerstag. Tag 4 ist schon fertig gedreht.
 
@@ -69,7 +69,7 @@ Tipps für alle drei:
 >
 > Morgen zeig ich dir drei Fragen, die du dir stellen solltest, bevor du nochmal Geld in einen Kurs steckst. Folg mir, sonst verpasst du Tag 2.
 
-**Effekte:** Hook groß über dir · „widerspricht“ als Stempel · bei „Angebots-Problem“ ein durchgestrichenes Etikett „KUNDINNEN-PROBLEM“ · Outro-Karte „MORGEN: 3 FRAGEN VOR DEM NÄCHSTEN KURS →“
+**Effekte:** Hook als **Cover Story** (riesig hinter dir) · Signatur-Satz als **Freeze Sticker** („MARINA · BAUT MAR“) · bei „Wie bekomme ich mehr Kundinnen?“ eine **Promptbox**, in der die Frage getippt wird und MAR mit „Woher weißt du, dass das dein Problem ist?“ antwortet · Outro-Karte „MORGEN →“
 
 ---
 
@@ -89,7 +89,7 @@ Tipps für alle drei:
 >
 > Morgen: warum ich MAR überhaupt baue. Folg mir, sonst verpasst du Tag 3.
 
-**Effekte:** nur einer: die Zahlen „1 / 2 / 3“ als Papier-Etiketten · Outro „SPEICHERN“
+**Effekte:** nur einer: **Checklist**-Karte „3 FRAGEN VOR DEM NÄCHSTEN KURS · 0 of 3“, die Punkte haken sich ab, während du sprichst · Outro „SPEICHERN“
 **Dreh:** ein Take, gern Selfie aus der Hand.
 **Karussell dazu:** Cover „3 Fragen vor dem nächsten Kurs“ → je eine Frage pro Slide mit Erklärung → letzte Slide „MAR stellt diese Fragen für dich · Founding 20 · Link in Bio“
 
@@ -124,7 +124,7 @@ Leitfragen dafür:
 >
 > Morgen stellt dir MAR eine Frage, über die du wahrscheinlich noch nie nachgedacht hast. Folg mir, sonst verpasst du Tag 4.
 
-**Effekte:** bewusst wenige: ruhiger Schnitt, keine Stempel. Bei „Ehrlich?“ kurz schwarz-weiß. Ein handschriftlicher Zettel mit einem Kernsatz („keins, das erstmal fragt“).
+**Effekte:** bewusst wenige: ruhiger Schnitt. **Rack Focus** beim Einstieg (Hintergrund scharf → du scharf). Bei „Ehrlich?“ kurz schwarz-weiß. Ein handschriftlicher Zettel mit dem Kernsatz („keins, das erstmal fragt“).
 **Dreh-Tipp:** Diese Folge gern in einer anderen Position drehen (näher dran, Selfie aus der Hand). Das wirkt persönlicher.
 
 ---
