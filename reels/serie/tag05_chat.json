@@ -1,39 +1,53 @@
 {
  "day": 5,
  "label": "TAG 05 · ECHTER MAR-FALL · ANONYMISIERT",
- "hook": "Sie wollte Hilfe mit Instagram.",
- "hook_grey": "Ihr Problem war ein ganz anderes.",
- "start": 1.0,
+ "hook": "Ihre Kundinnen kamen über Sticker am Laternenmast.",
+ "hook_grey": "Reparieren wollte sie Instagram.",
+ "start": 1.6,
  "chat": [
   {
    "who": "user",
-   "text": "Mein Instagram hängt, LinkedIn stirbt, die Website ist Chaos. Und Kundinnen brauch ich auch.",
-   "hold": 2.2
+   "text": "Instagram hängt. LinkedIn auch. Kannst du mir da helfen?",
+   "hold": 1.6
   },
   {
    "who": "mar",
-   "text": "Woher kommen deine Kundinnen heute?",
+   "text": "Wer hat dich zuletzt weiterempfohlen? Und mit welchem Satz?",
    "hold": 0.9
   },
   {
    "who": "user",
-   "text": "Empfehlungen. Flyer. Und Sticker am Laternenmast.",
-   "hold": 1.8
+   "text": "„Geh zu ihr, die ist toll.“",
+   "hold": 1.3
   },
   {
    "who": "mar",
-   "text": "Und was sagen die Leute, wenn sie dich empfehlen?",
-   "hold": 0.9
-  },
-  {
-   "who": "user",
-   "text": "Dass ich die Richtige bin. … Wofür genau, weiß eigentlich keiner.",
+   "text": "Toll wofür?",
    "hit": true,
-   "hold": 2.4
+   "hold": 1.1
+  },
+  {
+   "who": "user",
+   "text": "… gute Frage.",
+   "hold": 1.8
   }
  ],
- "final": "Ihr Problem war nicht Instagram.",
- "final_grey": "Sondern dass niemand weiß, wofür er sie empfehlen soll.",
- "cta": "ICH BAUE MAR · FOLG FÜR TAG 06",
- "final_hold": 3.6
+ "finals": [
+  {
+   "text": "Schönen Content kann heute jede.",
+   "grey": "KI sei Dank.",
+   "hold": 2.3
+  },
+  {
+   "text": "Was keine KI für dich macht:",
+   "grey": "dass man in einem Satz weiß, wofür du stehst.",
+   "hold": 2.8
+  },
+  {
+   "text": "Haarscharfe Positionierung. Echtes Vertrauen.",
+   "grey": "Das ist gerade dein Vorsprung.",
+   "hold": 3.6
+  }
+ ],
+ "cta": "ICH BAUE MAR · FOLG FÜR TAG 06"
 }

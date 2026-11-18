@@ -78,8 +78,13 @@ def main():
             ev.append({**m, "t_dots": None, "t0": t, "t1": t})
             sfx.append(("pop", t)); t += m.get("hold", 1.3)
         if m.get("hit"): sfx.append(("thud", ev[-1]["t1"] + 0.05))
-    t_final = t + 0.2; t_end = t_final + cfg.get("final_hold", 3.4)
-    sfx.append(("whoosh", t_final - 0.25))
+    t_final = t + 0.2
+    finals = cfg.get("finals") or [{"text": cfg["final"], "grey": cfg["final_grey"], "hold": cfg.get("final_hold", 3.4)}]
+    tf = t_final
+    for k, fz in enumerate(finals):
+        fz["t0"] = tf; tf += fz.get("hold", 2.2); fz["t1"] = tf
+        sfx.append(("whoosh" if k == 0 else "pop", fz["t0"] - (0.25 if k == 0 else 0)))
+    t_end = tf
     total = t_end
     print(f"Länge: {total:.1f}s")
 
@@ -129,11 +134,13 @@ def main():
                 y += hh
             if fade_chat < 1: layer.putalpha(layer.getchannel("A").point(lambda v: int(v * fade_chat)))
             img.alpha_composite(layer)
-        if tt >= t_final:
-            q = ease((tt - t_final) / 0.4)
+        cur = [fz for fz in finals if fz["t0"] <= tt < fz["t1"]] or ([finals[-1]] if tt >= finals[-1]["t1"] else [])
+        if tt >= t_final and cur:
+            fz = cur[0]; last = fz is finals[-1]
+            q = ease((tt - fz["t0"]) / 0.35) * (1 if last else 1 - ease((tt - fz["t1"] + 0.3) / 0.3))
             L = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(L)
-            y2 = big_text(dl, 700, cfg["final"], cfg["final_grey"], 104)
-            if cfg.get("cta"):
+            y2 = big_text(dl, 640, fz["text"], fz.get("grey", ""), fz.get("size", 100))
+            if cfg.get("cta") and last:
                 fc = font("IBMPlexMono-500.ttf", 30); cw = spaced_len(dl, cfg["cta"], fc, 5) + 80
                 dl.rectangle([(W - cw) / 2, y2 + 80, (W + cw) / 2, y2 + 170], fill=CARBON + (255,))
                 text_spaced(dl, ((W - cw) / 2 + 40, y2 + 106), cfg["cta"], fc, PORC + (255,), 5)
