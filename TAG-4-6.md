@@ -24,7 +24,7 @@ Grundlage: die Marktanalysen vom 17. und 18.11. (`marktanalyse/` auf Branch `cla
 ---
 
 ## TAG 4: Kundin verloren (fertig geschnitten)
-- **0–3,4 s:** dunkler Frame, sofort lesbar: *„Eine Kundin kam einfach nicht mehr. Ohne ein Wort.“* MAR tippt grau: *„Und was war der Grund?“*
+- **0–3,4 s:** dunkler Frame, sofort lesbar: *„Eine Kundin kam einfach nicht mehr. Ohne ein Wort.“* MAR tippt grau: *„Weißt du eigentlich, warum sie damals überhaupt gekauft hat?“*
 - dein verdutzter Blick, dann „Okay. Damit hätte ich jetzt nicht gerechnet. I mean, what? Ich hätte alles gefragt, aber nicht das.“
 - Erklärung mit **ZUSAMMENHANG** groß hinter dir und der MAR-Chatkarte, dazu als kleiner Untertitel „MAR ist übrigens eine Sie.“
 - Pointe: „Du stellst ChatGPT eine Frage, aber MAR fragt dich zurück. She wants to know.“
@@ -34,9 +34,9 @@ Grundlage: die Marktanalysen vom 17. und 18.11. (`marktanalyse/` auf Branch `cla
 > **Eine Kundin kam einfach nicht mehr. Kein Wort, keine Absage. Einfach weg.**
 >
 > Die meisten fragen sich dann: „Wie finde ich eine neue?“
-> MAR fragt: *„Und was war der Grund?“*
+> MAR fragt: *„Weißt du eigentlich, warum sie damals überhaupt gekauft hat?“*
 >
-> Klingt simpel. Aber die Antwort darauf verrät oft mehr über dein Business als jede Marketing-Strategie.
+> Denn der Grund, warum jemand geht, steckt oft schon in dem Grund, warum sie gekommen ist.
 >
 > Wann hast du zuletzt eine Kundin verloren? Und weißt du wirklich, warum? 👇
 > Schick das einer Freundin, die gerade Kundinnen verliert. 💌
