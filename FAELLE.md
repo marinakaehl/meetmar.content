@@ -6,7 +6,8 @@ Keine Namen, keine erkennbaren Details (Ort, Methode, Mail, Zitate Dritter).
 
 | # | Sie kam mit … | Es war wirklich … | Status | Folge |
 |---|---|---|---|---|
-| 1 | Instagram hängt, LinkedIn stirbt, Website-Chaos, Akquise | Niemand kann sagen, **wofür** man sie empfehlen soll (Positionierung nicht greifbar) | echter MAR-Fall · Einverständnis einholen | **Tag 5** (Chat-Reveal) |
+| 1 | Instagram hängt, LinkedIn stirbt, Website-Chaos, Akquise | Niemand kann sagen, **wofür** man sie empfehlen soll (Positionierung nicht greifbar) | echter MAR-Fall · **vorerst nicht verwenden** | später |
+| 1b | „Mein Instagram läuft null“, Kundinnen kommen über Flyer im Wartezimmer | Warum ruft man gerade sie an? (Positionierung) | nachgestellt | **Tag 5** (Chat-Reveal) |
 | 2 | Workshop nach Workshop, „es kommen kaum Leute“ | Sie pitcht ihr Angebot nur nebenbei und **versteckt sich** im eigenen Workshop | nachgestellt | **Tag 6** (Chat-Reveal) |
 | 3 | Gartenplanung: „Warum gewinne ich online keine Kundinnen und keine hochwertigen Follower?“ | Positionierung war klar, wurde aber **nicht in Content übersetzt** | nachgestellt | offen (Hook: „Ihre Positionierung war perfekt. Nur hat sie keiner gesehen.“) |
 | 4 | Instagram und die ganze Technik | Sie wusste nicht, **mit wem** sie eigentlich arbeiten will | nachgestellt | offen (Hook: „Sie wollte Technik-Hilfe. Sie brauchte eine Entscheidung.“) |

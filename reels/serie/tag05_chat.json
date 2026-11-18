@@ -1,30 +1,30 @@
 {
  "day": 5,
- "label": "TAG 05 · ECHTER MAR-FALL · ANONYMISIERT",
- "hook": "Ihre Kundinnen kamen über Sticker am Laternenmast.",
- "hook_grey": "Reparieren wollte sie Instagram.",
+ "label": "TAG 05 · NACHGESTELLT",
+ "hook": "Ihre Kundinnen fanden sie im Wartezimmer beim Orthopäden.",
+ "hook_grey": "Reparieren wollte sie trotzdem Instagram.",
  "start": 1.6,
  "chat": [
   {
    "who": "user",
-   "text": "Instagram hängt. LinkedIn auch. Kannst du mir da helfen?",
+   "text": "Mein Instagram läuft null. Kannst du mir da helfen?",
    "hold": 1.6
   },
   {
    "who": "mar",
-   "text": "Wer hat dich zuletzt weiterempfohlen? Und mit welchem Satz?",
+   "text": "Woher kam deine letzte Kundin?",
    "hold": 0.9
   },
   {
    "who": "user",
-   "text": "„Geh zu ihr, die ist toll.“",
-   "hold": 1.3
+   "text": "Flyer. Im Wartezimmer. Zwischen Apotheken-Zeitschrift und Grippe-Plakat.",
+   "hold": 2.0
   },
   {
    "who": "mar",
-   "text": "Toll wofür?",
+   "text": "Und warum hat sie dich angerufen – und nicht die fünf anderen auf dem Tisch?",
    "hit": true,
-   "hold": 1.1
+   "hold": 1.2
   },
   {
    "who": "user",
