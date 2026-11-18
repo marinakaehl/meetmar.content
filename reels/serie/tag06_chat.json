@@ -1,39 +1,63 @@
 {
  "day": 6,
  "label": "TAG 06 · NACHGESTELLT",
- "hook": "Keiner kommt in ihre Workshops.",
- "hook_grey": "Dachte sie.",
- "start": 1.0,
+ "hook": "Workshop nach Workshop. Verkauft hat sie dabei: nichts.",
+ "hook_grey": "Ihr Plan: mehr Teilnehmerinnen.",
+ "start": 1.6,
  "chat": [
   {
    "who": "user",
-   "text": "Ich mache einen Workshop nach dem anderen. Es kommen kaum Leute. Ich brauche mehr Teilnehmerinnen.",
-   "hold": 2.2
+   "text": "In meine Workshops kommen zu wenig Leute. Ich brauche mehr Reichweite.",
+   "hold": 1.7
   },
   {
    "who": "mar",
-   "text": "Wie viele von denen, die kommen, buchen danach bei dir?",
+   "text": "Wie viele haben nach dem letzten Workshop gebucht?",
    "hold": 0.9
   },
   {
    "who": "user",
-   "text": "Fast keine.",
+   "text": "Eine. Glaub ich.",
+   "hold": 1.2
+  },
+  {
+   "who": "mar",
+   "text": "Wie lange hast du über dein Angebot gesprochen?",
+   "hold": 0.9
+  },
+  {
+   "who": "user",
+   "text": "So… zwei Minuten? Ganz am Ende.",
    "hold": 1.3
   },
   {
    "who": "mar",
-   "text": "Wann im Workshop sprichst du über dein Angebot?",
+   "text": "Und wie lange über alles andere?",
    "hold": 0.9
   },
   {
    "who": "user",
-   "text": "… ganz am Ende. Kurz. So nebenbei.",
+   "text": "… neunzig.",
    "hit": true,
-   "hold": 2.2
+   "hold": 1.8
   }
  ],
- "final": "Sie brauchte nicht mehr Teilnehmerinnen.",
- "final_grey": "Sie musste aufhören, sich in ihrem eigenen Workshop zu verstecken.",
- "cta": "ICH BAUE MAR · FOLG FÜR TAG 07",
- "final_hold": 3.6
+ "finals": [
+  {
+   "text": "Mehr Teilnehmerinnen hätten nichts geändert.",
+   "grey": "",
+   "hold": 2.2
+  },
+  {
+   "text": "Wer nicht verkauft,",
+   "grey": "verschenkt.",
+   "hold": 2.0
+  },
+  {
+   "text": "Dein Angebot ist kein Anhängsel.",
+   "grey": "Sprich darüber, als wäre es das Wichtigste im Raum. Denn das ist es.",
+   "hold": 3.6
+  }
+ ],
+ "cta": "ICH BAUE MAR · FOLG FÜR TAG 07"
 }
