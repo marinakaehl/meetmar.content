@@ -18,8 +18,8 @@ Grundlage: die Marktanalysen vom 17. und 18.11. (`marktanalyse/` auf Branch `cla
 | Tag | Format | Rahmen | Hook (Text ab Bild 1) | Dreh nötig? |
 |---|---|---|---|---|
 | **4** | ⚡ klein (~33 s) | 💡 Mehrwert | „Eine Kundin kam einfach nicht mehr. Ohne ein Wort.“ → MAR: „Und was war der Grund?“ | ❌ fertig aus Reel-2-Material |
-| **5** | 🎬 groß (~40 s) | 🧭 Klare Infos zu MAR | **„4.000 Follower. 2 Kundinnen. Und sie wollte: mehr Reichweite.“** | ✅ ein Take, Sprechtext unten |
-| **6** | ⚡ Text-Reel (~10 s) | 💡 Mehrwert | **„Du postest jeden Tag. Und hast trotzdem keine Kundinnen?“** | ❌ Claude baut es komplett |
+| **5** | 🎬 groß (~40 s) | 🧭 Klare Infos zu MAR | **„Sie wollte Hilfe mit Instagram. Ihr Problem war ein ganz anderes.“** (echter MAR-Fall, anonym) | ✅ ein Take, Sprechtext unten |
+| **6** | ⚡ Chat-Reveal (~15 s) | 💡 Mehrwert | **„Ich brauche dringend mehr Follower.“** → 2 Fragen → Wendung (nachgestellt) | ❌ Claude baut es komplett |
 
 ---
 
@@ -47,60 +47,72 @@ Grundlage: die Marktanalysen vom 17. und 18.11. (`marktanalyse/` auf Branch `cla
 
 ---
 
-## TAG 5: So arbeitet MAR, an einem Fall · 🎬 große Folge (~40 s)
-
-**Hook im Bild:** „**4.000 Follower. 2 Kundinnen.**“ darunter klein: „Und sie wollte: mehr Reichweite.“
-**Nutzen:** Sie versteht in 30 Sekunden, was MAR anders macht: Diagnose → Ursache → Entscheidung.
-
-⚠️ **Der Fall muss echt sein.** Nimm eine echte Beta-Userin oder eine Kundin aus deiner Erfahrung (anonym, Zahlen leicht gerundet).
-Wenn es keinen echten Fall gibt: Sag „**Stell dir vor,** eine Coachin hat 4.000 Follower …“, dann bleibt es ehrlich, und Claude blendet „BEISPIELFALL“ ein.
-
-> Eine Coachin hatte 4.000 Follower. Und zwei Kundinnen. Und sie wollte von mir: mehr Reichweite.
->
-> **Ich bin Marina, ich baue MAR – und das ist Tag 5.**
->
-> Wenn sie ChatGPT fragt, bekommt sie: zehn Tipps für mehr Reichweite.
-> MAR macht drei andere Dinge.
->
-> Eins: Sie fragt nach. Wer folgt dir eigentlich? Und wer davon kauft?
-> Zwei: Sie findet die Ursache. Bei ihr: Die Follower waren gar nicht ihre Zielgruppe.
-> Drei: Sie entscheidet mit ihr, wo es weitergeht. Nicht mehr Reichweite. Ein klareres Angebot.
->
-> Das ist der Unterschied zwischen einer Antwort und einer Diagnose.
->
-> Kennst du jemanden mit vielen Followern und wenig Kundinnen? Schick ihr das.
-> Morgen: warum mehr Content nicht die Lösung ist. Folg mir für Tag 6.
-
-**Effekte:** Hook als große Zahl hinter dir („4.000“ → „2“) · Chip-Row „01 FRAGEN · 02 URSACHE · 03 ENTSCHEIDUNG“ hakt sich ab · bei „Die Follower waren gar nicht ihre Zielgruppe“ Stempel **URSACHE** · Teilen-Karte
-**Dreh:** ein Take, nah an der Kamera, Stativ. Start direkt mit dem ersten Satz, keine Begrüßung.
+## Grundregel für echte und nachgestellte Fälle
+- **Echte MAR-Fälle** (Beta-Userinnen): nur mit **Einverständnis** der Kundin, **anonymisiert**. Keine Namen, keine Mail-Adresse, keine Branche oder Details, an denen man sie erkennen könnte. Im Bild klein „ECHTER FALL · ANONYMISIERT“.
+- **Deine Fälle aus der Zeit vor MAR**: dürfen **nachgestellt** werden, also „so hätte MAR gefragt“. Im Bild klein „NACHGESTELLT“. Die Situation ist echt, der Chat ist die Rekonstruktion. Das ist ehrlich und trotzdem stark.
 
 ---
 
-## TAG 6: Text-Reel „Mehr Content ist nicht die Lösung“ · ⚡ (~10 s, kein Dreh)
+## TAG 5: Ein echter MAR-Fall · 🎬 große Folge (~40 s)
 
-Ruhiges Studio-Bild, Text in 4 Schritten, als Schleife geschnitten (das Ende geht nahtlos in den Anfang über, deshalb wird es oft zweimal geschaut):
+**Fall (anonymisiert):** Eine Coachin aus der Beta. Sie kam mit vier Baustellen: Website, Instagram („hängt“), LinkedIn („stirbt und schreit“), Akquise.
+Ihre Kundinnen kommen über Empfehlungen, Flyer und **Sticker am Laternenmast**. MAR hat nachgefragt und herausgefunden:
+**Niemand kann in einem Satz sagen, wofür genau sie die Richtige ist.** Ihr Ziel: 4 neue Klientinnen pro Monat.
 
-1. **„Du postest jeden Tag.“**
-2. **„Und hast trotzdem keine Kundinnen?“**
-3. „Dann ist dein Problem nicht Reichweite.“
-4. „Sondern das, was danach passiert.“ · *Tag 6 / 30 · Ich baue MAR*
+⚠️ Vorher die Kundin fragen, ob du den Fall anonym erzählen darfst. Branche und Methode lassen wir weg, „Coachin“ reicht.
+
+**Hook im Bild:** „**Sie wollte Hilfe mit Instagram.**“ darunter grau: „Ihr Problem war ein ganz anderes.“
+
+> Sie wollte Hilfe mit Instagram. Ihr Problem war ein ganz anderes.
+>
+> Eine Coachin aus meiner Beta kam mit vier Baustellen: Website, Instagram, LinkedIn, Kundengewinnung. Alles gleichzeitig.
+>
+> ChatGPT hätte ihr jetzt vier Pläne geschrieben.
+> MAR hat gefragt: Woher kommen deine Kundinnen heute?
+> Antwort: Empfehlungen. Flyer. Und Sticker am Laternenmast.
+>
+> Und dann kam raus: Die Leute empfehlen sie, weil sie toll ist. Aber niemand kann in einem Satz sagen, *wofür* genau.
+>
+> Ihr Problem war nicht Instagram. Es war: Keiner weiß, wofür er sie weiterempfehlen soll.
+>
+> **Ich bin Marina, ich baue MAR – und das ist Tag 5.**
+> Wenn du gerade an fünf Baustellen gleichzeitig arbeitest: Schick das einer Freundin, der es genauso geht. Und folg mir für Tag 6.
+
+**Effekte:** vier Papier-Etiketten „WEBSITE · INSTAGRAM · LINKEDIN · AKQUISE“ kleben sich nacheinander hinter dich · bei „Laternenmast“ ein kleiner Sticker-Gag · bei „wofür genau“ werden alle vier durchgestrichen, Stempel **POSITIONIERUNG** · klein „ECHTER FALL · ANONYMISIERT“
+**Dreh:** ein Take, nah, Stativ, direkt mit dem ersten Satz starten.
+
+---
+
+## TAG 6: Chat-Reveal (nachgestellt) · ⚡ ~15 s, kein Dreh
+
+Statt Text auf ruhigem Bild: **ein MAR-Chat, der sich live aufbaut**, mit Tipp-Geräuschen und einer Wendung am Ende. Chats lesen Leute bis zum Schluss, weil sie wissen wollen, wie es ausgeht.
+
+| s | Bild |
+|---|---|
+| 0,0 | Nutzerin (schon getippt): **„Ich brauche dringend mehr Follower.“** · klein oben „TAG 06 · NACHGESTELLT“ |
+| 1,2 | MAR tippt: „Wie viele Kundinnen kamen letzten Monat über Instagram?“ |
+| 3,5 | Nutzerin: „…zwei.“ |
+| 4,8 | MAR: „Und über Empfehlungen?“ |
+| 6,3 | Nutzerin: „**Elf.**“ (Pause, Zoom auf die Zahl, dumpfer Hit) |
+| 8,0 | MAR: „Dann reden wir nicht über Follower. Sondern darüber, warum Empfehlungen funktionieren.“ |
+| 11,5 | Großer Text: **„Manchmal ist die Antwort schon da. Du stellst nur die falsche Frage.“** |
+| 14,0 | „ICH BAUE MAR · TAG 06 / 30“ → Schleife zurück zum Anfang |
+
+**Die Zahlen (2 und 11) bitte aus einem deiner echten Fälle nehmen.** Schreib mir einfach: Wer wollte was, und was war's dann wirklich? Dann baue ich den Chat genau so.
 
 **Beschreibung**
-> **Mehr posten hat bei mir genau 0 Kundinnen gebracht.** *(nur wenn das für dich stimmt, sonst: „Mehr posten bringt dir nicht automatisch mehr Kundinnen.“)*
+> **„Ich brauche mehr Follower.“ Zwei Fragen später war klar: braucht sie nicht.**
 >
-> Wenn Leute dein Profil besuchen, aber nicht buchen, fehlt nicht Reichweite.
-> Dann fehlt: ein klares Angebot, ein klarer nächster Schritt, ein Grund, jetzt zu kaufen.
+> Zwei Kundinnen über Instagram. Elf über Empfehlungen.
+> Und trotzdem wollte sie mehr Reichweite.
 >
-> Prüf heute 3 Dinge:
-> 1️⃣ Versteht man in 3 Sekunden, was du anbietest?
-> 2️⃣ Gibt es einen klaren nächsten Schritt in deiner Bio?
-> 3️⃣ Fragst du in deinen Posts jemals nach dem Kauf?
+> Das passiert ständig: Wir optimieren das, was laut ist, statt das, was funktioniert.
 >
-> Speicher dir das für deinen nächsten Content-Tag. 🔖
+> Woher kamen deine letzten 3 Kundinnen? Schreib nur das Wort: Instagram, Empfehlung, Google oder etwas anderes 👇
 >
-> Tag 6 von 30 · Ich baue MAR
+> Tag 6 von 30 · Ich baue MAR · nachgestellter Fall
 >
-> #ichbauemar #contentstrategie #unternehmerin #instagrambusiness #selbstständigkeit
+> #ichbauemar #unternehmerin #kundinnengewinnung #empfehlungsmarketing #selbstständigkeit
 
 ---
 
