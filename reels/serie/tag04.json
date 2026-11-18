@@ -1,0 +1,157 @@
+{
+ "title": "Serie Tag 4 – Kundin verloren",
+ "series": {
+  "day": 4
+ },
+ "sources": {
+  "C": "raw/serie/IMG_7082.mp4"
+ },
+ "transcripts": {
+  "C": "reels/serie/IMG_7082_words.json"
+ },
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "intro": {
+  "seconds": 3.4,
+  "label": "TAG 04 / 30 · MAR FRAGT",
+  "lines": [
+   {
+    "text": "Eine Kundin kam einfach nicht mehr. Ohne ein Wort.",
+    "at": 0.0,
+    "pre": 50,
+    "typed_by": 0.1
+   },
+   {
+    "text": "Und was war der Grund?",
+    "at": 1.3,
+    "typed_by": 2.3,
+    "grey": true
+   }
+  ]
+ },
+ "segments": [
+  {
+   "src": "C",
+   "from": 15.5,
+   "to": 17.0,
+   "silent": true
+  },
+  {
+   "src": "C",
+   "from": 6.0,
+   "to": 8.2
+  },
+  {
+   "src": "C",
+   "from": 10.3,
+   "to": 11.8
+  },
+  {
+   "src": "C",
+   "from": 21.4,
+   "to": 23.6
+  },
+  {
+   "src": "C",
+   "from": 34.4,
+   "to": 40.2,
+   "accent": [
+    "Zusammenhang"
+   ],
+   "punch": "Zusammenhang"
+  },
+  {
+   "src": "C",
+   "from": 42.0,
+   "to": 51.9,
+   "accent": [
+    "Rückfrage"
+   ],
+   "punch": "challengt."
+  },
+  {
+   "src": "C",
+   "from": 55.4,
+   "to": 57.2,
+   "aside": true
+  },
+  {
+   "src": "C",
+   "from": 79.1,
+   "to": 84.0,
+   "accent": [
+    "zurück."
+   ],
+   "punch": "She"
+  }
+ ],
+ "headline": [],
+ "moments": [
+  {
+   "type": "word",
+   "text": "ZUSAMMENHANG",
+   "min": 1.4,
+   "at": {
+    "seg": 4,
+    "word": "Zusammenhang"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 04",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Okay."
+   },
+   "until": {
+    "seg": 1,
+    "word": "hätte"
+   }
+  },
+  {
+   "type": "chat",
+   "bubbles": [
+    {
+     "text": "Und was war der Grund?",
+     "at": {
+      "seg": 5,
+      "word": "Rückfrage"
+     },
+     "typed_by": {
+      "seg": 5,
+      "end": true
+     }
+    }
+   ],
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "SCHICK DAS EINER FREUNDIN, DIE GERADE KUNDINNEN VERLIERT  →",
+   "sub": "MORGEN · TAG 05: SO ARBEITET MAR",
+   "at": {
+    "seg": 7,
+    "word": "aber"
+   },
+   "until": {
+    "seg": 7,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 04 / 30 · FOLG FÜR TAG 05"
+ }
+}
