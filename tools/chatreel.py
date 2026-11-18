@@ -160,8 +160,8 @@ def main():
                 k_ = int(sum(len(l) for l in lines) * min(1, (tt - fz["t0"]) / max(0.5, fz.get("write", 3.0))))
                 for ln in lines:
                     cd.text((ox, oy), ln[:max(0, k_)], font=fh, fill=(52, 50, 48, 255)); k_ -= len(ln); oy += lh
-                L.alpha_composite(card, ((W - card.width) // 2, 430))
-                y2 = 430 + card.height
+                L.alpha_composite(card, ((W - card.width) // 2, fz.get("y", 430)))
+                y2 = fz.get("y", 430) + card.height - 40
             else:
                 y2 = big_text(dl, 640, fz["text"], fz.get("grey", ""), fz.get("size", 100))
             if cfg.get("cta") and last:
