@@ -1,0 +1,39 @@
+{
+ "day": 5,
+ "label": "TAG 05 · ECHTER MAR-FALL · ANONYMISIERT",
+ "hook": "Sie wollte Hilfe mit Instagram.",
+ "hook_grey": "Ihr Problem war ein ganz anderes.",
+ "start": 1.0,
+ "chat": [
+  {
+   "who": "user",
+   "text": "Mein Instagram hängt, LinkedIn stirbt, die Website ist Chaos. Und Kundinnen brauch ich auch.",
+   "hold": 2.2
+  },
+  {
+   "who": "mar",
+   "text": "Woher kommen deine Kundinnen heute?",
+   "hold": 0.9
+  },
+  {
+   "who": "user",
+   "text": "Empfehlungen. Flyer. Und Sticker am Laternenmast.",
+   "hold": 1.8
+  },
+  {
+   "who": "mar",
+   "text": "Und was sagen die Leute, wenn sie dich empfehlen?",
+   "hold": 0.9
+  },
+  {
+   "who": "user",
+   "text": "Dass ich die Richtige bin. … Wofür genau, weiß eigentlich keiner.",
+   "hit": true,
+   "hold": 2.4
+  }
+ ],
+ "final": "Ihr Problem war nicht Instagram.",
+ "final_grey": "Sondern dass niemand weiß, wofür er sie empfehlen soll.",
+ "cta": "ICH BAUE MAR · FOLG FÜR TAG 06",
+ "final_hold": 3.6
+}
