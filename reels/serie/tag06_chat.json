@@ -44,20 +44,11 @@
  ],
  "finals": [
   {
-   "text": "Mehr Teilnehmerinnen hätten nichts geändert.",
-   "grey": "",
-   "hold": 2.2
-  },
-  {
-   "text": "Wer nicht verkauft,",
-   "grey": "verschenkt.",
-   "hold": 2.0
-  },
-  {
-   "text": "Dein Angebot ist kein Anhängsel.",
-   "grey": "Sprich darüber, als wäre es das Wichtigste im Raum. Denn das ist es.",
-   "hold": 3.6
+   "note": "Ganz ehrlich? Das sehe ich ständig.\nWir geben im Workshop 90 Minuten alles – und beim eigenen Angebot werden wir plötzlich ganz leise. Weil es sich nach Verkaufen anfühlt.\nAber wenn dein Angebot wirklich hilft, dann ist es fast unfair, es nur nebenbei zu erwähnen.\n– Marina",
+   "write": 4.5,
+   "hold": 8.5
   }
  ],
- "cta": "ICH BAUE MAR · FOLG FÜR TAG 07"
+ "cta": "ICH BAUE MAR · FOLG FÜR TAG 07",
+ "hook_mark": "nichts."
 }

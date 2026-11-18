@@ -55,10 +55,21 @@ def shadow(im):
     out.paste((20, 16, 12, 255), (0, 0), sh.filter(ImageFilter.GaussianBlur(14))); out.alpha_composite(im, (pad, pad))
     return out
 
-def big_text(d, y, line, grey, size=96):
+INK = (168, 105, 100)
+
+def big_text(d, y, line, grey, size=96, mark=None, mark_p=1.0):
     f = font("Geist-300.ttf", size); fg = font("Geist-300.ttf", int(size * 0.62))
     for l in wrap(d, line, f, 940):
-        d.text(((W - d.textlength(l, font=f)) / 2, y), l, font=f, fill=CARBON + (255,)); y += int(size * 1.08)
+        x = (W - d.textlength(l, font=f)) / 2
+        if mark and mark in l and mark_p > 0:  # roter Balken hinter dem Markierwort
+            i = l.index(mark); x0 = x + d.textlength(l[:i], font=f); w = d.textlength(mark, font=f)
+            d.rectangle([x0 - 10, y + size * 0.18, x0 - 10 + (w + 20) * mark_p, y + size * 1.08], fill=INK + (235,))
+            d.text((x, y), l[:i], font=f, fill=CARBON + (255,))
+            d.text((x0, y), mark, font=f, fill=PORC + (255,) if mark_p > 0.6 else CARBON + (255,))
+            d.text((x0 + w, y), l[i + len(mark):], font=f, fill=CARBON + (255,))
+        else:
+            d.text((x, y), l, font=f, fill=CARBON + (255,))
+        y += int(size * 1.08)
     y += 14
     for l in wrap(d, grey, fg, 900):
         d.text(((W - d.textlength(l, font=fg)) / 2, y), l, font=fg, fill=WARM + (255,)); y += int(size * 0.72)
@@ -106,7 +117,7 @@ def main():
         lab = cfg["label"]; text_spaced(d, ((W - spaced_len(d, lab, fl, 8)) / 2, 260), lab, fl, WARM + (255,), 8)
         fade_chat = 1 - ease((tt - t_final) / 0.35)
         if tt < t_final + 0.4:
-            hk = Image.new("RGBA", (W, H), (0, 0, 0, 0)); yh = big_text(ImageDraw.Draw(hk), 320, cfg["hook"], cfg["hook_grey"], 92)
+            hk = Image.new("RGBA", (W, H), (0, 0, 0, 0)); yh = big_text(ImageDraw.Draw(hk), 320, cfg["hook"], cfg["hook_grey"], 92, cfg.get("hook_mark"), ease((tt - 0.35) / 0.3))
             # Chat: Blasen von unten nach oben stapeln, ältere schieben nach oben
             items = []
             for e in ev:
@@ -139,7 +150,20 @@ def main():
             fz = cur[0]; last = fz is finals[-1]
             q = ease((tt - fz["t0"]) / 0.35) * (1 if last else 1 - ease((tt - fz["t1"] + 0.3) / 0.3))
             L = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(L)
-            y2 = big_text(dl, 640, fz["text"], fz.get("grey", ""), fz.get("size", 100))
+            if fz.get("note"):
+                fh = font("Caveat-500.ttf", 62); lines = []
+                for para in fz["note"].split("\n"):
+                    lines += wrap(dl, para, fh, 800) + [""]
+                lines = lines[:-1]; lh = 70; ph_ = 90 + lh * len(lines)
+                card = reel.paper(880, ph_, rot=-1.5, tape=True, seed=4, color=(252, 249, 242))
+                cd = ImageDraw.Draw(card); ox = (card.width - 880) // 2 + 50; oy = (card.height - ph_) // 2 + 45
+                k_ = int(sum(len(l) for l in lines) * min(1, (tt - fz["t0"]) / max(0.5, fz.get("write", 3.0))))
+                for ln in lines:
+                    cd.text((ox, oy), ln[:max(0, k_)], font=fh, fill=(52, 50, 48, 255)); k_ -= len(ln); oy += lh
+                L.alpha_composite(card, ((W - card.width) // 2, 430))
+                y2 = 430 + card.height
+            else:
+                y2 = big_text(dl, 640, fz["text"], fz.get("grey", ""), fz.get("size", 100))
             if cfg.get("cta") and last:
                 fc = font("IBMPlexMono-500.ttf", 30); cw = spaced_len(dl, cfg["cta"], fc, 5) + 80
                 dl.rectangle([(W - cw) / 2, y2 + 80, (W + cw) / 2, y2 + 170], fill=CARBON + (255,))
