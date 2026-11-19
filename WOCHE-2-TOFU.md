@@ -77,7 +77,7 @@ Zwei konkrete Alternativen, beide aus deiner echten Geschichte:
 
 **Effekte:** Zahlen-Zähler „0 VIRAL · 0 € ADS“ ab Bild 1 · bei „Schaufenster“ ein leerer Papier-Rahmen, der sich füllt · Schluss-Zettel *„Wissen die, die mir schon folgen, wofür ich stehe?“*
 **Beschreibung (erste Zeile):** „Mehr Follower waren nie unser Problem. Das hier schon.“
-⚠️ Bitte prüfen: Darfst du das Business und den Umsatz mit deiner damaligen Partnerin öffentlich erwähnen? Anna wird nicht namentlich genannt.
+✅ Freigegeben: Das sechsstellige Business darf erwähnt werden (Anna wird nicht namentlich genannt).
 
 ### 3b: „12.000 € für einen Plan, den nicht ich gebraucht habe.“
 **Hook:** „**12.000 € für einen Plan, der gar nicht für mich gemacht war.**“
@@ -85,6 +85,8 @@ Baut auf Tag 3 auf, aber als Mehrwert statt als Geständnis: *Woran du erkennst,
 Gut als Fortsetzung für alle, die bei Tag 3 kommentiert haben.
 
 ---
+
+## Entschieden: Woche 2 dreht ToFu 1, ToFu 2 und ToFu 3a. (3b bleibt als Reserve.)
 
 ## Platz im Wochenplan
 | | Format | Funnel |

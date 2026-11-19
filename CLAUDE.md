@@ -1,0 +1,13 @@
+# CLAUDE.md – Content-Studio für @meetmar.ai
+
+Lies vor jeder Content-Arbeit (Skripte, Beschreibungen, Cover, Schnitt):
+1. `BRAND.md`: Marinas Marke, Versprechen, Hero Story, Haltung, Feindbild, Sprache, Freigaben. **Lebendige Datengrundlage**: Neue Infos von Marina hier eintragen und im Logbuch vermerken.
+2. `STYLE.md`: Look, Farben, Schriften, Effekt-Bibliothek.
+3. `FAELLE.md`: Fall-Bank (echte Fälle nur anonym und mit Einverständnis, sonst „NACHGESTELLT“).
+4. Aktueller Wochenplan (`WOCHE-*.md`, `TAG-*.md`) und `marktanalyse/` (Branch `claude/gallant-lovelace-ppq85e`).
+
+Regeln:
+- Skripte nach AGIL (Anker, Grund/Geschichte, Illustration, Lektion). Hook mit Person, Zahl oder Konflikt, Text ab Bild 1.
+- Beschreibungen: erste Zeile < 80 Zeichen, macht neugierig, **wiederholt nicht das Reel**, bringt Meinung + Übung.
+- Die Academy, mit der Marina arbeitet, nie namentlich nennen. Keine Kundinnen-Namen.
+- Schnitt: `tools/reel.py` (Talking Head), `tools/chatreel.py` (Chat-Reveal), `tools/cover.py` (Cover).

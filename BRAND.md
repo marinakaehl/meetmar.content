@@ -1,5 +1,9 @@
 # BRAND.md – Personal Brand Marina × MAR
 
+> **Lebendige Datengrundlage.** Hier wird alles gesammelt, was Marina über sich, ihre Haltung, ihre Geschichte und ihre Sprache erzählt.
+> Neue Infos einfach im Chat schicken (Text oder Sprachnachricht). Claude trägt sie hier ein und nutzt die Datei als Grundlage für jedes Skript, jede Beschreibung und jedes Cover.
+> Unten im **Logbuch** steht, was wann dazugekommen ist.
+
 Quelle: Präsentation „Personal Brand. Personal Power.“ (85 Folien), übertragen auf Marina und MAR.
 ⚠️ = Entwurf von Claude. **Muss von Marina bestätigt oder ersetzt werden**, weil es um ihre echte Haltung und Geschichte geht.
 
@@ -141,3 +145,16 @@ Ideen sammeln (Podcasts, globale News, LinkedIn, Popkultur, andere Branchen, Res
 | Share-Rate | **> 2 %** | erster Share |
 
 **Regel:** Ein schwaches Reel heißt nicht, dass die Idee schlecht ist. Gleiche Idee, neu verpackt (andere Hook, anderes Bild, anderes Tempo) als Testreel nochmal bringen, *bevor* wir das Thema verwerfen.
+
+---
+
+## Freigaben
+- ✅ Das sechsstellige Business mit der damaligen Geschäftspartnerin darf öffentlich erwähnt werden, ohne Namen.
+- ❌ Die Academy, mit der Marina arbeitet, wird nicht beim Namen genannt.
+
+## Logbuch
+| Datum | Neu hinzugekommen |
+|---|---|
+| 19.11.2026 | Analyse der Präsentation „Personal Brand. Personal Power.“ |
+| 19.11.2026 | Sprachnachrichten: Herkunft, Hero Story, Haltung, Feindbild, Sprache. Versprechen ausgearbeitet |
+| 19.11.2026 | Freigabe sechsstelliges Business. Academy bleibt ungenannt |
