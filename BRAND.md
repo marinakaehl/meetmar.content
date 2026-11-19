@@ -89,9 +89,8 @@ Regel aus der Präsentation: **Kritik trifft das Muster, nie die Person.** Keine
 **Zugehörigkeit:** Founding 20. Ein Community-Name ist noch offen („die Fragenden“ ist raus). Lieber warten, bis die Community selbst einen Begriff aufbringt.
 **Zeigen statt erzählen:** MAR-Chat und Stempel im Bild, **echte MAR-Oberfläche** zeigen.
 
-### Noch offen
-- Soll die **Social Academy** im Content beim Namen genannt werden oder neutral („eine große Business-Academy“) bleiben?
-- **Caros Nachricht** bezieht sich auf die Academy, also nicht als MAR-Testimonial verwenden, außer sie war für dich persönlich.
+### Festgelegt
+- Die Academy, mit der Marina arbeitet, wird **nicht beim Namen genannt**. Im Content heißt es neutral: „durch meine Arbeit als Strategieberaterin“ oder „in hunderten Strategiegesprächen“.
 
 ---
 
