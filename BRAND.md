@@ -26,46 +26,72 @@ Quelle: Präsentation „Personal Brand. Personal Power.“ (85 Folien), übertr
 
 ---
 
-## Teil 2: Die Marke Marina × MAR
+## Teil 2: Die Marke Marina × MAR (ausgearbeitet aus Marinas Sprachnachrichten, 19.11.)
+
+### Das Versprechen
+**Kern:** Frauen, die ein Business aufbauen, fehlt kein weiteres Tool. Ihnen fehlt Klarheit, worauf es *jetzt* ankommt. MAR schließt diese Lücke.
+
+| Einsatz | Formulierung |
+|---|---|
+| **Bio (kurz)** | **Keine 400 Kreise mehr. MAR findet mit dir die richtige Frage für dein Business.** |
+| **Vorstellungssatz im Reel** | „Ich bin Marina, ich baue MAR – eine KI, die erst fragt und dir dann zeigt, was in deinem Business gerade wirklich dran ist.“ |
+| **Positionierung (lang)** | Für Unternehmerinnen, die Vollgas geben wollen, aber im Kurs-, Tool- und Ideen-Chaos nicht mehr wissen, was jetzt zählt. MAR ist die Business-Diagnostik-KI, die erst nachfragt, den einen Hebel findet und dich dorthin begleitet. Ohne 15.000-€-Coaching. |
+| **Ein Satz zum Merken** | „Die richtige Frage spart dir mehr Zeit und Geld als jede schnelle Antwort.“ |
 
 ### Die 4 Fragen
-| Frage | Entwurf ⚠️ |
+| Frage | Antwort |
 |---|---|
-| **Wer bin ich?** | Unternehmerin, die selbst 12.000 € in die falsche Lösung gesteckt hat und jetzt die KI baut, die ihr damals gefehlt hätte. |
-| **Wofür stehe ich?** | Die richtige Frage vor der schnellen Antwort. Diagnose statt Aktionismus. Ehrlich, warm, mit Augenzwinkern. |
-| **Wie werde ich wahrgenommen?** (Ziel) | „Die, die nachfragt.“ · „Die mit der KI, die widerspricht.“ · „Die sagt dir, was andere nicht sagen, aber nett.“ |
-| **Wofür will ich bekannt sein?** | „Marina = die richtige Frage.“ · „Bei der verschwendest du kein Geld mehr.“ · „Die hat MAR gebaut.“ |
+| **Wer bin ich?** | Unternehmerin seit 5 Jahren (Start mit der Geburt von Sohn Malu). Eigentlich Umweltmonitoring, Kunstschule, Grafik- und Modedesign. Technik-affin. Beobachtet klar und wertfrei. Hat Menschen schon immer im Mindset begleitet. Heute Business-Mentorin für hunderte Frauen und Gründerin von MAR. |
+| **Wofür stehe ich?** | Die richtige Frage vor der schnellen Antwort. Diagnose vor Entscheidung. Ehrlich, warm, mit Augenzwinkern. Positionierung, Messaging und Vertrieb sind ein lernbares Skillset, kein fremdes Universum. |
+| **Wie werde ich wahrgenommen?** (Ziel) | Die, die nachfragt. Die mit der KI, die widerspricht. Die den Code im Business-Sparring geknackt hat und ihn für alle öffnet, die sich kein 15.000-€-Coaching leisten wollen oder können. |
+| **Wofür will ich bekannt sein?** | „Marina = die richtige Frage.“ · „Bei ihr verschwendest du keine Zeit und kein Geld mehr.“ · „Die hat MAR gebaut, das Schweizer Taschenmesser fürs Business-Sparring.“ · Langfristig: „Selbst Geschäftsführer nutzen ihre KI.“ |
 
-**Ein-Satz-Versprechen** (Bio, Vorstellungssatz) ⚠️:
-> *Ich helfe Unternehmerinnen, die richtige Frage in ihrem Business zu finden, bevor sie Zeit und Geld investieren.*
-
-### Hero Story ⚠️ (Lücken füllt Marina)
-| Herkunft | Bruch | Aufstieg | Heute |
+### Hero Story
+| 01 Herkunft | 02 Bruch | 03 Aufstieg | 04 Heute |
 |---|---|---|---|
-| [Wo kamst du her? Job, Leben vor der Selbstständigkeit] | Vor 5 Jahren: 12.000 € Coaching, in einer Zahlung, „all in“. Danach monatelang im Kreis gedreht, ohne zu wissen, wo das Problem liegt. | [Was hast du danach anders gemacht? Was hast du gelernt, wer hat dir geholfen?] | Baut MAR, die Business-Diagnostik-KI, die erst fragt. Erste Unternehmerinnen in der Beta. |
+| Umweltmonitoring, Kunstschule, Grafik und Mode. Mit Malus Geburt vor 5 Jahren der Schritt in die Selbstständigkeit: Network Marketing mit ätherischen Ölen, Yogalehrerin, erste Kurse. | **12.000 € Business-Coaching, in einer Zahlung, „rausgeballert“.** Ein starrer Plan, nichts Individuelles, kein Mindset. Sie wusste nicht, wo sie steht und was davon für sie relevant ist. Danach im Kreis gedreht. | Mit Geschäftspartnerin Anna ein Business mit **mehrfach sechsstelligem Umsatz** aufgebaut, **ohne virale Reels und ohne Ads**, nur durch Vertrauen und hochpreisige Programme. Dann bewusst beendet (auch das ohne Diagnose, nur aus dem Gefühl heraus). Danach Strategieberaterin für hunderte Frauen. | Sieht jeden Tag dieselben Muster: Google Ads und Skalierung, bevor die Zielgruppe klar ist. Baut MAR, die KI, die sie selbst gebraucht hätte: beim Start, beim Wachsen und beim Aufhören. Erste Unternehmerinnen in der Beta. |
 
-### Haltung: klare Meinungen ⚠️
-| Thema | Mögliche Meinung |
+**Stärkster Beweis in der Story:** mehrfach sechsstellig **ohne Reels und ohne Ads**, nur durch Positionierung und Vertrauen. Das ist genau deine These. Gehört in mehrere Folgen.
+
+### Haltung (bestätigt)
+| Thema | Deine Meinung |
 |---|---|
-| **Kurs-Hopping** | „Der nächste Kurs löst nicht dein Problem, solange du nicht weißt, welches du hast.“ |
-| **KI & Content-Flut** | „KI macht Content billig. Positionierung und Vertrauen werden dadurch teurer.“ |
-| **Verkaufen** | „Über dein Angebot zu schweigen ist keine Bescheidenheit. Es ist unterlassene Hilfe.“ |
-| **Aktionismus** | „Mehr machen ist die bequemste Art, nicht nachzudenken.“ |
-| **Bauchgefühl** | „Bauchgefühl ist super, aber keine Diagnose.“ |
+| **Kurs-Hopping** | „Ich war selbst in 1.000 Webinaren. Die lösen dein Problem nicht, solange du nicht weißt, welches du hast.“ |
+| **KI & Content** | „KI macht Content billig. Positionierung und Vertrauen werden dadurch teurer. Schnell generierter Content, der nicht deine Personal Brand ist, frisst nur Zeit und verkauft nichts.“ |
+| **Verkaufen** | „Wer nicht verkaufen will, kann kein erfolgreiches Business führen. Über dein Angebot zu schweigen ist keine Bescheidenheit, sondern unterlassene Hilfe.“ |
+| **Verkaufen ist schon in dir** | „Du verkaufst jeden Tag, wenn du etwas von Herzen empfiehlst. Das Skillset ist da, wir lassen nur die Sales-Katze raus.“ |
+| **Zu viel denken** | „Manche denken sich so in ihren Ideen fest, dass sie nie ins Tun kommen. Schon die erste Nachricht wird zur Mauer.“ |
+| **Bauchgefühl** | „Bauchgefühl ist super, aber keine Diagnose. Hör auf deinen Körper, aber kauf dir nicht jeden Gedanken ab.“ |
+| **Reichweite** | „Mehr Follower lösen gar nichts. Positionierung, Messaging und die Übersetzung in Marketing und Vertrieb lösen es.“ |
+| **2027** | „Nächstes Jahr gewinnt nicht, wer den geilsten Content macht. Sondern wer am klarsten ist.“ |
 
-### Feindbild (eine Idee, keine Person) ⚠️
-- **Die Antwort-Kultur:** schnelle Tipps, 10-Punkte-Listen, „mach einfach mehr“
-- **Kurs- und Tool-Hopping:** immer die nächste Lösung kaufen, bevor das Problem klar ist
-- **„Mehr Reichweite löst alles“** als Branchenmythos
+### Feindbild (Ideen, keine Personen)
+1. **Die Schnell-Lösung:** der schnelle Tipp, die 10-Punkte-Liste, „mach einfach ein bisschen mehr“.
+2. **Die nächste Lösung kaufen, bevor das Problem klar ist:** noch drei Coachings, das letzte Geld rein, ohne zu wissen, wie der Health-Zustand des eigenen Business ist.
+3. **Das Über-Nacht-Versprechen:** der Glaube, dass Reichtum an einem Tag kommt und dann planbar bleibt.
+4. **„Mehr Reichweite löst alles“:** der Branchenmythos.
 
-### Brand Codes: Sprache, Rituale, Zugehörigkeit
-| Ebene | Was wir schon haben | Ausbauen ⚠️ |
+Regel aus der Präsentation: **Kritik trifft das Muster, nie die Person.** Keine Namen, keine Anbieter, keine Seitenhiebe auf konkrete Academys.
+
+### Brand Codes
+**Sprache – deine Begriffe (aus deinen Sprachnachrichten herausgearbeitet):**
+
+| Typ | Begriffe | Einsatz |
 |---|---|---|
-| **Sprache** (wiederkehrende Begriffe) | „Honey“, „die Sales-Katze am Schwanz packen“, „Tag X“, „She wants to know.“ | 1–2 eigene Begriffe festlegen und *jedes Mal* gleich sagen, z. B. **„die falsche Frage“**, **„Diagnose vor Entscheidung“**, eine Anrede für die Community |
-| **Rituale** | Stempel TAG X, Serien-Leiste, Sonnenfleck-Studio, Zettel „– Marina“, „Folg mir für Tag X“ | Ein fester Schluss-Satz pro Folge, eine feste Gegenfrage in den Kommentaren |
-| **Werte** | Ehrlichkeit, Nachfragen, Ermutigung | |
-| **Zugehörigkeit** | Founding 20 | Die Community bekommt einen Namen (z. B. „die Fragenden“) |
-| **Codes zeigen statt erzählen** | MAR-Chat im Bild, Stempel, Papier | Echte MAR-Oberfläche zeigen, echte Beta-Zahlen (Beweise) |
+| **Signatur-Begriffe** (immer gleich sagen) | **„die falsche Frage“** · **„Diagnose vor Entscheidung“** · **„die Sales-Katze rauslassen“** · **„400 Kreise drehen“** | in jeder 2.–3. Folge, im Hook, im Zettel oder in der Beschreibung |
+| **Anrede & Ton** | „Honey“ · „absolut“ · „ganz genau“ · „ganz ehrlich?“ | natürlich lassen, nicht übertreiben |
+| **Deine Bilder** | „Schweizer Taschenmesser fürs Business-Sparring“ · „Health-Zustand deines Business“ · „in 1.000 Millionen Webinaren“ · „rausgeballert“ | Illustration (das I in AGIL) |
+| **Englische Einwürfe** | „She wants to know.“ · „I don't care, was Webinar XY sagt …“ | als Pointe, 1× pro Folge |
+| **Bewusst vermeiden** | „massiv/massivst“ höchstens einmal pro Folge (wird sonst Füllwort) | |
+
+**Rituale:** Stempel TAG X · Serien-Leiste · Sonnenfleck-Studio · Zettel „– Marina“ · „Folg mir für Tag X“ · MAR-Chat im Bild.
+**Werte:** Ehrlichkeit · Nachfragen · Ermutigung.
+**Zugehörigkeit:** Founding 20. Ein Community-Name ist noch offen („die Fragenden“ ist raus). Lieber warten, bis die Community selbst einen Begriff aufbringt.
+**Zeigen statt erzählen:** MAR-Chat und Stempel im Bild, **echte MAR-Oberfläche** zeigen.
+
+### Noch offen
+- Soll die **Social Academy** im Content beim Namen genannt werden oder neutral („eine große Business-Academy“) bleiben?
+- **Caros Nachricht** bezieht sich auf die Academy, also nicht als MAR-Testimonial verwenden, außer sie war für dich persönlich.
 
 ---
 
