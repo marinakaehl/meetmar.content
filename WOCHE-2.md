@@ -41,3 +41,17 @@ Grundlage: `BRAND.md`, Marktanalysen 17.–20.11., Mariah-Artikel, Personal-Bran
 - Folge des Tages teilen + Umfrage / Frage-Sticker zum Thema
 - 1× Behind the Scenes (MAR-Oberfläche ohne Kundendaten, Dreh-Setup)
 - Do: Kommentar-Aufruf aus Tag 11 nochmal pushen
+
+
+---
+
+## Tag 11 – Sprechtext (Selfie, ~25 s)
+**Hook im Bild:** „**MAR klang wie eine hochgestochene Tarantel.**“ darunter grau: „Also hab ich's geändert.“
+
+> In einem Gespräch mit einer Kundin klang MAR plötzlich wie eine hochgestochene Tarantel. Ganz ehrlich.
+> Also hab ich nachgeschärft: MAR ist jetzt deine Sparringspartnerin – und kein Politiker, der alles 40-mal wiederholt.
+> Und es gibt Neues: Du kannst MAR jetzt alles einfach einsprechen. Und die ersten Playbooks für Kundengewinnung sind drin.
+> Ich bin Marina, ich baue MAR – das ist Tag 11.
+> Kommentiere MAR und ich schick dir den Zugang zu den Founding 20.
+
+**Effekte:** Hook ab Bild 1 · bei „Tarantel“ kurzer Schwarz-Weiß-Flash + 🕷-Sticker · „Politiker, der alles 40-mal wiederholt“ als durchgestrichenes Etikett · Chip-Row „NEU: SPRACHE · NEU: AKQUISE-PLAYBOOKS“ · CTA-Karte „KOMMENTIERE ‚MAR‘ → FOUNDING 20“

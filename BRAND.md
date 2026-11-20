@@ -158,3 +158,4 @@ Ideen sammeln (Podcasts, globale News, LinkedIn, Popkultur, andere Branchen, Res
 | 19.11.2026 | Analyse der Präsentation „Personal Brand. Personal Power.“ |
 | 19.11.2026 | Sprachnachrichten: Herkunft, Hero Story, Haltung, Feindbild, Sprache. Versprechen ausgearbeitet |
 | 19.11.2026 | Freigabe sechsstelliges Business. Academy bleibt ungenannt |
+| 20.11.2026 | MAR-Updates: Sprachfunktion (alles einsprechen), erste Akquise-Playbooks, Tone of Voice geglättet (Sparringspartnerin statt „hochgestochene Tarantel“/Politiker). Bild: „Schweizer Taschenmesser in der Hosentasche“ |
