@@ -77,15 +77,14 @@
    "small": "UND ICH NUTZE ES JEDEN TAG",
    "big": [
     "ChatGPT macht uns",
-    "zu schlechteren",
-    "Unternehmerinnen."
+    "schlechter."
    ],
-   "max_size": 120,
+   "max_size": 130,
    "at": {
     "seg": 0,
     "word": "ChatGPT"
    },
-   "y": 240
+   "y": 265
   }
  ],
  "moments": [

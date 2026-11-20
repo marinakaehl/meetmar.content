@@ -27,16 +27,7 @@
   },
   {
    "src": "S",
-   "from": 21.45,
-   "to": 22.45,
-   "cap_first": true,
-   "fix": {
-    "Programme": "Programme."
-   }
-  },
-  {
-   "src": "S",
-   "from": 29.15,
+   "from": 30.85,
    "to": 36.75,
    "cap_first": true
   },
@@ -58,15 +49,7 @@
   {
    "src": "S",
    "from": 104.5,
-   "to": 113.35
-  },
-  {
-   "src": "S",
-   "from": 115.95,
-   "to": 119.95,
-   "fix": {
-    "Ma": "MAR"
-   }
+   "to": 112.4
   },
   {
    "src": "S",
@@ -101,27 +84,27 @@
    "y": 420,
    "at": {
     "seg": 1,
-    "word": "Hochpreisige"
+    "word": "Weil"
    },
    "until": {
-    "seg": 2,
-    "word": "verkauft,"
+    "seg": 1,
+    "word": "Kunden"
    }
   },
   {
    "type": "label",
    "text": "Reichweite = Schaufenster",
    "at": {
-    "seg": 4,
+    "seg": 3,
     "word": "Schaufenster."
    },
    "note": "Vertrauen = der Grund, warum jemand reinkommt.",
    "note_at": {
-    "seg": 4,
+    "seg": 3,
     "word": "Vertrauen"
    },
    "until": {
-    "seg": 4,
+    "seg": 3,
     "end": true
    }
   },
@@ -129,16 +112,16 @@
    "type": "label",
    "text": "Frag dich",
    "at": {
-    "seg": 5,
+    "seg": 4,
     "word": "Frag"
    },
    "note": "Wissen meine Follower, wofür ich stehe?",
    "note_at": {
-    "seg": 6,
+    "seg": 5,
     "word": "wofür"
    },
    "until": {
-    "seg": 6,
+    "seg": 5,
     "end": true
    }
   },
@@ -147,11 +130,11 @@
    "text": "KOMMENTIERE „MAR“ → FOUNDING 20",
    "sub": "KOSTENLOSE BETA-RUNDE",
    "at": {
-    "seg": 8,
+    "seg": 6,
     "word": "Kommentiere"
    },
    "until": {
-    "seg": 8,
+    "seg": 6,
     "end": true
    }
   }

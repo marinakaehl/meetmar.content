@@ -1,0 +1,76 @@
+{
+ "quelle": "raw/woche2/IMG_7156.mp4",
+ "hinweis": "Zeiten grob, beim Einbau feinjustieren",
+ "clips": [
+  {
+   "name": "stille_blicke",
+   "from": 0.0,
+   "to": 13.0
+  },
+  {
+   "name": "ach_nee",
+   "from": 43.6,
+   "to": 47.6
+  },
+  {
+   "name": "moment_mal",
+   "from": 55.8,
+   "to": 58.2
+  },
+  {
+   "name": "ja",
+   "from": 65.8,
+   "to": 67.0
+  },
+  {
+   "name": "darling_ganz_ehrlich",
+   "from": 73.6,
+   "to": 81.6
+  },
+  {
+   "name": "she_wants_to_know_1",
+   "from": 86.8,
+   "to": 89.4
+  },
+  {
+   "name": "she_wants_to_know_2",
+   "from": 92.4,
+   "to": 94.9
+  },
+  {
+   "name": "she_wants_to_know_3",
+   "from": 97.4,
+   "to": 98.6
+  },
+  {
+   "name": "mhm_wissend",
+   "from": 106.8,
+   "to": 108.4
+  },
+  {
+   "name": "folg_mir_naechster_tag",
+   "from": 125.4,
+   "to": 128.6
+  },
+  {
+   "name": "folg_mir_fuer_morgen",
+   "from": 131.0,
+   "to": 132.1
+  },
+  {
+   "name": "folg_mir_mar_testen",
+   "from": 134.7,
+   "to": 137.0
+  },
+  {
+   "name": "folg_mir_founding20",
+   "from": 140.4,
+   "to": 144.2
+  },
+  {
+   "name": "kommentiere_mar",
+   "from": 147.3,
+   "to": 151.2
+  }
+ ]
+}
