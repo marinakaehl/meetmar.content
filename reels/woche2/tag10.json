@@ -1,0 +1,163 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "title": "Tag 10 – ToFu sechsstellig",
+ "series": {
+  "day": 10
+ },
+ "sources": {
+  "S": "raw/woche2/IMG_7155.mp4"
+ },
+ "transcripts": {
+  "S": "reels/woche2/IMG_7155_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 4.5,
+   "to": 14.6,
+   "hook": true,
+   "tight_start": true,
+   "cap_first": true,
+   "fix": {
+    "Aktiv-Ads": "aktive Ads"
+   }
+  },
+  {
+   "src": "S",
+   "from": 21.45,
+   "to": 22.45,
+   "cap_first": true,
+   "fix": {
+    "Programme": "Programme."
+   }
+  },
+  {
+   "src": "S",
+   "from": 29.15,
+   "to": 36.75,
+   "cap_first": true
+  },
+  {
+   "src": "S",
+   "from": 47.15,
+   "to": 48.3
+  },
+  {
+   "src": "S",
+   "from": 55.15,
+   "to": 64.95
+  },
+  {
+   "src": "S",
+   "from": 100.25,
+   "to": 101.65
+  },
+  {
+   "src": "S",
+   "from": 104.5,
+   "to": 113.35
+  },
+  {
+   "src": "S",
+   "from": 115.95,
+   "to": 119.95,
+   "fix": {
+    "Ma": "MAR"
+   }
+  },
+  {
+   "src": "S",
+   "from": 120.75,
+   "to": 124.75,
+   "fix": {
+    "Ma": "MAR"
+   }
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "small": "OHNE VIRALE REELS. OHNE ADS.",
+   "big": [
+    "Sechsstellig",
+    "verkauft."
+   ],
+   "max_size": 180,
+   "at": {
+    "seg": 0,
+    "word": "ich"
+   },
+   "y": 240
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 10",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Hochpreisige"
+   },
+   "until": {
+    "seg": 2,
+    "word": "verkauft,"
+   }
+  },
+  {
+   "type": "label",
+   "text": "Reichweite = Schaufenster",
+   "at": {
+    "seg": 4,
+    "word": "Schaufenster."
+   },
+   "note": "Vertrauen = der Grund, warum jemand reinkommt.",
+   "note_at": {
+    "seg": 4,
+    "word": "Vertrauen"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Frag dich",
+   "at": {
+    "seg": 5,
+    "word": "Frag"
+   },
+   "note": "Wissen meine Follower, wofür ich stehe?",
+   "note_at": {
+    "seg": 6,
+    "word": "wofür"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KOMMENTIERE „MAR“ → FOUNDING 20",
+   "sub": "KOSTENLOSE BETA-RUNDE",
+   "at": {
+    "seg": 8,
+    "word": "Kommentiere"
+   },
+   "until": {
+    "seg": 8,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 10 / 30 · FOLG FÜR TAG 11"
+ }
+}

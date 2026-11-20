@@ -43,6 +43,8 @@ def norm_words(words, fix):
         if out and t in ("%", "%."):
             o = out[-1]; o["text"] += " " + t; o["end"] = e; o["raw"] += t; continue
         out.append({"start": s, "end": e, "text": fix.get(t, t), "raw": raw})
+    for o in out:
+        o["text"] = fix.get(o["text"], o["text"])
     return out
 
 def plan(edl):

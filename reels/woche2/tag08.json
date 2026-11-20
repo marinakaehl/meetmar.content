@@ -1,0 +1,184 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "title": "Tag 8 – ToFu ChatGPT",
+ "series": {
+  "day": 8
+ },
+ "sources": {
+  "S": "raw/woche2/IMG_7153.mp4"
+ },
+ "transcripts": {
+  "S": "reels/woche2/IMG_7153_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 4.15,
+   "to": 9.95,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 11.85,
+   "to": 18.85
+  },
+  {
+   "src": "S",
+   "from": 19.75,
+   "to": 22.1
+  },
+  {
+   "src": "S",
+   "from": 38.05,
+   "to": 41.95,
+   "accent": [
+    "falsches"
+   ]
+  },
+  {
+   "src": "S",
+   "from": 88.75,
+   "to": 94.05
+  },
+  {
+   "src": "S",
+   "from": 101.95,
+   "to": 102.95
+  },
+  {
+   "src": "S",
+   "from": 115.45,
+   "to": 119.4
+  },
+  {
+   "src": "S",
+   "from": 130.55,
+   "to": 133.05,
+   "fix": {
+    "Ma": "MAR"
+   }
+  },
+  {
+   "src": "S",
+   "from": 142.95,
+   "to": 145.4,
+   "fix": {
+    "Ma": "MAR"
+   }
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "small": "UND ICH NUTZE ES JEDEN TAG",
+   "big": [
+    "ChatGPT macht uns",
+    "zu schlechteren",
+    "Unternehmerinnen."
+   ],
+   "max_size": 120,
+   "at": {
+    "seg": 0,
+    "word": "ChatGPT"
+   },
+   "y": 240
+  }
+ ],
+ "moments": [
+  {
+   "type": "word",
+   "text": "FALSCHES PROBLEM.",
+   "min": 1.3,
+   "at": {
+    "seg": 3,
+    "word": "falsches"
+   },
+   "until": {
+    "seg": 3,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 08",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Ich"
+   },
+   "until": {
+    "seg": 1,
+    "word": "Woche"
+   }
+  },
+  {
+   "type": "label",
+   "text": "12-Wochen-Content-Plan",
+   "at": {
+    "seg": 2,
+    "word": "der"
+   },
+   "strike_at": {
+    "seg": 3,
+    "word": "aber"
+   },
+   "until": {
+    "seg": 3,
+    "word": "falsches"
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "DIAGNOSE",
+   "y": 420,
+   "at": {
+    "seg": 4,
+    "word": "Diagnose"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Frag dich zuerst",
+   "at": {
+    "seg": 6,
+    "word": "frag"
+   },
+   "note": "Woher weiß ich, dass das mein Problem ist?",
+   "note_at": {
+    "seg": 6,
+    "word": "woher"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KOMMENTIERE „MAR“ → FOUNDING 20",
+   "sub": "TAG 08 / 30 · ICH BAUE MAR",
+   "at": {
+    "seg": 8,
+    "word": "Kommentiere"
+   },
+   "until": {
+    "seg": 8,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 08 / 30 · FOLG FÜR TAG 09"
+ }
+}
