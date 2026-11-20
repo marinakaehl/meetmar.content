@@ -1,0 +1,169 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "title": "Serie Tag 3 – Testreel kurz (~32 s)",
+ "series": {
+  "day": 3
+ },
+ "sources": {
+  "S": "raw/serie/IMG_7103.mp4"
+ },
+ "transcripts": {
+  "S": "reels/serie/IMG_7103_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 23.15,
+   "to": 24.4,
+   "hook": true,
+   "tight_start": true,
+   "cap_first": true
+  },
+  {
+   "src": "S",
+   "from": 25.45,
+   "to": 27.3,
+   "hook": true
+  },
+  {
+   "src": "S",
+   "from": 30.45,
+   "to": 31.9
+  },
+  {
+   "src": "S",
+   "from": 40.72,
+   "to": 50.85,
+   "cap_first": true
+  },
+  {
+   "src": "S",
+   "from": 63.05,
+   "to": 65.2
+  },
+  {
+   "src": "S",
+   "from": 66.95,
+   "to": 72.9
+  },
+  {
+   "src": "S",
+   "from": 84.6,
+   "to": 89.3
+  },
+  {
+   "src": "S",
+   "from": 6.5,
+   "to": 9.5
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "small": "MEIN ERSTES COACHING",
+   "big": [
+    "12.000 €"
+   ],
+   "max_size": 170,
+   "sub": "…und wusste nicht, wo ich ansetzen soll.",
+   "sub_size": 48,
+   "at": {
+    "seg": 0,
+    "word": "mein"
+   },
+   "y": 250
+  }
+ ],
+ "moments": [
+  {
+   "type": "typewall",
+   "text": "TOOLS",
+   "size": 150,
+   "alpha": 0.85,
+   "at": {
+    "seg": 4,
+    "word": "überschwemmt"
+   },
+   "until": {
+    "seg": 5,
+    "word": "welche"
+   }
+  },
+  {
+   "type": "bw",
+   "at": {
+    "seg": 6,
+    "word": "Und"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 03",
+   "y": 420,
+   "at": {
+    "seg": 2,
+    "word": "Ich"
+   },
+   "until": {
+    "seg": 3,
+    "word": "das"
+   }
+  },
+  {
+   "type": "label",
+   "text": "Keiner fragt dich",
+   "at": {
+    "seg": 5,
+    "word": "keiner"
+   },
+   "note": "…welche Frage du dir zuerst stellen solltest.",
+   "note_at": {
+    "seg": 5,
+    "word": "welche"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Marina · baut MAR",
+   "y": 250,
+   "at": {
+    "seg": 7,
+    "word": "Hi,"
+   },
+   "until": {
+    "seg": 7,
+    "word": "und"
+   }
+  },
+  {
+   "type": "cta",
+   "text": "FOLG MIR · ICH BAUE MAR 30 TAGE LANG  →",
+   "sub": "TAG 03 / 30",
+   "at": {
+    "seg": 7,
+    "word": "baue"
+   },
+   "until": {
+    "seg": 7,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 03 / 30 · ICH BAUE MAR"
+ }
+}

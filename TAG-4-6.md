@@ -120,3 +120,13 @@ Statt Text auf ruhigem Bild: **ein MAR-Chat, der sich live aufbaut**, mit Tipp-G
 - **Tag 4:** Umfrage „Hast du schon mal eine Kundin ohne Erklärung verloren? Ja / Nein“ + Frage-Sticker „Was war der Grund?“
 - **Tag 5:** Behind the Scenes: MAR-Oberfläche (ohne Kundendaten), „So sieht eine Diagnose aus“
 - **Tag 6:** Quiz „Was bringt dir mehr Kundinnen? A) mehr posten B) klareres Angebot“
+
+
+---
+
+## Update 20.11. nach Marktanalyse
+- **Tag 3** lief mit dem Zahlen-/Geständnis-Hook am besten (Skip-Rate 45 %), verliert aber in der Mitte (74 s, Ø 9 s) → **Testreel `tag03_kurz` (~30 s)**: gleicher Hook, Mitte gestrafft.
+- **Tag 4** (heute): Hook ist bereits eine konkrete Szene, Länge 34 s → bleibt. Caption-Frage mit niedriger Hürde: „Schon mal erlebt? Schreib nur ein 🙋‍♀️“.
+- **Tag 5:** Schluss-Karte jetzt **„KOMMENTIERE ‚MAR‘ FÜR DEN FOUNDING-20-ZUGANG“**. In der ersten Stunde jede DM selbst beantworten.
+- **Tag 6:** bleibt (25 s).
+- **Tag 7 wird das Tool-Reel nach Markt-Vorlage:** Hook „MAR hat mir 3 Fragen gestellt. Bei der zweiten musste ich das Handy weglegen.“ · Split-Screen (du oben, MAR-Bildschirmaufnahme unten) · Keyword „MAR“. Braucht: Bildschirmaufnahme von MAR mit Beispieldaten + ein kurzer Take.
