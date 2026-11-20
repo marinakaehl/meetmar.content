@@ -73,7 +73,8 @@
     "seg": 0,
     "word": "ich"
    },
-   "y": 240
+   "y": 240,
+   "front": true
   }
  ],
  "moments": [],

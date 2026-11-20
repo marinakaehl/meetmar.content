@@ -407,7 +407,9 @@ class Cards:
             elif c["type"] == "label":
                 key = ("lab", c["text"])
                 if key not in self.cache:
-                    f = font("IBMPlexMono-500.ttf", 62); d0 = ImageDraw.Draw(Image.new("L", (1, 1)))
+                    fs_ = 62; d0 = ImageDraw.Draw(Image.new("L", (1, 1)))
+                    while fs_ > 30 and spaced_len(d0, c["text"].upper(), font("IBMPlexMono-500.ttf", fs_), 10) > 840: fs_ -= 2
+                    f = font("IBMPlexMono-500.ttf", fs_)
                     tw = int(spaced_len(d0, c["text"].upper(), f, 10)); self.cache[key] = (f, tw)
                 f, tw = self.cache[key]
                 st = ease((t - c["t_strike"]) / 0.35) if "t_strike" in c and t >= c["t_strike"] else 0
@@ -597,7 +599,7 @@ class Moments:
         key = ("w", text, color)
         if key not in self.cache:
             d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1))); size = 420
-            while size > 120:
+            while size > 56:
                 f = font("Geist-600.ttf", size)
                 if d0.textlength(text, font=f) <= 990: break
                 size -= 10
@@ -953,9 +955,11 @@ def main():
                 for ts, L in hl_layers:
                     if t >= ts:
                         lay = render_hook(L, t - ts) if isinstance(L, dict) else L
+                hook_front = None
                 if lay is not None:
                     la = np.asarray(lay, np.float32); k = la[..., 3:] / 255 * (1 - ease((t - hook_end) / 0.25))
-                    base = base * (1 - k) + la[..., :3] * k
+                    if any(isinstance(L, dict) and L.get("front") for _, L in hl_layers): hook_front = (la, k)
+                    else: base = base * (1 - k) + la[..., :3] * k
             if fzm:  # Freeze-Sticker: Vollfarbe, weisse Kontur um die Person
                 fa = Image.fromarray((al[..., 0] * 255).astype(np.uint8))
                 ring = np.asarray(fa.filter(ImageFilter.MaxFilter(25)).filter(ImageFilter.GaussianBlur(1.5)), np.float32)[..., None] / 255
@@ -964,6 +968,8 @@ def main():
                 base = base * (1 - q) + flat * q
                 base = base * (1 - ring * q) + 255 * ring * q
             img = base * (1 - al) + fg * al
+            if hook_start - 0.01 <= t < hook_end + 0.25 and hook_front is not None:
+                img = img * (1 - hook_front[1]) + hook_front[0][..., :3] * hook_front[1]
             img = moments.post(img, fg_full, t)
             if sbar is not None:
                 k = sbar[..., 3:] / 255; img = img * (1 - k) + sbar[..., :3] * k
