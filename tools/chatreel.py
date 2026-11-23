@@ -108,7 +108,7 @@ def main():
     grain = [np.random.default_rng(i).normal(0, 2.4, (H, W, 1)).astype(np.float32) for i in range(3)]
 
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
-                            "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", f"{work}/video.mp4"],
+                            "-i", "-", "-vf", "scale=out_color_matrix=bt709:out_range=tv", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", f"{work}/video.mp4"],
                            stdin=subprocess.PIPE)
     fl = font("IBMPlexMono-500.ttf", 24)
     for fi in range(int(total * FPS)):

@@ -31,7 +31,7 @@ def is_hdr(path):
     if path not in _HDR:
         r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=color_transfer",
                             "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip()
-        _HDR[path] = r in ("arib-std-b67", "smpte2084")
+        _HDR[path] = r.strip(", \n").split(",")[0] in ("arib-std-b67", "smpte2084")
     return _HDR[path]
 
 def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), size)
@@ -916,7 +916,7 @@ def main():
         hl_layers.append((ts, h if "big" in h else render_headline([(h["text"], h["grey"])])))
     hook_end = max((b for (a, b), s in zip(segb, edl["segments"]) if s.get("hook")), default=0)
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
-                            "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", f"{work}/video.mp4"],
+                            "-i", "-", "-vf", "scale=out_color_matrix=bt709:out_range=tv", "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", f"{work}/video.mp4"],
                            stdin=subprocess.PIPE)
     done = 0; limit = preview * FPS if preview else 1e9
     intro = edl.get("intro")
@@ -1011,7 +1011,7 @@ def main():
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav",
                     "-vf", f"subtitles={work}/captions.ass:fontsdir={FONTS}," + edl.get("grade", GRADE),
                     "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
-                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", *dur,
+                    "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", *dur,
                     "-movflags", "+faststart", out], check=True)
     srt = os.path.splitext(out)[0] + ".srt"
     with open(srt, "w") as fh:
