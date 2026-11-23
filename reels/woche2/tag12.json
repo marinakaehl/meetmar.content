@@ -1,5 +1,5 @@
 {
- "crop_bottom": 1215,
+ "crop_bottom": 1280,
  "background_image": "design/backgrounds/studio_sonne.png",
  "person_scale": 1.0,
  "open_zoom": 1.24,
@@ -8,8 +8,8 @@
   "day": 12
  },
  "sources": {
-  "S": "raw/woche2/IMG_7154.mp4",
-  "R": "raw/woche2/IMG_7156.mp4"
+  "S": "raw/woche2/IMG_7154.MOV",
+  "R": "raw/woche2/IMG_7156.MOV"
  },
  "transcripts": {
   "S": "reels/woche2/IMG_7154_words.json",
