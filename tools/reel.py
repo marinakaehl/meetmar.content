@@ -23,6 +23,17 @@ PORC = (241, 239, 234); MUTED = (167, 164, 159); WARMGREY = (122, 110, 99); LOGO
 # Standard-Look: wärmere Haut, etwas mehr Kontrast, leicht nachgeschärft (Quellen sind komprimiert)
 GRADE = "eq=contrast=1.03:saturation=1.03"
 
+# iPhone-HDR (HLG/BT.2020) korrekt nach SDR umrechnen, sonst wirkt die Haut blass
+HDR_TO_SDR = "zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p"
+_HDR = {}
+
+def is_hdr(path):
+    if path not in _HDR:
+        r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=color_transfer",
+                            "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip()
+        _HDR[path] = r in ("arib-std-b67", "smpte2084")
+    return _HDR[path]
+
 def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), size)
 
 # ---------------------------------------------------------------- audio helpers
@@ -920,6 +931,7 @@ def main():
         if done >= limit: break
         if rg and (c["t0"] + c["frames"] / FPS < rg[0] or c["t0"] > rg[1]): continue
         raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{c['in']:.3f}", "-i", srcs[c["src"]], "-frames:v", str(c["frames"]),
+                              *(["-vf", HDR_TO_SDR] if is_hdr(srcs[c["src"]]) else []),
                               "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
         fr = np.frombuffer(raw, np.uint8).reshape(-1, SRC_H, SRC_W, 3)
         prev = None; box = None; box1 = None
