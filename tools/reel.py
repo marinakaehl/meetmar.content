@@ -21,7 +21,7 @@ CARBON = (16, 16, 15); PANEL = (28, 28, 25); LINE = (52, 52, 49)
 PORC = (241, 239, 234); MUTED = (167, 164, 159); WARMGREY = (122, 110, 99); LOGO_BLACK = (7, 7, 6)
 
 # Standard-Look: wärmere Haut, etwas mehr Kontrast, leicht nachgeschärft (Quellen sind komprimiert)
-GRADE = "curves=r='0/0 0.5/0.52 1/1':g='0/0 0.5/0.48 1/0.98':b='0/0 0.5/0.43 1/0.94',eq=contrast=1.12:saturation=1.3:brightness=-0.03,unsharp=5:5:0.6"
+GRADE = "eq=contrast=1.03:saturation=1.03"
 
 def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), size)
 
