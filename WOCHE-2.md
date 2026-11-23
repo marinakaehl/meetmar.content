@@ -1,4 +1,19 @@
-# Woche 2: „Ich baue MAR“ (Tag 8–14 · 24.–30.11.)
+# Woche 2: „Ich baue MAR“
+
+> **Update 23.11.:** Für Tag 7 (Tool-Reel) fehlte noch Material. Deshalb rutscht alles einen Tag nach vorn:
+> | Datum | Tag | Folge |
+> |---|---|---|
+> | So 23.11. | **7** | ToFu ChatGPT (fertig) |
+> | Mo 24.11. | **8** | Chat-Reveal Gartenplanung |
+> | Di 25.11. | **9** | ToFu sechsstellig (fertig) |
+> | Mi 26.11. | **10** | Selfie Tarantel / MAR-Updates (Take fehlt) |
+> | Do 27.11. | **11** | Chat-Reveal abgelaufenes Angebot |
+> | Fr 28.11. | **12** | ToFu 2027 (fertig) |
+> | Sa 29.11. | **13** | Chat-Reveal Technik |
+> | So 30.11. | **14** | Tool-Reel „MAR hat mir 3 Fragen gestellt“ (braucht Bildschirmaufnahme) |
+> Die Tabelle unten ist die ursprüngliche Planung.
+
+## Ursprüngliche Planung (Tag 8–14 · 24.–30.11.)
 
 Grundlage: `BRAND.md`, Marktanalysen 17.–20.11., Mariah-Artikel, Personal-Brand-Präsentation.
 **Regeln für die Woche:** Hook mit Zahl, Geständnis oder Konflikt ab Bild 1 · große Folgen **max. 40 s** · 1× Keyword-CTA „MAR“ · Posten 18:30 Uhr · Signatur-Satz vor dem „Morgen“ · Beschreibungs-Frage mit niedriger Hürde (Emoji oder ein Wort).

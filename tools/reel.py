@@ -20,6 +20,9 @@ SRC_W, SRC_H = 720, 1280
 CARBON = (16, 16, 15); PANEL = (28, 28, 25); LINE = (52, 52, 49)
 PORC = (241, 239, 234); MUTED = (167, 164, 159); WARMGREY = (122, 110, 99); LOGO_BLACK = (7, 7, 6)
 
+# Standard-Look: wärmere Haut, etwas mehr Kontrast, leicht nachgeschärft (Quellen sind komprimiert)
+GRADE = "curves=r='0/0 0.5/0.52 1/1':g='0/0 0.5/0.48 1/0.98':b='0/0 0.5/0.43 1/0.94',eq=contrast=1.12:saturation=1.3:brightness=-0.03,unsharp=5:5:0.6"
+
 def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), size)
 
 # ---------------------------------------------------------------- audio helpers
@@ -994,7 +997,7 @@ def main():
     captions(words, edl, segb, total, f"{work}/captions.ass")
     dur = ["-t", str(preview)] if preview else []
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav",
-                    "-vf", f"subtitles={work}/captions.ass:fontsdir={FONTS},eq=contrast=1.03:saturation=1.03",
+                    "-vf", f"subtitles={work}/captions.ass:fontsdir={FONTS}," + edl.get("grade", GRADE),
                     "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
                     "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", *dur,
                     "-movflags", "+faststart", out], check=True)

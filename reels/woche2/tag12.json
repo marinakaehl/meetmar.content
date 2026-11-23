@@ -1,0 +1,173 @@
+{
+ "crop_bottom": 1215,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "title": "Tag 12 – ToFu 2027",
+ "series": {
+  "day": 12
+ },
+ "sources": {
+  "S": "raw/woche2/IMG_7154.mp4",
+  "R": "raw/woche2/IMG_7156.mp4"
+ },
+ "transcripts": {
+  "S": "reels/woche2/IMG_7154_words.json",
+  "R": "reels/woche2/IMG_7156_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 3.95,
+   "to": 8.9,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 9.85,
+   "to": 12.6,
+   "hook": true
+  },
+  {
+   "src": "S",
+   "from": 18.25,
+   "to": 19.88
+  },
+  {
+   "src": "S",
+   "from": 33.45,
+   "to": 37.45
+  },
+  {
+   "src": "S",
+   "from": 39.0,
+   "to": 40.3
+  },
+  {
+   "src": "S",
+   "from": 91.25,
+   "to": 93.75
+  },
+  {
+   "src": "S",
+   "from": 97.55,
+   "to": 100.85
+  },
+  {
+   "src": "S",
+   "from": 101.35,
+   "to": 107.2
+  },
+  {
+   "src": "S",
+   "from": 109.65,
+   "to": 112.6
+  },
+  {
+   "src": "S",
+   "from": 116.95,
+   "to": 121.6
+  },
+  {
+   "src": "R",
+   "from": 131.05,
+   "to": 132.0
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "small": "ICH SAG'S DIR GANZ EHRLICH",
+   "big": [
+    "2027 sieht jeder Feed",
+    "gleich geil aus."
+   ],
+   "max_size": 130,
+   "at": {
+    "seg": 0,
+    "word": "2027"
+   },
+   "y": 265,
+   "front": true
+  }
+ ],
+ "moments": [
+  {
+   "type": "typewall",
+   "text": "CONTENT",
+   "size": 140,
+   "alpha": 0.8,
+   "at": {
+    "seg": 2,
+    "word": "KI"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  }
+ ],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 12",
+   "y": 420,
+   "at": {
+    "seg": 2,
+    "word": "KI"
+   },
+   "until": {
+    "seg": 2,
+    "word": "Captions,"
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "3 SEK.",
+   "y": 420,
+   "at": {
+    "seg": 5,
+    "word": "Drei-Sekunden-Test."
+   },
+   "until": {
+    "seg": 6,
+    "word": "Profil,"
+   }
+  },
+  {
+   "type": "label",
+   "text": "Der 3-Sekunden-Test",
+   "at": {
+    "seg": 7,
+    "word": "Kannst"
+   },
+   "note": "Wofür stehe ich? Und warum sollte man mir glauben?",
+   "note_at": {
+    "seg": 8,
+    "word": "warum"
+   },
+   "until": {
+    "seg": 9,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "FOLG MIR FÜR TAG 13  →",
+   "sub": "KOMMENTIERE „MAR“ FÜR DIE BETA",
+   "at": {
+    "seg": 10,
+    "word": "Folg"
+   },
+   "until": {
+    "seg": 10,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 12 / 30 · FOLG FÜR TAG 13"
+ }
+}
