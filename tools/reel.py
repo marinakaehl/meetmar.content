@@ -931,7 +931,7 @@ def main():
         if done >= limit: break
         if rg and (c["t0"] + c["frames"] / FPS < rg[0] or c["t0"] > rg[1]): continue
         raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{c['in']:.3f}", "-i", srcs[c["src"]], "-frames:v", str(c["frames"]),
-                              *(["-vf", HDR_TO_SDR] if is_hdr(srcs[c["src"]]) else []),
+                              "-vf", ((HDR_TO_SDR + ",") if is_hdr(srcs[c["src"]]) else "") + f"scale={SRC_W}:{SRC_H}:flags=lanczos",
                               "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
         fr = np.frombuffer(raw, np.uint8).reshape(-1, SRC_H, SRC_W, 3)
         prev = None; box = None; box1 = None

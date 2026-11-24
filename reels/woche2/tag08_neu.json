@@ -1,0 +1,157 @@
+{
+ "title": "Tag 8 – Positionierung im Kopf (MoFu)",
+ "series": {
+  "day": 8
+ },
+ "crop_bottom": 1280,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.24,
+ "sources": {
+  "S": "raw/woche2/TAG08.MOV"
+ },
+ "transcripts": {
+  "S": "reels/woche2/TAG08_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 1.15,
+   "to": 6.6,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 12.95,
+   "to": 16.05
+  },
+  {
+   "src": "S",
+   "from": 27.45,
+   "to": 30.05
+  },
+  {
+   "src": "S",
+   "from": 39.2,
+   "to": 41.5
+  },
+  {
+   "src": "S",
+   "from": 45.0,
+   "to": 49.6
+  },
+  {
+   "src": "S",
+   "from": 66.1,
+   "to": 68.5
+  },
+  {
+   "src": "S",
+   "from": 70.55,
+   "to": 77.8
+  },
+  {
+   "src": "S",
+   "from": 82.2,
+   "to": 86.3
+  },
+  {
+   "src": "S",
+   "from": 86.5,
+   "to": 88.45
+  },
+  {
+   "src": "S",
+   "from": 111.65,
+   "to": 114.95,
+   "fix": {
+    "Ma.": "MAR.",
+    "Ma": "MAR"
+   }
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "front": true,
+   "small": "SERIOUSLY.",
+   "big": [
+    "Perfekte Positionierung.",
+    "0 Anfragen."
+   ],
+   "max_size": 120,
+   "at": {
+    "seg": 0,
+    "word": "Seriously,"
+   },
+   "y": 265
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 08",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Jetzt"
+   },
+   "until": {
+    "seg": 1,
+    "word": "Strategiegespräch."
+   }
+  },
+  {
+   "type": "label",
+   "text": "Vorher · Nachher · schön",
+   "at": {
+    "seg": 3,
+    "word": "Wunderschöne"
+   },
+   "strike_at": {
+    "seg": 4,
+    "word": "nirgendwo"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "label",
+   "text": "Speisekarte",
+   "at": {
+    "seg": 6,
+    "word": "Speisekarte"
+   },
+   "note": "…liegt in der Schublade.",
+   "note_at": {
+    "seg": 6,
+    "word": "Schublade"
+   },
+   "until": {
+    "seg": 6,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KOMMENTIERE „MAR“ → FOUNDING 20",
+   "sub": "KOSTENLOSE BETA-RUNDE",
+   "at": {
+    "seg": 9,
+    "word": "Ich"
+   },
+   "until": {
+    "seg": 9,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "TAG 08 / 30 · FOLG FÜR TAG 09"
+ }
+}
