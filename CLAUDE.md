@@ -7,6 +7,7 @@ Lies vor jeder Content-Arbeit (Skripte, Beschreibungen, Cover, Schnitt):
 4. Aktueller Wochenplan (`WOCHE-*.md`, `TAG-*.md`) und `marktanalyse/` (Branch `claude/gallant-lovelace-ppq85e`).
 
 Regeln:
+- **Marina ist in jeder Folge ab Bild 1 im Bild** (Text-/Chat-only-Reels liefen mit ~30 Aufrufen deutlich schlechter). Chats und Karten nur noch als Effekt über ihr.
 - **Längen (hart, immer prüfen bevor gerendert wird):** große Folge / ToFu max. **40 s** · kleine Folge 15–25 s · Chat-Reveal 15–25 s. Lieber einen Gedanken streichen als überziehen.
 - **Kommentar-Aufruf „Kommentiere MAR“** darf in mehreren Folgen pro Woche vorkommen (Marina testet das, ManyChat wird eingerichtet).
 - Skripte nach AGIL (Anker, Grund/Geschichte, Illustration, Lektion). Hook mit Person, Zahl oder Konflikt, Text ab Bild 1.

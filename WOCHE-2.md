@@ -70,3 +70,14 @@ Grundlage: `BRAND.md`, Marktanalysen 17.–20.11., Mariah-Artikel, Personal-Bran
 > Kommentiere MAR und ich schick dir den Zugang zu den Founding 20.
 
 **Effekte:** Hook ab Bild 1 · bei „Tarantel“ kurzer Schwarz-Weiß-Flash + 🕷-Sticker · „Politiker, der alles 40-mal wiederholt“ als durchgestrichenes Etikett · Chip-Row „NEU: SPRACHE · NEU: AKQUISE-PLAYBOOKS“ · CTA-Karte „KOMMENTIERE ‚MAR‘ → FOUNDING 20“
+
+---
+
+## Update 24.11.
+Text-/Chat-only-Reels liefen schwach (~30 Aufrufe). Ab jetzt ist **Marina in jeder Folge ab Bild 1 im Bild**, nach AGIL.
+
+### Tag 8 (neu, MoFu, ~35 s): „Perfekte Positionierung. 0 Anfragen.“
+> A: Ihre Positionierung war perfekt. Und trotzdem hat online keiner gebucht.
+> G: Eine Gartenplanerin kam zu mir. Sie wusste glasklar, für wen sie da ist: Familien, die ihren Garten endlich nutzen wollen statt ihn nur zu mähen. Dann hab ich mir ihren Feed angeschaut. Schöne Gärten. Vorher, nachher. Aber nirgends stand, für wen und warum gerade sie.
+> I: Das ist wie ein Restaurant mit genialer Speisekarte, die in der Schublade liegt.
+> L: Positionierung im Kopf ist nichts wert, Honey. Sie muss in jedem Post sichtbar sein: in der Hook, in der Caption, in deiner Bio. Ich bin Marina, ich baue MAR, und genau da setzt MAR an. Kommentiere MAR, und ich schick dir den Zugang zu den Founding 20.
