@@ -478,7 +478,7 @@ class Cards:
                 if "t_reply" in c and t >= c["t_reply"]:
                     pr = (t - c["t_reply"] - 0.12) / max(0.3, c["t_reply_done"] - c["t_reply"] - 0.15)
                     nr = int(len(c["reply"]) * min(max(pr, 0), 1))
-                    imr = self._bubble("MAR", c["reply"][:nr], pr < 1.05 and int(t * 3) % 2 == 0)
+                    imr = self._bubble(c.get("reply_label", "MAR"), c["reply"][:nr], pr < 1.05 and int(t * 3) % 2 == 0)
                     self._paste(layer, imr, 110, c.get("y", 300) + 175, t, c["t_reply"], c["t_out"])
             elif c["type"] == "checklist":
                 done = sum(1 for it in c["items"] if t >= it["t"])

@@ -111,13 +111,14 @@
     "word": "Egal"
    },
    "typed_by": 1.0,
-   "reply": "Super Idee! Dein Plan ist mega stark! 🙌",
+   "reply": "Super Idee! Dein Plan ist mega stark!",
    "reply_at": 1.3,
    "reply_typed_by": 2.6,
    "until": {
     "seg": 3,
     "end": true
-   }
+   },
+   "reply_label": "CHATGPT"
   },
   {
    "type": "stamp",
