@@ -258,6 +258,9 @@ def render_hook(item, rel):
     """Zentrierter, leichter Hook: Mono-Zeile + grosse Geist-Light-Zeilen, Woerter blenden weich ein."""
     txt = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(txt)
     fm = font("IBMPlexMono-500.ttf", 34); a0 = 1.0 if item.get("instant") else ease(rel / 0.3)
+    _fs = 34
+    while item.get("small") and _fs > 20 and spaced_len(d, item["small"], font("IBMPlexMono-500.ttf", _fs), 12) > 940: _fs -= 1
+    fm = font("IBMPlexMono-500.ttf", _fs)
     sw = spaced_len(d, item.get("small", ""), fm, 12) if item.get("small") else 0
     y_small = item.get("y", 270)
     if item.get("small"): text_spaced(d, ((W - sw) / 2, y_small - 12 * (1 - a0)), item["small"], fm, CARBON + (int(230 * a0),), 12)
