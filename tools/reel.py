@@ -97,7 +97,7 @@ def plan(edl):
         lo = max(before[-1]["end"] if before else 0, ws[0]["start"] - 0.15)
         hi = min(after[0]["start"] - 0.02 if after else 1e9, ws[-1]["end"] + 0.25)
         v = vad[seg["src"]]
-        a0 = max(0, int((ws[0]["start"] - 0.15) * 100)); a1 = int((ws[-1]["end"] + 0.25) * 100)
+        a0 = max(0, int((ws[0]["start"] - 0.15) * 100)); a1 = min(len(v), int((ws[-1]["end"] + 0.25) * 100))
         # sprachliche Regionen im Segment
         regs, i = [], a0
         while i < a1:

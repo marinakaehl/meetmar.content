@@ -1,0 +1,153 @@
+{
+ "title": "ToFu – ChatGPT der netteste Lügner",
+ "series": {
+  "day": 11
+ },
+ "crop_bottom": 1280,
+ "keep_pause": 0.45,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.18,
+ "sources": {
+  "S": "raw/woche3/IMG_7183.MOV"
+ },
+ "transcripts": {
+  "S": "reels/woche3/IMG_7183_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 15.55,
+   "to": 17.95,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 0.0,
+   "to": 9.6
+  },
+  {
+   "src": "S",
+   "from": 10.95,
+   "to": 15.1
+  },
+  {
+   "src": "S",
+   "from": 22.55,
+   "to": 30.6
+  },
+  {
+   "src": "S",
+   "from": 32.55,
+   "to": 36.65,
+   "fix": {
+    "Strategiegesprächen,": "Strategiegesprächen."
+   }
+  },
+  {
+   "src": "S",
+   "from": 45.75,
+   "to": 54.3,
+   "fix": {
+    "weit,": "weit."
+   }
+  },
+  {
+   "src": "S",
+   "from": 61.95,
+   "to": 63.95,
+   "fix": {
+    "mal": "MAR"
+   }
+  },
+  {
+   "src": "S",
+   "from": 71.75,
+   "to": 75.3,
+   "fix": {
+    "mal": "MAR"
+   }
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "front": true,
+   "small": "CHATGPT IST",
+   "big": [
+    "der netteste Lügner",
+    "aller Zeiten."
+   ],
+   "max_size": 125,
+   "at": {
+    "seg": 0,
+    "word": "Der"
+   },
+   "y": 265
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 11",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "Das"
+   },
+   "until": {
+    "seg": 1,
+    "word": "Freundin"
+   }
+  },
+  {
+   "type": "prompt",
+   "text": "Meine One-Million-Idea …",
+   "y": 300,
+   "at": {
+    "seg": 3,
+    "word": "Egal"
+   },
+   "typed_by": 1.0,
+   "reply": "Super Idee! Dein Plan ist mega stark! 🙌",
+   "reply_at": 1.3,
+   "reply_typed_by": 2.6,
+   "until": {
+    "seg": 3,
+    "end": true
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "STOPP",
+   "y": 420,
+   "at": {
+    "seg": 5,
+    "word": "stopp,"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KOMMENTIERE „MAR“ → KOSTENLOS TESTEN",
+   "sub": "ICH BAUE MAR · AUCH DAS, WAS SCHIEFGEHT",
+   "at": {
+    "seg": 7,
+    "word": "Hüpf"
+   },
+   "until": {
+    "seg": 7,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "ICH BAUE MAR · FOLG MIR"
+ }
+}
