@@ -81,3 +81,30 @@ Text-/Chat-only-Reels liefen schwach (~30 Aufrufe). Ab jetzt ist **Marina in jed
 > G: Eine Gartenplanerin kam zu mir. Sie wusste glasklar, für wen sie da ist: Familien, die ihren Garten endlich nutzen wollen statt ihn nur zu mähen. Dann hab ich mir ihren Feed angeschaut. Schöne Gärten. Vorher, nachher. Aber nirgends stand, für wen und warum gerade sie.
 > I: Das ist wie ein Restaurant mit genialer Speisekarte, die in der Schublade liegt.
 > L: Positionierung im Kopf ist nichts wert, Honey. Sie muss in jedem Post sichtbar sein: in der Hook, in der Caption, in deiner Bio. Ich bin Marina, ich baue MAR, und genau da setzt MAR an. Kommentiere MAR, und ich schick dir den Zugang zu den Founding 20.
+
+---
+
+## Update 25.11. (Marktanalyse: Reichweite steigt, aber 0 neue Follower → fehlender Grund zu folgen)
+
+**Neuer Outro-Satz ab Tag 10:** „Ich zeig dir jeden Tag, was beim Bauen von MAR passiert. Auch das, was schiefgeht. Folg mir.“
+**Bio-Zeile:** „Tag X/30: Ich baue MAR öffentlich, auch das, was schiefgeht.“
+
+### Tag 10 (Do 26.11., kleine Folge ~25 s, Selfie): Meilenstein + Tarantel
+**Hook im Bild:** „**Die ersten Unternehmerinnen sind in MAR.**“ grau: „Und MAR hat sich danebenbenommen.“
+> Die ersten Unternehmerinnen sind in MAR. Und ganz ehrlich? In einem Gespräch hat MAR geklungen wie eine hochgestochene Tarantel.
+> Also hab ich nachgeschärft. MAR ist jetzt deine Sparringspartnerin, kein Politiker, der alles 40-mal wiederholt.
+> Und neu: Du kannst MAR jetzt alles einsprechen. Und die ersten Akquise-Playbooks sind drin.
+> Ich zeig dir jeden Tag, was beim Bauen von MAR passiert, auch das, was schiefgeht. Kommentiere MAR, dann bist du dabei.
+
+### Tag 11 (Fr 27.11., MoFu, ~35 s): „Ihre Ads liefen. Ihr Angebot war abgelaufen.“
+**Hook im Bild:** „**Webinare. Ads. Alles lief.**“ grau: „Nur gekauft hat keiner.“
+> A: Sie hatte Webinare, sie hatte Ads, alles lief. Und gekauft hat trotzdem kaum jemand.
+> G: Eine Unternehmerin sitzt bei mir und sagt: „Ich muss an meiner Strategie feilen.“ Ich so: Zeig mal dein Angebot. Und da war's. Das Angebot war von vor drei Jahren. Damals mega. Heute? Braucht's so keiner mehr.
+> I: I mean, das ist wie Milch im Kühlschrank. Sieht von außen top aus, ist aber abgelaufen. Und du kannst die Packung noch so schön bewerben.
+> L: Honey, bevor du an deinen Ads drehst: Check, ob dein Angebot noch zu dem passt, was deine Kundinnen heute wirklich brauchen. Genau das fragt MAR als Erstes.
+> Ich zeig dir jeden Tag, was beim Bauen von MAR passiert. Folg mir.
+
+### Extra: „Start hier“-Reel (15–20 s, anpinnen)
+> Ich baue 30 Tage lang öffentlich eine KI, die Unternehmerinnen widerspricht. Und du kannst dabei sein.
+> Sie heißt MAR und fragt dich erst, bevor sie dir irgendwas empfiehlt. Gerade sind wir bei Tag X von 30.
+> Folg mir, dann siehst du, ob es klappt. Auch das, was schiefgeht.
