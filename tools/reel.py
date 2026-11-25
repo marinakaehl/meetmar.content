@@ -108,7 +108,7 @@ def plan(edl):
             else: i += 1
         merged = []
         for r in regs:
-            if merged and r[0] - merged[-1][1] < 0.16: merged[-1][1] = r[1]
+            if merged and r[0] - merged[-1][1] < edl.get("keep_pause", 0.16): merged[-1][1] = r[1]
             else: merged.append(r)
         merged = [r for r in merged if r[1] - r[0] > 0.12 or any(r[0] - .05 <= w["start"] < r[1] for w in ws)]
         if not merged: merged = [[ws[0]["start"], ws[-1]["end"]]]

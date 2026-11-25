@@ -1,0 +1,157 @@
+{
+ "title": "ToFu – Coaches werden das nicht mögen",
+ "series": {
+  "day": 10
+ },
+ "crop_bottom": 1280,
+ "keep_pause": 0.45,
+ "background_image": "design/backgrounds/studio_sonne.png",
+ "person_scale": 1.0,
+ "open_zoom": 1.18,
+ "sources": {
+  "S": "raw/woche3/IMG_7188.MOV"
+ },
+ "transcripts": {
+  "S": "reels/woche3/IMG_7188_words.json"
+ },
+ "segments": [
+  {
+   "src": "S",
+   "from": 0.0,
+   "to": 6.85,
+   "hook": true,
+   "tight_start": true
+  },
+  {
+   "src": "S",
+   "from": 7.95,
+   "to": 19.75,
+   "cap_first": true,
+   "fix": {
+    "15.000-Euro-Programm,": "15.000-Euro-Programm,"
+   }
+  },
+  {
+   "src": "S",
+   "from": 24.75,
+   "to": 34.95,
+   "fix": {
+    "wo": "wo"
+   }
+  },
+  {
+   "src": "S",
+   "from": 36.6,
+   "to": 41.25
+  },
+  {
+   "src": "S",
+   "from": 47.35,
+   "to": 58.4
+  },
+  {
+   "src": "S",
+   "from": 60.05,
+   "to": 62.55,
+   "fix": {
+    "mal": "MAR"
+   }
+  }
+ ],
+ "headline": [
+  {
+   "instant": true,
+   "front": true,
+   "small": "ICH BIN SELBST STRATEGIEBERATERIN",
+   "big": [
+    "Coaches werden",
+    "das nicht mögen."
+   ],
+   "max_size": 130,
+   "at": {
+    "seg": 0,
+    "word": "Das"
+   },
+   "y": 265
+  }
+ ],
+ "moments": [],
+ "cards": [
+  {
+   "type": "stamp",
+   "text": "TAG 10",
+   "y": 420,
+   "at": {
+    "seg": 1,
+    "word": "warum"
+   },
+   "until": {
+    "seg": 1,
+    "word": "Frauen"
+   }
+  },
+  {
+   "type": "label",
+   "text": "15.000 € · 20.000 €",
+   "at": {
+    "seg": 1,
+    "word": "15.000-Euro-Programm,"
+   },
+   "strike_at": {
+    "seg": 1,
+    "word": "wissen"
+   },
+   "until": {
+    "seg": 1,
+    "end": true
+   }
+  },
+  {
+   "type": "stamp",
+   "text": "DIAGNOSE",
+   "y": 420,
+   "at": {
+    "seg": 2,
+    "word": "Diagnose"
+   },
+   "until": {
+    "seg": 2,
+    "word": "siehst,"
+   }
+  },
+  {
+   "type": "label",
+   "text": "Erst Grundriss",
+   "at": {
+    "seg": 4,
+    "word": "Wohnung"
+   },
+   "note": "…dann Möbel.",
+   "note_at": {
+    "seg": 4,
+    "word": "Möbel"
+   },
+   "until": {
+    "seg": 4,
+    "end": true
+   }
+  },
+  {
+   "type": "cta",
+   "text": "KOMMENTIERE „MAR“ → ZUGANG",
+   "sub": "KOSTENLOSE BETA",
+   "at": {
+    "seg": 5,
+    "word": "Kommentier"
+   },
+   "until": {
+    "seg": 5,
+    "end": true
+   }
+  }
+ ],
+ "endframe": {
+  "seconds": 1.0,
+  "sub": "ICH BAUE MAR · AUCH DAS, WAS SCHIEFGEHT"
+ }
+}
