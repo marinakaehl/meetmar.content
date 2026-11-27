@@ -8,3 +8,11 @@
 **Offen (noch nicht geändert, Stand 25.11.):** Linktitel „Founding 20: gratis testen“ · „Start hier“-Reel + 3 angepinnte Reels · Highlights.
 
 **Messung:** täglich neue Follower ÷ neue Profilbesuche vergleichen, vor dem 25.11. gegenüber danach. Aussagekräftig erst nach ca. 5–7 Tagen.
+
+## Verlauf nach der Änderung
+
+| Stand | Follower | Profilbesuche (30 T.) | Δ Besuche | Δ Follower | Umwandlung |
+|---|---|---|---|---|---|
+| 25.11. (Änderung) | 49 | 79 | – | – | – |
+| 26.11. | 49 | 80 | +1 | 0 | – |
+| 27.11. | 54 | 99 | +19 | +5 | 26 % |
